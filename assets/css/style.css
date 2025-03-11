@@ -11,20 +11,22 @@ body, html {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Asegurar que el contenido del cuerpo se desplace */
+/* Contenido principal */
 .content {
-    min-height: 100vh;
-    padding-bottom: 80px; /* Espacio para el pie de página fijo */
+    flex: 1; /* Permite que el contenido se expanda */
+    padding-bottom: 80px; /* Espacio para el pie de página */
 }
 
-/* Justificación de texto en párrafos */
+/* Justificación de texto */
 p.text-justify, .container p {
     text-align: justify;
 }
 
-/* Estilo de introducción */
+/* Introducción */
 #intro {
     position: fixed;
     top: 0;
@@ -36,35 +38,22 @@ p.text-justify, .container p {
     justify-content: center;
     align-items: center;
     z-index: 10;
-    min-height: 60vh;
     color: white;
     text-align: center;
-    overflow: hidden;
-    opacity: 2;
+    opacity: 1;
     transition: opacity 2s ease-out;
 }
 
 #intro img {
     width: 50%;
-    max-width: 50%;
     height: auto;
     animation: zoomIn 2s ease-in-out forwards;
 }
 
 /* Animación de zoom */
 @keyframes zoomIn {
-    0% {
-        width: 0%;
-        opacity: 1;
-    }
-    20% {
-        width: 50%;
-        opacity: 1;
-    }
-    30% {
-        transform: scale(10);
-        opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(10); opacity: 0; }
 }
 
 /* Página principal */
@@ -77,19 +66,16 @@ p.text-justify, .container p {
 
 @media (min-width: 332px) {
     #sections-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
+/* Sección */
 .section {
     padding: 2rem;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 8px;
-}
-
-.section h2 {
-    margin-bottom: 15px;
 }
 
 /* Animación de volteo */
@@ -173,7 +159,7 @@ a:focus, a:hover {
     }
 
     #intro img {
-        width: 40px;
+        width: 40%;
     }
 
     .container {
@@ -204,21 +190,23 @@ a:focus, a:hover {
 
 /* Estilo para el pie de página fijo */
 .fixed-footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #343a40; /* Color de fondo */
+    background-color: #343a40;
     color: white;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
     padding: 10px;
     text-align: center;
 }
 
-
 /* Evitar que el contenido quede cubierto por el pie de página */
 body {
-    margin-bottom: 50px; /* Ajusta este valor según el tamaño del pie de página */
+    margin-bottom: 50px;
 }
 
-
+.list-group-item {
+    border: none;
+    box-shadow: none;
+}
