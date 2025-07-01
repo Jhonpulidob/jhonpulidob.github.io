@@ -44,60 +44,70 @@
     
     <!-- Contenido Principal con margen superior para compensar la cabecera fija -->
     <div class="container margin-top-navbar">
-        <h2 class="mt-5">Ingeniero en Sistemas, Consultor, Emprendedor, Desarrollador Indie y Artista Creativo</h2> <hr>
+        <div class="row align-items-center">
+            <!-- Imagen a la izquierda -->
+            <div class="col-md-4 text-center">
+                <img src="{{ url_for('static', filename='images/perfil.jpg') }}" class="img-fluid rounded-circle shadow" alt="Foto de Jhon Edward Pulido Bustamante" width="250">
+            </div>
+            <!-- Descripción a la derecha -->
+            <div class="col-md-8">
+                <h2 class="mt-3 mt-md-0">Ingeniero en Sistemas, Consultor, Emprendedor, Desarrollador Indie y Artista Creativo</h2> 
+                <hr>
+                <p class="lead text-justify">
+                    Soy un profesional con una visión multidisciplinaria y un enfoque apasionado por la innovación, tanto en el ámbito tecnológico como artístico. 
+                    Nacido el 5 de junio de 1978 en Caracas, mi carrera se ha forjado en la ingeniería, la gestión de proyectos, el desarrollo tecnológico y la creatividad artística. 
+                    A lo largo de más de 16 años de experiencia profesional, he adquirido un conocimiento profundo en áreas clave como la optimización de procesos, 
+                    la transformación digital y la mejora continua, combinando estos conocimientos con mi pasión por el arte en disciplinas como la música, la pintura, 
+                    el tatuaje y el dibujo.
+                </p>
+            </div>
+        </div>
 
-        <p class="lead text-justify">Soy un profesional con una visión multidisciplinaria y un enfoque apasionado por la innovación, tanto en el ámbito tecnológico como artístico. Nacido el 5 de junio de 1978 en Caracas, mi carrera se ha forjado en la ingeniería, la gestión de proyectos, el desarrollo tecnológico y la creatividad artística. A lo largo de más de 16 años de experiencia profesional, he adquirido un conocimiento profundo en áreas clave como la optimización de procesos, la transformación digital y la mejora continua, combinando estos conocimientos con mi pasión por el arte en disciplinas como la música, la pintura, el tatuaje y el dibujo.
-
-            Mi capacidad para integrar soluciones tecnológicas de manera eficiente y liderar proyectos en diversas industrias me ha permitido abordar desafíos complejos y alcanzar resultados tangibles. Al mismo tiempo, mi enfoque artístico me impulsa a explorar nuevas formas de expresión, aportando una perspectiva única en cada proyecto que emprendo. Siempre busco el aprendizaje continuo, impulsado por el deseo de contribuir al progreso de los sectores tecnológicos y artísticos, adaptándome con éxito a los cambios y evolucionando constantemente.</p>
-
-            <h2 class="mt-5">Trayectoria Académica</h2>
-            <ul class="list-group no-border">
-                <li class="list-group-item"><strong>Bachiller en Ciencias</strong> – U.E. Colegio San Agustín (1996).</li>
-                <li class="list-group-item"><strong>Ingeniero de Sistemas</strong> – I.U. Politécnico Santiago Mariño (2005).</li>
-                <li class="list-group-item"><strong>Magíster en Ciencias, Gerencia y Seguridad Industrial en Mantenimiento</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2011).</li>
-                <li class="list-group-item"><strong>Magíster en Gerencia de Mercadeo</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2017).</li>
-            </ul>
+        <h2 class="mt-5">Trayectoria Académica</h2>
+        <ul class="list-group no-border">
+            <li class="list-group-item"><strong>Bachiller en Ciencias</strong> – U.E. Colegio San Agustín (1996).</li>
+            <li class="list-group-item"><strong>Ingeniero de Sistemas</strong> – I.U. Politécnico Santiago Mariño (2005).</li>
+            <li class="list-group-item"><strong>Magíster en Ciencias, Gerencia y Seguridad Industrial en Mantenimiento</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2011).</li>
+            <li class="list-group-item"><strong>Magíster en Gerencia de Mercadeo</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2017).</li>
+        </ul>
             
         <h2 class="mt-5">Desempeño Profesional</h2>
-        <p class="text-justify">Mi experiencia abarca roles estratégicos y técnicos en sectores clave como:</p>
         <div class="row">
             <div class="col-md-6">
                 <h5>Energía y Petróleo</h5>
-                <p class="text-justify">Trabajé en PDVSA como Analista de Procura y posteriormente como Ingeniero de Proyectos, donde lideré la gestión de adquisición de equipos y materiales para proyectos de gran envergadura.</p>
+                <p>Trabajé en PDVSA como Analista de Procura y posteriormente como Ingeniero de Proyectos...</p>
             </div>
             <div class="col-md-6">
                 <h5>Telecomunicaciones</h5>
-                <p class="text-justify">Participé en el proyecto de despliegue de fibra óptica para CANTV, en alianza con Huawei, cubriendo la ruta desde Caucagua hasta Barcelona.</p>
+                <p>Participé en el proyecto de despliegue de fibra óptica para CANTV, en alianza con Huawei...</p>
             </div>
             <div class="col-md-6">
                 <h5>Banca y Finanzas</h5>
-                <p class="text-justify">Durante mi carrera en el Banco Mercantil, escalé posiciones desde Cajero hasta Gerente Operativo, gestionando operaciones clave y equipos de alto rendimiento.</p>
+                <p>Durante mi carrera en el Banco Mercantil, escalé posiciones desde Cajero hasta Gerente Operativo...</p>
             </div>
             <div class="col-md-6">
                 <h5>Distribución y Logística</h5>
-                <p class="text-justify">Como Gerente Regional en PDVAL, lideré la logística y distribución de alimentos en una región estratégica, garantizando el abastecimiento y la eficiencia operativa.</p>
+                <p>Como Gerente Regional en PDVAL, lideré la logística y distribución de alimentos...</p>
             </div>
         </div>
 
         <h2 class="mt-5">Iniciativas y Proyectos Autónomos</h2>
-        <p class="text-justify">Como emprendedor, he desarrollado múltiples negocios, entre ellos:</p>
         <ul class="list-group mb-4">
             <li class="list-group-item">Diseño y confección en serigrafía textil.</li>
             <li class="list-group-item">Un salón de barbería.</li>
-            <li class="list-group-item">Un estudio de tatuajes, donde he destacado por ofrecer una experiencia única al cliente.</li>
+            <li class="list-group-item">Un estudio de tatuajes.</li>
         </ul>
 
-        <p class="text-justify">Actualmente, me desempeño como freelancer en Chile, especializándome en:</p>
+        <p>Actualmente, me desempeño como freelancer en España, especializándome en:</p>
         <ul class="list-group mb-4">
             <li class="list-group-item"><strong>Desarrollo web y aplicaciones:</strong> Uso tecnologías como Python, Flask, HTML, CSS y JavaScript.</li>
-            <li class="list-group-item"><strong>Diseño digital y arte:</strong> Creación de ilustraciones, tatuajes personalizados y contenido visual de alta calidad.</li>
-            <li class="list-group-item"><strong>Escritura y creación de contenido:</strong> Estoy desarrollando seis libros, incluidos textos técnicos y novelas con títulos provisionales como <em>Del acero al cristal</em> y <em>Oruboru</em>.</li>
+            <li class="list-group-item"><strong>Diseño digital y arte:</strong> Creación de ilustraciones, tatuajes personalizados y contenido visual.</li>
+            <li class="list-group-item"><strong>Escritura y creación de contenido:</strong> Desarrollo de seis libros, incluidos textos técnicos y novelas.</li>
         </ul>
 
         <h2 class="mt-5">Perspectiva Personal</h2>
-        <p class="text-justify mb-4">Mi enfoque profesional se basa en la innovación continua y la búsqueda de soluciones estratégicas para los desafíos más complejos. Estoy comprometido con el desarrollo personal y profesional, combinando mi formación técnica, creatividad y experiencia en la gestión de recursos.</p>
+        <p class="mb-4">Mi enfoque profesional se basa en la innovación continua y la búsqueda de soluciones estratégicas...</p>
     </div>
-    <br><br><br><br><br>
 
     <footer class="bg-dark text-white text-center py-3 fixed-footer">
         <p>© 2024 - 2025 Jhon Edward Pulido Bustamante - Todos los derechos reservados</p>
