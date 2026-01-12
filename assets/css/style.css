@@ -1,4 +1,6 @@
-/* Estilos globales */
+/* ==============================
+   Estilos globales
+============================== */
 * {
     padding: 0;
     margin: 0;
@@ -10,23 +12,14 @@ body, html {
     height: 100%;
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-/* Contenido principal */
-.content {
-    flex: 1; /* Permite que el contenido se expanda */
-    padding-bottom: 80px; /* Espacio para el pie de página */
-}
-
-/* Justificación de texto */
-p.text-justify, .container p {
-    text-align: justify;
-}
-
-/* Introducción */
+/* ==============================
+   INTRO
+============================== */
 #intro {
     position: fixed;
     top: 0;
@@ -37,176 +30,88 @@ p.text-justify, .container p {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    color: white;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 2s ease-out;
+    z-index: 9999;
 }
 
-#intro img {
-    width: 50%;
-    height: auto;
-    animation: zoomIn 2s ease-in-out forwards;
-}
-
-/* Animación de zoom */
-@keyframes zoomIn {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(10); opacity: 0; }
-}
-
-/* Página principal */
-#sections-container {
-    display: grid;
-    gap: 2rem;
-    margin-top: 50px;
-    text-align: center;
-}
-
-@media (min-width: 332px) {
-    #sections-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-}
-
-/* Sección */
-.section {
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-}
-
-/* Animación de volteo */
-.flip-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 20px 0;
-    transition: transform 1s ease-in-out;
-    transform-style: preserve-3d;
-}
-
-.flip-image:hover {
-    transform: rotateY(360deg);
-}
-
-/* Contenedor de imagen y botón */
-.image-btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.image-btn-container .btn {
-    margin-left: 30px;
-}
-
-/* Página de contacto */
-.contact-page .container .row .col-sm-6 .text-center {
+.intro-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
-.icon-size {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
+.intro-box img {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
-/* Estilos de enlaces */
-a {
-    text-decoration: none;
-    color: inherit;
+.intro-box h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
 }
 
-a:focus, a:hover {
-    outline: 2px solid #007bff;
-    outline-offset: 4px;
+/* ==============================
+   Cuadro animado
+============================== */
+.outline {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    width: 0; /* Se ajusta al ancho del contenido */
+    height: 0; /* Se ajusta al alto del contenido */
+    border: none;
 }
 
-/* Optimización para móviles */
+/* Cada línea inicial invisible */
+.line {
+    position: absolute;
+    background-color: white;
+}
+
+/* Línea inferior: empieza desde abajo del contenido */
+.line.bottom {
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+}
+
+.line.left {
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    height: 0%;
+}
+
+.line.right {
+    bottom: 0;
+    right: 0;
+    width: 4px;
+    height: 0%;
+}
+
+.line.top {
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+}
+
+/* ==============================
+   Ajustes responsivos
+============================== */
 @media (max-width: 768px) {
-    #intro img {
-        width: 50%;
-    }
-
-    body, h1, p {
-        font-size: 16px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    button {
-        padding: 12px 20px;
-        font-size: 18px;
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+    .intro-box img { width: 50%; }
+    .intro-box h1 { font-size: 1.8rem; }
 }
 
 @media (max-width: 480px) {
-    body, h1, p {
-        font-size: 14px;
-    }
-
-    #intro img {
-        width: 40%;
-    }
-
-    .container {
-        padding: 5px;
-    }
-}
-
-/* Estilos para las imágenes dentro de las tarjetas */
-.card img {
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
-.card img:hover {
-    opacity: 0.8;
-}
-
-/* Barra de navegación */
-.navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo del contenedor principal */
-.container {
-    max-width: 900px;
-    margin: 0 auto; /* Centrado automático */
-}
-
-/* Estilo para el pie de página fijo */
-.fixed-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #343a40;
-    color: white;
-    z-index: 1000;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Evitar que el contenido quede cubierto por el pie de página */
-body {
-    margin-bottom: 50px;
-}
-
-.list-group-item {
-    border: none;
-    box-shadow: none;
+    .intro-box img { width: 40%; }
+    .intro-box h1 { font-size: 1.5rem; }
 }

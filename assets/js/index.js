@@ -1,18 +1,10 @@
 const intro = document.querySelector("#intro");
 
-const animationIntro = () => {
-    template = 
-    `
-    <img src="./images/logo.png" alt="Imagen de Intro">
-    `
-    intro.innerHTML = template
-}
+setTimeout(() => {
+    intro.style.transition = "opacity 1s ease-out";
+    intro.style.opacity = 0;
 
-
-animationIntro()
-
-setTimeout(function () {
-    $("#intro").remove()
-    $("#main-content").fadeIn()
-}, 3000) // Tiempo total de animación (2s zoomExpand + 1s fadeOut)
-
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 1000);
+}, 2000);
