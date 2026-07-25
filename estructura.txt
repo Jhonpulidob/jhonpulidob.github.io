@@ -1,0 +1,28 @@
+/mi-web/
+│
+├── index.html
+│
+├── /pages/
+│   ├── about.html
+│   ├── portfolio.html
+│   └── contact.html
+│
+├── /assets/
+│   ├── /css/
+│   │   ├── style.css
+│   │   └── responsive.css
+│   │
+│   ├── /js/
+│   │   ├── main.js
+│   │   └── animations.js
+│   │
+│   ├── /images/
+│   │   ├── profile.png
+│   │   ├── background.jpg
+│   │   └── proyectos/
+│   │       ├── proyecto1.jpg
+│   │       └── proyecto2.jpg
+│   │
+│   └── /fonts/
+│
+└── README.md
