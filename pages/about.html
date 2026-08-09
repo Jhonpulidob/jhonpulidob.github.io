@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Mí · Jhon Pulido</title>
     <meta name="description" content="Conoce la trayectoria de Jhon Pulido: ingeniero de sistemas, consultor, emprendedor y desarrollador indie con más de 16 años de experiencia profesional.">
-    <meta name="theme-color" content="#f4a640">
+    <meta name="theme-color" content="#00d2ff">
     <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,120 +16,130 @@
     <meta name="twitter:card" content="summary_large_image">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    <div class="progress-bar" role="progressbar"></div>
+    <div class="hero-bg" aria-hidden="true"></div>
 
-    <div class="progress-bar"></div>
-    <div class="hero-bg"></div>
-
-    <header class="header-premium">
+    <header class="header-premium" role="banner">
         <div class="brand">
-            <img src="../assets/images/logo.png" alt="Logo" class="logo-img">
-            <span class="brand-name">Jhon <span>Pulido</span></span>
+            <a href="../index.html" style="display:flex;align-items:center;gap:10px;">
+                <img src="../assets/images/logo.png" alt="Logo Jhon Pulido" class="logo-img">
+                <span class="brand-name">Jhon <span>Pulido</span></span>
+            </a>
         </div>
-        <ul class="nav-premium">
-            <li><a href="../index.html">INICIO</a></li>
-            <li><a href="about.html" class="active">SOBRE MÍ</a></li>
-            <li><a href="libros.html">LIBROS</a></li>
-            <li><a href="arte.html">ARTE</a></li>
-            <li><a href="games.html">GAMES</a></li>
-            <li><a href="contact.html">CONTACTO</a></li>
+        <ul class="nav-premium" role="menubar">
+            <li role="none"><a href="../index.html" role="menuitem">INICIO</a></li>
+            <li role="none"><a href="about.html" class="active" role="menuitem">SOBRE MÍ</a></li>
+            <li role="none"><a href="libros.html" role="menuitem">LIBROS</a></li>
+            <li role="none"><a href="arte.html" role="menuitem">ARTE</a></li>
+            <li role="none"><a href="games.html" role="menuitem">GAMES</a></li>
+            <li role="none"><a href="consultoria.html" role="menuitem">CONSULTORÍA</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">CONTACTO</a></li>
         </ul>
-        <a href="https://wa.me/34660986240" target="_blank" rel="noopener" class="btn-whatsapp">HABLAR CONMIGO</a>
-        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <a href="https://wa.me/34660986240" target="_blank" rel="noopener" class="btn-whatsapp">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>HABLAR CONMIGO</span>
+            </a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" type="button"><span></span><span></span><span></span></button>
+        </div>
     </header>
 
     <div class="mobile-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
         <a href="../index.html">INICIO</a>
-        <a href="about.html">SOBRE MÍ</a>
+        <a href="about.html" class="active">SOBRE MÍ</a>
         <a href="libros.html">LIBROS</a>
         <a href="arte.html">ARTE</a>
         <a href="games.html">GAMES</a>
+        <a href="consultoria.html">CONSULTORÍA</a>
         <a href="contact.html">CONTACTO</a>
     </nav>
 
-    <main class="main-page-container container main-content" id="main-content">
+    <main class="main-page-container" id="main-content">
         <h2 class="section-title reveal">Sobre Mí</h2>
-        
-        <div class="glass-panel reveal row align-items-center" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
-            <div class="col-md-4 text-center">
-                <img src="../assets/images/profile.png" class="img-fluid rounded-circle shadow" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent);" alt="Foto de Jhon Edward Pulido Bustamante">
+
+        <div class="glass-panel reveal" style="display:flex; gap:36px; align-items:center; flex-wrap:wrap;">
+            <div style="flex-shrink:0; text-align:center;">
+                <img src="../assets/images/profile.png" class="profile-circle" alt="Foto de Jhon Edward Pulido Bustamante">
             </div>
-            <div class="col-md-8" style="flex: 1; min-width: 280px;">
-                <h2 class="mt-3 mt-md-0" style="color: var(--accent); margin-bottom: 15px;">Ingeniero en Sistemas, Consultor, Emprendedor, Desarrollador Indie y Artista Creativo</h2>
-                <hr>
-                <p class="lead text-justify" style="color: var(--text-light); line-height: 1.7;">
-                    Soy un profesional con una visión multidisciplinaria y un enfoque apasionado por la innovación, tanto en el ámbito tecnológico como artístico. 
-                    Nacido el 5 de junio de 1978 en Caracas, mi carrera se ha forjado en la ingeniería, la gestión de proyectos, el desarrollo tecnológico y la creatividad artística. 
-                    A lo largo de más de 16 años de experiencia profesional, he adquirido un conocimiento profundo en áreas clave como la optimización de procesos, 
-                    la transformación digital y la mejora continua, combinando estos conocimientos con mi pasión por el arte en disciplinas como la música, la pintura, 
-                    el tatuaje y el dibujo.
+            <div style="flex:1; min-width:260px;">
+                <h3 style="color:var(--cyan-bright); font-size:1.35rem; margin-bottom:14px; border:none;">
+                    Ingeniero en Sistemas · Consultor · Emprendedor · Desarrollador Indie · Artista
+                </h3>
+                <p style="line-height:1.75; color:var(--text-muted);">
+                    Profesional con visión multidisciplinaria y pasión por la innovación tecnológica y artística.
+                    Nacido el 5 de junio de 1978 en Caracas. Más de 16 años de experiencia en ingeniería,
+                    gestión de proyectos, desarrollo tecnológico y creación artística (música, pintura, tatuaje y dibujo).
+                    Combino optimización de procesos, transformación digital y mejora continua con una fuerte
+                    componente creativa.
                 </p>
             </div>
         </div>
 
-        <h2 class="section-title reveal mt-5">Trayectoria Académica</h2>
+        <h2 class="section-title reveal" style="margin-top:20px;">Trayectoria Académica</h2>
         <div class="glass-panel reveal">
-            <ul class="list-group no-border" style="list-style: none; display: flex; flex-direction: column; gap: 15px; color: var(--text-light);">
-                <li class="list-group-item">🎓 <strong>Bachiller en Ciencias</strong> – U.E. Colegio San Agustín (1996).</li>
-                <li class="list-group-item">🎓 <strong>Ingeniero de Sistemas</strong> – I.U. Politécnico Santiago Mariño (2005).</li>
-                <li class="list-group-item">🎓 <strong>Magíster en Ciencias, Gerencia y Seguridad Industrial en Mantenimiento</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2011).</li>
-                <li class="list-group-item">🎓 <strong>Magíster en Gerencia de Mercadeo</strong> – Universidad Gran Mariscal de Ayacucho (UGMA) (2017).</li>
+            <ul class="list-group">
+                <li class="list-group-item">🎓 <strong>Bachiller en Ciencias</strong> — U.E. Colegio San Agustín (1996)</li>
+                <li class="list-group-item">🎓 <strong>Ingeniero de Sistemas</strong> — I.U. Politécnico Santiago Mariño (2005)</li>
+                <li class="list-group-item">🎓 <strong>Magíster en Ciencias, Gerencia y Seguridad Industrial en Mantenimiento</strong> — Universidad Gran Mariscal de Ayacucho (UGMA) (2011)</li>
+                <li class="list-group-item">🎓 <strong>Magíster en Gerencia de Mercadeo</strong> — Universidad Gran Mariscal de Ayacucho (UGMA) (2017)</li>
             </ul>
         </div>
 
-        <h2 class="section-title reveal mt-5">Desempeño Profesional</h2>
-        <div class="glass-panel reveal row">
-            <div class="col-md-6 mb-3">
-                <h5>Energía y Petróleo</h5>
-                <p>Trabajé en PDVSA como Analista de Procura y posteriormente como Ingeniero de Proyectos...</p>
+        <h2 class="section-title reveal">Desempeño Profesional</h2>
+        <div class="grid-cards reveal">
+            <div class="grid-card-item" style="align-items:flex-start; text-align:left;">
+                <h3 style="color:var(--cyan-bright);">Energía y Petróleo</h3>
+                <p>PDVSA — Analista de Procura e Ingeniero de Proyectos. Gestión de procesos críticos y proyectos de infraestructura energética.</p>
             </div>
-            <div class="col-md-6 mb-3">
-                <h5>Telecomunicaciones</h5>
-                <p>Participé en el proyecto de despliegue de fibra óptica para CANTV, en alianza con Huawei...</p>
+            <div class="grid-card-item" style="align-items:flex-start; text-align:left;">
+                <h3 style="color:var(--cyan-bright);">Telecomunicaciones</h3>
+                <p>Proyecto de despliegue de fibra óptica para CANTV en alianza con Huawei. Coordinación técnica y seguimiento de hitos.</p>
             </div>
-            <div class="col-md-6 mb-3">
-                <h5>Banca y Finanzas</h5>
-                <p>Durante mi carrera en el Banco Mercantil, escalé posiciones desde Cajero hasta Gerente Operativo...</p>
+            <div class="grid-card-item" style="align-items:flex-start; text-align:left;">
+                <h3 style="color:var(--cyan-bright);">Banca y Finanzas</h3>
+                <p>Banco Mercantil — Evolución desde Cajero hasta Gerente Operativo. Liderazgo de equipos y optimización de operaciones.</p>
             </div>
-            <div class="col-md-6 mb-3">
-                <h5>Distribución y Logística</h5>
-                <p>Como Gerente Regional en PDVAL, lideré la logística y distribución de alimentos...</p>
+            <div class="grid-card-item" style="align-items:flex-start; text-align:left;">
+                <h3 style="color:var(--cyan-bright);">Distribución y Logística</h3>
+                <p>Gerente Regional en PDVAL. Liderazgo de logística y distribución de alimentos a escala regional.</p>
             </div>
         </div>
 
-        <h2 class="section-title reveal mt-5">Iniciativas y Proyectos Autónomos</h2>
+        <h2 class="section-title reveal">Iniciativas y Proyectos Autónomos</h2>
         <div class="glass-panel reveal">
-            <ul class="list-group mb-4">
-                <li class="list-group-item">Diseño y confección en serigrafía textil.</li>
-                <li class="list-group-item">Un salón de barbería.</li>
-                <li class="list-group-item">Un estudio de tatuajes.</li>
+            <ul class="list-group" style="margin-bottom:20px;">
+                <li class="list-group-item">Diseño y confección en serigrafía textil</li>
+                <li class="list-group-item">Salón de barbería</li>
+                <li class="list-group-item">Estudio de tatuajes</li>
             </ul>
-            <p>Actualmente, me desempeño como freelancer en España, especializándome en:</p>
-            <ul class="list-group mb-4">
-                <li class="list-group-item"><strong>Desarrollo web y aplicaciones:</strong> Uso tecnologías como Python, Flask, HTML, CSS y JavaScript.</li>
-                <li class="list-group-item"><strong>Diseño digital y arte:</strong> Creación de ilustraciones, tatuajes personalizados y contenido visual.</li>
-                <li class="list-group-item"><strong>Escritura y creación de contenido:</strong> Desarrollo de seis libros, incluidos textos técnicos y novelas.</li>
+            <p style="margin-bottom:14px; color:var(--text-muted);">Actualmente como freelancer en España, especializándome en:</p>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Desarrollo web y aplicaciones:</strong> Python, Flask, HTML, CSS, JavaScript</li>
+                <li class="list-group-item"><strong>Diseño digital y arte:</strong> Ilustraciones, tatuajes personalizados y contenido visual</li>
+                <li class="list-group-item"><strong>Escritura y creación de contenido:</strong> Seis libros entre textos técnicos y novelas</li>
             </ul>
         </div>
 
-        <h2 class="section-title reveal mt-5">Perspectiva Personal</h2>
+        <h2 class="section-title reveal">Perspectiva Personal</h2>
         <div class="glass-panel reveal">
-            <p class="mb-4">Mi enfoque profesional se basa en la innovación continua y la búsqueda de soluciones estratégicas...</p>
+            <p style="line-height:1.75; color:var(--text-muted);">
+                Mi enfoque profesional se basa en la innovación continua y la búsqueda de soluciones estratégicas
+                que generen impacto real. Creo en combinar rigor técnico con creatividad: del cristal al acero,
+                cada proyecto es un proceso de transformación. Trabajo con precisión, comunicación clara y
+                compromiso con la excelencia en cada entrega.
+            </p>
         </div>
     </main>
 
     <footer class="footer">
-        © 2026 Jhon Edward Pulido Bustamante - Todos los derechos reservados
+        © 2026 Jhon Edward Pulido Bustamante — Todos los derechos reservados
     </footer>
-
     <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jhon Pulido · Sitio Oficial</title>
     <meta name="description" content="Jhon Pulido — Ingeniero de sistemas, consultor, desarrollador indie y autor. Consultoría, desarrollo de videojuegos (Energex), arte, tatuajes y libros publicados.">
-    <meta name="theme-color" content="#f4a640">
+    <meta name="theme-color" content="#00d2ff">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
 <body>
 
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-
-    <div class="progress-bar" role="progressbar"></div>
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="hero-bg" aria-hidden="true"></div>
 
     <header class="header-premium" role="banner">
         <div class="brand">
@@ -30,67 +30,69 @@
         </div>
 
         <ul class="nav-premium" role="menubar">
-            <li role="none"><a href="index.html" class="active">INICIO</a></li>
-            <li role="none"><a href="pages/about.html">SOBRE MÍ</a></li>
+            <li role="none"><a href="index.html" class="active" role="menuitem">INICIO</a></li>
+            <li role="none"><a href="pages/about.html" role="menuitem">SOBRE MÍ</a></li>
             <li role="none">
-                <a href="pages/libros.html">LIBROS</a>
+                <a href="pages/libros.html" role="menuitem">LIBROS</a>
                 <div class="dropdown-content">
                     <a href="pages/libros.html">Del Cristal al Acero</a>
+                    <a href="pages/libros.html">Uróboros</a>
                     <a href="pages/libros.html">Nexarion</a>
                 </div>
             </li>
             <li role="none">
-                <a href="pages/arte.html">ARTE</a>
+                <a href="pages/arte.html" role="menuitem">ARTE</a>
                 <div class="dropdown-content">
                     <a href="pages/arte.html">Tattoo</a>
                     <a href="pages/arte.html">Ilustración</a>
                 </div>
             </li>
             <li role="none">
-                <a href="pages/games.html">GAMES</a>
+                <a href="pages/games.html" role="menuitem">GAMES</a>
                 <div class="dropdown-content">
-                    <a href="pages/games.html">Big Ban</a>
+                    <a href="pages/games.html">Big Ban / Energex</a>
                 </div>
             </li>
-            <li role="none"><a href="pages/contact.html">CONTACTO</a></li>
+            <li role="none"><a href="pages/consultoria.html" role="menuitem">CONSULTORÍA</a></li>
+            <li role="none"><a href="pages/contact.html" role="menuitem">CONTACTO</a></li>
         </ul>
 
-        <div style="display:flex; align-items:center; gap:12px;">
-            <a href="https://wa.me/34660986240" target="_blank" rel="noopener" class="btn-whatsapp">
-                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="https://wa.me/34660986240" target="_blank" rel="noopener" class="btn-whatsapp" aria-label="Contactar por WhatsApp">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 <span>HABLAR CONMIGO</span>
             </a>
-            <button class="hamburger" aria-label="Abrir menú" id="hamburgerBtn">
+            <button class="hamburger" aria-label="Abrir menú" id="hamburgerBtn" type="button">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
     <div class="mobile-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-menu" id="mobileMenu">
-        <a href="index.html">INICIO</a>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
+        <a href="index.html" class="active">INICIO</a>
         <a href="pages/about.html">SOBRE MÍ</a>
         <a href="pages/libros.html">LIBROS</a>
         <a href="pages/arte.html">ARTE</a>
         <a href="pages/games.html">GAMES</a>
+        <a href="pages/consultoria.html">CONSULTORÍA</a>
         <a href="pages/contact.html">CONTACTO</a>
     </nav>
 
     <section class="hero" id="main-content">
-        <div class="hero-bg"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1>JHON <span>PULIDO</span></h1>
-                <h3>INGENIERO • CREADOR • AUTOR ✅</h3>
+                <h3>Ingeniero · Creador · Autor</h3>
                 <p>"Convierto experiencia en <span>estrategia</span>, creatividad en <span>proyectos</span> y conocimiento en <span>impacto</span>."</p>
             </div>
             <div class="hero-image">
-                <img src="assets/images/profile.png" alt="Perfil Jhon Pulido" style="border-radius: 0;">
+                <img src="assets/images/profile.png" alt="Perfil de Jhon Pulido">
             </div>
         </div>
     </section>
 
-    <section class="cards">
+    <section class="cards" aria-label="Secciones principales">
         <a class="card" href="pages/about.html">
             <h4>SOBRE MÍ</h4>
             <p>Trayectoria</p>
@@ -106,24 +108,26 @@
         <a class="card" href="pages/libros.html">
             <h4>LIBROS</h4>
             <p>Del Cristal al Acero</p>
+            <p>Uróboros</p>
             <p>Nexarion</p>
         </a>
         <a class="card" href="pages/arte.html">
             <h4>ARTE & TATTOO</h4>
             <p>Diseño</p>
             <p>Creatividad</p>
+            <p>Ilustración</p>
         </a>
         <a class="card card-games" href="pages/games.html">
             <img src="assets/images/games/games.png" class="card-icon" alt="Games">
             <div class="card-text">
                 <h4>GAMES</h4>
-                <p>Energex</p>
+                <p>Energex / Big Ban</p>
             </div>
         </a>
     </section>
 
     <footer class="footer">
-        © 2026 Jhon Edward Pulido Bustamante - Todos los derechos reservados
+        © 2026 Jhon Edward Pulido Bustamante — Todos los derechos reservados
     </footer>
 
     <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
@@ -137,12 +141,9 @@
         "jobTitle": "Ingeniero, Consultor, Desarrollador Indie y Autor",
         "url": "index.html",
         "image": "assets/images/profile.png",
-        "sameAs": [
-            "https://wa.me/34660986240"
-        ]
+        "sameAs": ["https://wa.me/34660986240"]
     }
     </script>
-
     <script src="assets/js/main.js"></script>
 </body>
 </html>
