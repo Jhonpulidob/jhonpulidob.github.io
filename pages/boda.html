@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wendy & Jhon · Nuestra Boda</title>
-<meta name="description" content="Invitación oficial a la boda de Wendy y Jhon. Sábado 8 de mayo de 2027.">
+<meta name="description" content="Invitación oficial a la boda de Wendy y Jhon. Sábado 17 de abril de 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -583,7 +583,7 @@
   <div class="hero-contenido">
     <p class="hero-etiqueta">Nos casamos</p>
     <h1>Wendy <span class="amp">&</span> Jhon</h1>
-    <p class="hero-fecha">Sábado, 8 de Mayo de 2027</p>
+    <p class="hero-fecha">Sábado, 17 de Abril de 2027</p>
 
     <div class="countdown" id="countdown">
       <div><span id="dias">0</span><small>Días</small></div>
@@ -628,11 +628,11 @@
     <div class="horarios">
       <div>
         <span>Comienzo</span>
-        <strong>16:30 h</strong>
+        <strong>19:00 h</strong>
       </div>
       <div>
         <span>Culmina</span>
-        <strong>23:00 h</strong>
+        <strong>02:00 h</strong>
       </div>
     </div>
 
@@ -643,7 +643,7 @@
 <!-- ================= RSVP ================= -->
 <section id="confirmar">
   <h2>Confirma tu asistencia</h2>
-  <p class="subtitulo">Por favor, confírmanos antes del 20 de Abril de 2027</p>
+  <p class="subtitulo">Por favor, confírmanos antes del 1 de Abril de 2027</p>
 
   <div class="tarjeta centro" style="margin-bottom: 36px;">
     <img class="foto-pareja" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Wendy y Jhon">
@@ -787,8 +787,8 @@
 
   <div class="tarjeta centro">
     <p class="frase" style="margin-bottom: 28px;">
-      Sábado, 8 de mayo de 2027<br>
-      <strong>16:30 h</strong>
+      Sábado, 17 de abril de 2027<br>
+      <strong>19:00 h</strong>
     </p>
     <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
       Añadir a mi calendario
@@ -808,7 +808,7 @@
 
 <script>
   /* ---------- COUNTDOWN ---------- */
-  const fechaBoda = new Date("2027-05-08T16:30:00").getTime();
+  const fechaBoda = new Date("2027-04-17T19:00:00").getTime();
 
   function actualizarCountdown() {
     const diff = fechaBoda - Date.now();
@@ -862,11 +862,11 @@
     "BEGIN:VEVENT",
     "UID:boda-wendy-jhon-2027@invitacion",
     "DTSTAMP:20260101T000000Z",
-    "DTSTART:20270508T143000Z",
-    "DTEND:20270508T210000Z",
+    "DTSTART:20270417T170000Z",
+    "DTEND:20270418T000000Z",
     "SUMMARY:Boda de Wendy & Jhon",
     "LOCATION:Salón de Eventos, Ciudad",
-    "DESCRIPTION:¡Nos casamos! Te esperamos.",
+    "DESCRIPTION:¡Nos casamos! Te esperamos a las 19:00 h.",
     "END:VEVENT",
     "END:VCALENDAR"
   ].join("\r\n");
