@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wendy & Jhon · Nuestra Boda</title>
-<meta name="description" content="Invitación oficial a la boda de Wendy y Jhon. Sábado 17 de abril de 2027.">
+<meta name="description" content="Invitación oficial a la boda de Wendy y Jhon. Sábado 8 de mayo de 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -574,16 +574,86 @@
     .countdown > div { min-width: 68px; padding: 12px 14px; }
     .countdown span { font-size: 1.7rem; }
   }
+
+  /* ---------- MENÚ DE NAVEGACIÓN AÑADIDO ---------- */
+  .menu-navegacion {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(250, 248, 244, 0.96);
+    border-bottom: 1px solid rgba(125, 143, 110, 0.22);
+    backdrop-filter: blur(12px);
+  }
+  .menu-navegacion label {
+    margin: 0;
+    color: var(--verde-oscuro);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+  .menu-navegacion select {
+    width: auto;
+    min-width: 220px;
+    padding: 10px 14px;
+    background: var(--blanco);
+    border-color: var(--verde-suave);
+    font-size: 0.86rem;
+  }
+  .itinerario-lista { list-style: none; margin: 0; padding: 0; }
+  .itinerario-lista li {
+    display: grid;
+    grid-template-columns: 135px 1fr;
+    gap: 18px;
+    padding: 17px 0;
+    border-bottom: 1px solid #e9e4da;
+  }
+  .itinerario-lista li:last-child { border-bottom: none; }
+  .itinerario-hora { color: var(--verde-oscuro); font-weight: 600; white-space: nowrap; }
+  .itinerario-detalle strong { display: block; margin-bottom: 3px; }
+  .menu-comida { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .menu-plato { padding: 22px; background: var(--crema-profunda); border-left: 3px solid var(--verde-suave); }
+  .menu-plato h3 { color: var(--verde-oscuro); font-size: 1.35rem; margin-bottom: 8px; }
+  .menu-plato p { margin: 4px 0; }
+  @media (max-width: 640px) {
+    .menu-navegacion { justify-content: space-between; }
+    .menu-navegacion label { max-width: 90px; }
+    .menu-navegacion select { min-width: 0; width: 65%; }
+    .itinerario-lista li { grid-template-columns: 1fr; gap: 4px; }
+    .menu-comida { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
+
+
+<!-- ================= MENÚ DE NAVEGACIÓN AÑADIDO ================= -->
+<nav class="menu-navegacion" aria-label="Navegación de la invitación">
+  <label for="selectorSecciones">IR A UNA SECCIÓN</label>
+  <select id="selectorSecciones" aria-label="Seleccionar sección">
+    <option value="">Selecciona una sección…</option>
+    <option value="#evento">Día del evento</option>
+    <option value="#itinerario">Itinerario</option>
+    <option value="#menu-boda">Menú de la boda</option>
+    <option value="#confirmar">Confirmar asistencia</option>
+    <option value="#ubicacion">Ubicación</option>
+    <option value="#regalo">Regalo y datos bancarios</option>
+    <option value="#album">Álbum digital</option>
+    <option value="#vestimenta">Código de vestimenta</option>
+    <option value="#calendario">Añadir al calendario</option>
+  </select>
+</nav>
 
 <!-- ================= HERO ================= -->
 <header class="hero">
   <div class="hero-contenido">
     <p class="hero-etiqueta">Nos casamos</p>
     <h1>Wendy <span class="amp">&</span> Jhon</h1>
-    <p class="hero-fecha">Sábado, 17 de Abril de 2027</p>
+    <p class="hero-fecha">Sábado, 8 de Mayo de 2027</p>
 
     <div class="countdown" id="countdown">
       <div><span id="dias">0</span><small>Días</small></div>
@@ -628,11 +698,11 @@
     <div class="horarios">
       <div>
         <span>Comienzo</span>
-        <strong>19:00 h</strong>
+        <strong>16:30 h</strong>
       </div>
       <div>
         <span>Culmina</span>
-        <strong>02:00 h</strong>
+        <strong>00:30 h</strong>
       </div>
     </div>
 
@@ -640,10 +710,67 @@
   </div>
 </section>
 
+
+<!-- ================= ITINERARIO AÑADIDO DESDE LA HOJA DE SERVICIO ================= -->
+<section id="itinerario">
+  <h2>Itinerario de la celebración</h2>
+  <p class="subtitulo">Los momentos previstos para compartir este día con Wendy y Jhon</p>
+  <div class="tarjeta">
+    <ul class="itinerario-lista">
+      <li><span class="itinerario-hora">18:45–19:00</span><div class="itinerario-detalle"><strong>Llegada de invitados y del novio</strong><span>Recepción y bienvenida.</span></div></li>
+      <li><span class="itinerario-hora">19:00</span><div class="itinerario-detalle"><strong>Llegada de la novia</strong><span>Comienzo del momento de bienvenida de la novia.</span></div></li>
+      <li><span class="itinerario-hora">19:00–20:00</span><div class="itinerario-detalle"><strong>Ceremonia</strong><span>Entrada de los novios, lectura o votos y salida de los novios.</span></div></li>
+      <li><span class="itinerario-hora">20:00–21:00</span><div class="itinerario-detalle"><strong>Cóctel</strong><span>Selección de aperitivos y encuentro con los invitados.</span></div></li>
+      <li><span class="itinerario-hora">21:00–23:00</span><div class="itinerario-detalle"><strong>Cena</strong><span>Servicio del menú de boda.</span></div></li>
+      <li><span class="itinerario-hora">23:00–00:30</span><div class="itinerario-detalle"><strong>Barra libre y música</strong><span>Disfruta de la barra libre y la música para cerrar la celebración.</span></div></li>
+    </ul>
+    <div class="dato-relevante">
+      <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial. Si quieres dedicar una canción, puedes indicarla en el formulario de asistencia.
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENÚ DE BODA AÑADIDO DESDE EL PRESUPUESTO ================= -->
+<section id="menu-boda">
+  <h2>Menú de la boda</h2>
+  <p class="subtitulo">La propuesta gastronómica que compartiremos juntos</p>
+  <div class="tarjeta">
+    <div class="menu-comida">
+      <div class="menu-plato">
+        <h3>Recepción y cóctel</h3>
+        <p>Aperitivos y encuentro con los invitados.</p>
+      </div>
+      <div class="menu-plato">
+        <h3>Primer plato</h3>
+        <p>Primer plato del menú de boda.</p>
+      </div>
+      <div class="menu-plato">
+        <h3>Plato principal</h3>
+        <p>Plato principal del menú de boda.</p>
+      </div>
+      <div class="menu-plato">
+        <h3>Postre</h3>
+        <p>Postre del menú de boda.</p>
+      </div>
+      <div class="menu-plato">
+        <h3>Café y bebidas</h3>
+        <p>Café y bebidas para acompañar la sobremesa.</p>
+      </div>
+      <div class="menu-plato">
+        <h3>Barra libre y recena</h3>
+        <p>Barra libre y recena para cerrar la noche.</p>
+      </div>
+    </div>
+    <div class="dato-relevante">
+      <strong>Información de organización:</strong> si necesitas comunicar alergias, intolerancias o requisitos alimentarios, contacta directamente con los novios antes del evento para confirmar que pueden atenderse.
+    </div>
+  </div>
+</section>
+
 <!-- ================= RSVP ================= -->
 <section id="confirmar">
   <h2>Confirma tu asistencia</h2>
-  <p class="subtitulo">Por favor, confírmanos antes del 1 de Abril de 2027</p>
+  <p class="subtitulo">Por favor, confírmanos antes del 20 de Abril de 2027</p>
 
   <div class="tarjeta centro" style="margin-bottom: 36px;">
     <img class="foto-pareja" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Wendy y Jhon">
@@ -749,149 +876,4 @@
   <h2>Álbum digital</h2>
   <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
   <div class="tarjeta centro">
-    <p class="frase" style="margin-bottom: 28px;">
-      Sube tus fotos al álbum compartido de Google Fotos.<br>
-      También encontrarás este acceso por QR en el recuerdo de boda.
-    </p>
-    <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
-      Abrir álbum en Google Fotos
-    </a>
-
-    <div class="qr-box">
-      <p>QR del recuerdo</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
-           alt="QR del álbum de Google Fotos">
-      <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CÓDIGO DE VESTIMENTA ================= -->
-<section id="vestimenta">
-  <h2>Código de vestimenta</h2>
-  <p class="subtitulo">Elegante, con estilo propio</p>
-  <div class="tarjeta centro">
-    <p class="vestimenta">
-      En nuestra boda, el toque especial lo pones tú.<br>
-      Ponte tu look más elegante, ven listo para bailar<br>
-      y disfruta sin reservas.<br>
-      ¡Estamos deseando compartir este momento contigo!
-    </p>
-  </div>
-</section>
-
-<!-- ================= AÑADIR AL CALENDARIO ================= -->
-<section id="calendario">
-  <h2>Añade la fecha al calendario</h2>
-  <p class="subtitulo">Para que no se te olvide nuestra boda</p>
-
-  <div class="tarjeta centro">
-    <p class="frase" style="margin-bottom: 28px;">
-      Sábado, 17 de abril de 2027<br>
-      <strong>19:00 h</strong>
-    </p>
-    <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
-      Añadir a mi calendario
-    </a>
-  </div>
-</section>
-
-<footer>
-  Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
-</footer>
-
-<!-- ================= MÚSICA DE FONDO ================= -->
-<button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
-<audio id="audioFondo" loop preload="none">
-  <source src="musica/cancion.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  /* ---------- COUNTDOWN ---------- */
-  const fechaBoda = new Date("2027-04-17T19:00:00").getTime();
-
-  function actualizarCountdown() {
-    const diff = fechaBoda - Date.now();
-    if (diff < 0) {
-      document.getElementById("countdown").innerHTML = "<p style='letter-spacing:0.15em;font-size:1.1rem;'>¡Hoy es el gran día!</p>";
-      return;
-    }
-    document.getElementById("dias").textContent  = Math.floor(diff / 86400000);
-    document.getElementById("horas").textContent = Math.floor((diff % 86400000) / 3600000);
-    document.getElementById("min").textContent   = Math.floor((diff % 3600000) / 60000);
-    document.getElementById("seg").textContent   = Math.floor((diff % 60000) / 1000);
-  }
-  setInterval(actualizarCountdown, 1000);
-  actualizarCountdown();
-
-  /* ---------- COPIAR ---------- */
-  document.querySelectorAll(".copiar").forEach(btn => {
-    btn.addEventListener("click", () => {
-      navigator.clipboard.writeText(btn.dataset.copiar).then(() => {
-        const textoOriginal = btn.textContent;
-        btn.textContent = "¡Copiado!";
-        setTimeout(() => { btn.textContent = textoOriginal; }, 1600);
-      });
-    });
-  });
-
-  /* ---------- FORM RSVP ---------- */
-  document.getElementById("formRSVP").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const datos = Object.fromEntries(new FormData(e.target));
-
-    // Descomenta y sustituye por tu email real para recibir las confirmaciones:
-    /*
-    await fetch("https://formsubmit.co/ajax/tu-email@ejemplo.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(datos)
-    });
-    */
-    console.log("RSVP:", datos);
-
-    e.target.style.display = "none";
-    document.getElementById("gracias").style.display = "block";
-  });
-
-  /* ---------- AÑADIR AL CALENDARIO (ICS) ---------- */
-  const ics = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Boda Wendy y Jhon//ES",
-    "BEGIN:VEVENT",
-    "UID:boda-wendy-jhon-2027@invitacion",
-    "DTSTAMP:20260101T000000Z",
-    "DTSTART:20270417T170000Z",
-    "DTEND:20270418T000000Z",
-    "SUMMARY:Boda de Wendy & Jhon",
-    "LOCATION:Salón de Eventos, Ciudad",
-    "DESCRIPTION:¡Nos casamos! Te esperamos a las 19:00 h.",
-    "END:VEVENT",
-    "END:VCALENDAR"
-  ].join("\r\n");
-
-  const blob = new Blob([ics], { type: "text/calendar" });
-  document.getElementById("btnCalendario").href = URL.createObjectURL(blob);
-
-  /* ---------- MÚSICA ---------- */
-  const audio = document.getElementById("audioFondo");
-  const btnMusica = document.getElementById("btnMusica");
-  let suena = false;
-
-  btnMusica.addEventListener("click", () => {
-    if (suena) {
-      audio.pause();
-      btnMusica.textContent = "♪";
-      btnMusica.style.background = "var(--verde-suave)";
-    } else {
-      audio.play().catch(err => console.log("No se pudo reproducir:", err));
-      btnMusica.textContent = "❚❚";
-      btnMusica.style.background = "var(--verde)";
-    }
-    suena = !suena;
-  });
-</script>
-
-</body>
-</html>
+    <p class="frase" style
