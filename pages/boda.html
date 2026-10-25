@@ -244,19 +244,19 @@
     flex-shrink: 0;
   }
 
-  /* ---------- DÍA DEL EVENTO ---------- */
-  .frase {
+  /* ---------- DÍA DEL EVENTO E ITINERARIO UNIFICADOS ---------- */
+  .bloque-evento .frase {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.32rem;
     text-align: center;
     color: var(--texto);
-    max-width: 540px;
-    margin: 0 auto 40px;
+    max-width: 560px;
+    margin: 0 auto 36px;
     line-height: 1.85;
     font-weight: 400;
   }
 
-  .frase strong {
+  .bloque-evento .frase strong {
     color: var(--verde);
     font-weight: 500;
   }
@@ -266,16 +266,19 @@
     font-size: clamp(2.6rem, 6vw, 3.4rem);
     text-align: center;
     color: var(--verde);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     font-weight: 400;
   }
 
   .horarios {
     display: flex;
     justify-content: center;
-    gap: 56px;
+    gap: 64px;
     flex-wrap: wrap;
-    margin: 32px 0 20px;
+    margin: 28px 0 12px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(125, 143, 110, 0.18);
+    border-bottom: 1px solid rgba(125, 143, 110, 0.18);
   }
 
   .horarios div { text-align: center; }
@@ -292,11 +295,116 @@
 
   .horarios strong {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     font-weight: 500;
     color: var(--texto);
   }
 
+  .evento-nota {
+    font-size: 0.84rem;
+    color: var(--texto-suave);
+    margin-top: 18px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .separador-interno {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 48px auto 32px;
+    max-width: 260px;
+  }
+
+  .separador-interno::before,
+  .separador-interno::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--dorado), transparent);
+  }
+
+  .separador-interno .rombo {
+    width: 6px;
+    height: 6px;
+    background: var(--dorado);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .itinerario-subtitulo {
+    text-align: center;
+    color: var(--verde);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+
+  .itinerario-desc {
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .itinerario-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .itinerario-lista li {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #e9e4da;
+    align-items: baseline;
+  }
+
+  .itinerario-lista li:last-child { border-bottom: none; }
+
+  .itinerario-hora {
+    color: var(--verde-oscuro);
+    font-weight: 600;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .itinerario-detalle strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 1.02rem;
+  }
+
+  .itinerario-detalle span {
+    display: block;
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+  }
+
+  .dato-relevante {
+    margin-top: 28px;
+    padding: 20px 22px;
+    background: var(--crema-profunda);
+    border-left: 3px solid var(--verde-suave);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .dato-relevante strong {
+    color: var(--verde-oscuro);
+  }
+
+  /* ---------- NOTA GENERAL ---------- */
   .nota {
     font-size: 0.84rem;
     color: var(--texto-suave);
@@ -570,9 +678,11 @@
   @media (max-width: 640px) {
     section { padding: 70px 18px; }
     .tarjeta, form { padding: 36px 24px; }
-    .horarios { gap: 36px; }
+    .horarios { gap: 36px; padding: 18px 0; }
     .countdown > div { min-width: 68px; padding: 12px 14px; }
     .countdown span { font-size: 1.7rem; }
+    .itinerario-lista li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+    .itinerario-hora { font-size: 0.86rem; }
   }
 
   /* ---------- MENÚ DE NAVEGACIÓN ---------- */
@@ -603,27 +713,11 @@
     border-color: var(--verde-suave);
     font-size: 0.86rem;
   }
-  .itinerario-lista { list-style: none; margin: 0; padding: 0; }
-  .itinerario-lista li {
-    display: grid;
-    grid-template-columns: 135px 1fr;
-    gap: 18px;
-    padding: 17px 0;
-    border-bottom: 1px solid #e9e4da;
-  }
-  .itinerario-lista li:last-child { border-bottom: none; }
-  .itinerario-hora { color: var(--verde-oscuro); font-weight: 600; white-space: nowrap; }
-  .itinerario-detalle strong { display: block; margin-bottom: 3px; }
-  .menu-comida { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .menu-plato { padding: 22px; background: var(--crema-profunda); border-left: 3px solid var(--verde-suave); }
-  .menu-plato h3 { color: var(--verde-oscuro); font-size: 1.35rem; margin-bottom: 8px; }
-  .menu-plato p { margin: 4px 0; }
+
   @media (max-width: 640px) {
     .menu-navegacion { justify-content: space-between; }
     .menu-navegacion label { max-width: 90px; }
     .menu-navegacion select { min-width: 0; width: 65%; }
-    .itinerario-lista li { grid-template-columns: 1fr; gap: 4px; }
-    .menu-comida { grid-template-columns: 1fr; }
   }
 
 </style>
@@ -636,9 +730,7 @@
   <label for="selectorSecciones">IR A UNA SECCIÓN</label>
   <select id="selectorSecciones" aria-label="Seleccionar sección">
     <option value="">Selecciona una sección…</option>
-    <option value="#evento">Día del evento</option>
-    <option value="#itinerario">Itinerario</option>
-    <option value="#menu-boda">Menú de la boda</option>
+    <option value="#evento">Día del evento e itinerario</option>
     <option value="#confirmar">Confirmar asistencia</option>
     <option value="#ubicacion">Ubicación</option>
     <option value="#regalo">Regalo y datos bancarios</option>
@@ -684,9 +776,10 @@
   </div>
 </section>
 
-<!-- ================= DÍA DEL EVENTO ================= -->
+<!-- ================= DÍA DEL EVENTO + ITINERARIO ================= -->
 <section id="evento">
-  <div class="tarjeta">
+  <div class="tarjeta bloque-evento">
+
     <p class="frase">
       Queremos que solo os preocupéis de pasarlo bien,<br>
       por eso <strong>ponemos a vuestra disposición el itinerario</strong><br>
@@ -706,68 +799,68 @@
       </div>
     </div>
 
-    <p class="nota">Confirma si contaremos con tu compañía en el formulario de asistencia.</p>
-  </div>
-</section>
+    <p class="evento-nota">Confirma si contaremos con tu compañía en el formulario de asistencia.</p>
 
+    <div class="separador-interno">
+      <span class="rombo"></span>
+    </div>
 
-<!-- ================= ITINERARIO ================= -->
-<section id="itinerario">
-  <h2>Itinerario de la celebración</h2>
-  <p class="subtitulo">Los momentos previstos para compartir este día con Wendy y Jhon</p>
-  <div class="tarjeta">
+    <h3 class="itinerario-subtitulo">Itinerario de la celebración</h3>
+    <p class="itinerario-desc">Los momentos previstos para compartir este día con Wendy y Jhon</p>
+
     <ul class="itinerario-lista">
-      <li><span class="itinerario-hora">18:45–19:00</span><div class="itinerario-detalle"><strong>Llegada de invitados y del novio</strong><span>Recepción y bienvenida.</span></div></li>
-      <li><span class="itinerario-hora">19:00</span><div class="itinerario-detalle"><strong>Llegada de la novia</strong><span>Comienzo del momento de bienvenida de la novia.</span></div></li>
-      <li><span class="itinerario-hora">19:00–20:00</span><div class="itinerario-detalle"><strong>Ceremonia</strong><span>Entrada de los novios, lectura o votos y salida de los novios.</span></div></li>
-      <li><span class="itinerario-hora">20:00–21:00</span><div class="itinerario-detalle"><strong>Cóctel</strong><span>Selección de aperitivos y encuentro con los invitados.</span></div></li>
-      <li><span class="itinerario-hora">21:00–23:00</span><div class="itinerario-detalle"><strong>Cena</strong><span>Servicio del menú de boda.</span></div></li>
-      <li><span class="itinerario-hora">23:00–00:30</span><div class="itinerario-detalle"><strong>Barra libre y música</strong><span>Disfruta de la barra libre y la música para cerrar la celebración.</span></div></li>
+      <li>
+        <span class="itinerario-hora">18:45–19:00</span>
+        <div class="itinerario-detalle">
+          <strong>Llegada de invitados y del novio</strong>
+          <span>Recepción y bienvenida.</span>
+        </div>
+      </li>
+      <li>
+        <span class="itinerario-hora">19:00</span>
+        <div class="itinerario-detalle">
+          <strong>Llegada de la novia</strong>
+          <span>Comienzo del momento de bienvenida de la novia.</span>
+        </div>
+      </li>
+      <li>
+        <span class="itinerario-hora">19:00–20:00</span>
+        <div class="itinerario-detalle">
+          <strong>Ceremonia</strong>
+          <span>Entrada de los novios, lectura o votos y salida de los novios.</span>
+        </div>
+      </li>
+      <li>
+        <span class="itinerario-hora">20:00–21:00</span>
+        <div class="itinerario-detalle">
+          <strong>Cóctel</strong>
+          <span>Selección de aperitivos y encuentro con los invitados.</span>
+        </div>
+      </li>
+      <li>
+        <span class="itinerario-hora">21:00–23:00</span>
+        <div class="itinerario-detalle">
+          <strong>Cena</strong>
+          <span>Servicio del menú de boda.</span>
+        </div>
+      </li>
+      <li>
+        <span class="itinerario-hora">23:00–00:30</span>
+        <div class="itinerario-detalle">
+          <strong>Barra libre y música</strong>
+          <span>Disfruta de la barra libre y la música para cerrar la celebración.</span>
+        </div>
+      </li>
     </ul>
+
     <div class="dato-relevante">
       <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial. Si quieres dedicar una canción, puedes indicarla en el formulario de asistencia.
     </div>
+
   </div>
 </section>
 
-<!-- ================= MENÚ DE BODA ================= -->
-<section id="menu-boda">
-  <h2>Menú de la boda</h2>
-  <p class="subtitulo">La propuesta gastronómica que compartiremos juntos</p>
-  <div class="tarjeta">
-    <div class="menu-comida">
-      <div class="menu-plato">
-        <h3>Recepción y cóctel</h3>
-        <p>Aperitivos y encuentro con los invitados.</p>
-      </div>
-      <div class="menu-plato">
-        <h3>Primer plato</h3>
-        <p>Primer plato del menú de boda.</p>
-      </div>
-      <div class="menu-plato">
-        <h3>Plato principal</h3>
-        <p>Plato principal del menú de boda.</p>
-      </div>
-      <div class="menu-plato">
-        <h3>Postre</h3>
-        <p>Postre del menú de boda.</p>
-      </div>
-      <div class="menu-plato">
-        <h3>Café y bebidas</h3>
-        <p>Café y bebidas para acompañar la sobremesa.</p>
-      </div>
-      <div class="menu-plato">
-        <h3>Barra libre y recena</h3>
-        <p>Barra libre y recena para cerrar la noche.</p>
-      </div>
-    </div>
-    <div class="dato-relevante">
-      <strong>Información de organización:</strong> si necesitas comunicar alergias, intolerancias o requisitos alimentarios, contacta directamente con los novios antes del evento para confirmar que pueden atenderse.
-    </div>
-  </div>
-</section>
-
-<!-- ================= RSVP ================= -->
+<!-- ================= RSVP (CON MENÚ INTEGRADO) ================= -->
 <section id="confirmar">
   <h2>Confirma tu asistencia</h2>
   <p class="subtitulo">Por favor, confírmanos antes del 20 de Marzo de 2027</p>
@@ -803,7 +896,7 @@
       <input type="number" name="acompanantes" min="0" max="5" value="0">
     </div>
 
-    <!-- SELECCIÓN DE MENÚ -->
+    <!-- MENÚ INTEGRADO -->
     <div class="campo">
       <label>Selección de menú *</label>
       <select name="menu" required>
@@ -811,7 +904,7 @@
         <option value="Meloso de ternera con parmentier de patata">Meloso de ternera con parmentier de patata</option>
         <option value="Salmón gratinado con hojaldre de verduras salteadas">Salmón gratinado con hojaldre de verduras salteadas</option>
       </select>
-      <p class="nota" style="text-align:left; margin-top:8px; font-size:0.78rem;">
+      <p class="nota" style="text-align:left; margin-top:8px; font-size:0.78rem; font-style:normal;">
         Si tienes alergias, intolerancias o requisitos alimentarios, indícalo en el mensaje.
       </p>
     </div>
@@ -856,10 +949,4 @@
       <button class="copiar" data-copiar="ES9801825322250001656932">Copiar</button>
     </div>
     <div class="dato">
-      <strong>Concepto</strong>
-      <span id="concepto">Cubierto Boda Wendy & Jhon</span>
-      <button class="copiar" data-copiar="Cubierto Boda Wendy & Jhon">Copiar</button>
-    </div>
-
-    <img class="qr" id="qr"
-         src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=
+      <strong>Concepto
