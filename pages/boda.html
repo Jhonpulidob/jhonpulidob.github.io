@@ -961,4 +961,338 @@
           <input type="number" name="adultos" id="adultos" min="0" max="10" value="1">
         </div>
         <div class="campo">
-          <label>Número de niños</label
+          <label>Número de niños</label>
+          <input type="number" name="ninos" id="ninos" min="0" max="10" value="0">
+        </div>
+      </div>
+
+      <!-- PASO 3: Menús generados dinámicamente -->
+      <div id="contenedorMenus"></div>
+
+      <!-- PASO 4: Canción y mensaje -->
+      <div class="campo">
+        <label>¿Quieres dedicar una canción a los novios?</label>
+        <input type="text" name="cancion" placeholder="Título de la canción y artista">
+      </div>
+      <div class="campo">
+        <label>Mensaje para los Novios</label>
+        <textarea name="mensaje" rows="3" placeholder="Déjanos unas palabras..."></textarea>
+      </div>
+      <p class="nota" style="text-align:left; font-size:0.78rem; font-style:normal;">
+        Si tienes alergias, intolerancias o requisitos alimentarios, indícalo en el mensaje.
+      </p>
+
+      <button type="submit" class="btn" style="width: 100%; margin-top: 12px;">Enviar confirmación</button>
+    </div>
+
+    <!-- CONTENEDOR QUE SE MUESTRA SI DICE "NO" -->
+    <div id="mensajeNoAsiste" class="mensaje-no-asiste oculto">
+      <h3>¡Te echaremos de menos!</h3>
+      <p>Gracias por avisarnos. Nos encantará compartir este día contigo en otra ocasión.</p>
+    </div>
+  </form>
+
+  <!-- Mensaje de agradecimiento global (para el caso "Sí") -->
+  <div class="gracias" id="gracias">
+    <h3>¡Gracias por confirmar!</h3>
+    <p>Nos hace mucha ilusión compartir este día contigo.</p>
+  </div>
+</section>
+
+<!-- ================= DATOS BANCARIOS ================= -->
+<section id="regalo">
+  <h2>Datos bancarios</h2>
+  <p class="subtitulo">Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí tienes los datos.</p>
+
+  <div class="tarjeta pago">
+    <div class="dato">
+      <strong>Titular</strong>
+      <span id="titular">Jhon Pulido</span>
+      <button class="copiar" data-copiar="Jhon Pulido">Copiar</button>
+    </div>
+    <div class="dato">
+      <strong>IBAN</strong>
+      <span id="iban">ES98 0182 5322 2500 0165 6932</span>
+      <button class="copiar" data-copiar="ES9801825322250001656932">Copiar</button>
+    </div>
+    <div class="dato">
+      <strong>Concepto</strong>
+      <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
+      <button class="copiar" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
+    </div>
+
+    <img class="qr" id="qr"
+         src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
+         alt="Código QR para transferencia">
+
+    <p class="nota">Escanea el QR desde tu app bancaria o copia los datos manualmente.</p>
+  </div>
+</section>
+
+<!-- ================= UBICACIÓN ================= -->
+<section id="ubicacion">
+  <h2>Ubicación</h2>
+  <p class="subtitulo">Te esperamos en el siguiente lugar</p>
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      <strong>Salón de Eventos</strong><br>
+      Dirección del evento, Ciudad
+    </p>
+
+    <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
+      <p><strong>Información útil del salón:</strong></p>
+      <ul style="margin: 10px 0 0 20px; padding:0;">
+        <li>Recepción de invitados a partir de las <strong>18:45 h</strong>.</li>
+        <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
+        <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
+        <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
+      </ul>
+    </div>
+
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://maps.google.com/?q=Salon+de+Eventos+Ciudad">
+      Ver ubicación en Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- ================= ÁLBUM DIGITAL ================= -->
+<section id="album">
+  <h2>Álbum digital</h2>
+  <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      Sube tus fotos al álbum compartido de Google Fotos.<br>
+      También encontrarás este acceso por QR en el recuerdo de boda.
+    </p>
+    <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
+      Abrir álbum en Google Fotos
+    </a>
+
+    <div class="qr-box">
+      <p>QR del recuerdo</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
+           alt="QR del álbum de Google Fotos">
+      <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓDIGO DE VESTIMENTA ================= -->
+<section id="vestimenta">
+  <h2>Código de vestimenta</h2>
+  <p class="subtitulo">Elegante, con estilo propio</p>
+  <div class="tarjeta centro">
+    <p class="vestimenta">
+      En nuestra boda, el toque especial lo pones tú.<br>
+      Ponte tu look más elegante, ven listo para bailar<br>
+      y disfruta sin reservas.<br>
+      ¡Estamos deseando compartir este momento contigo!
+    </p>
+  </div>
+</section>
+
+<!-- ================= AÑADIR AL CALENDARIO ================= -->
+<section id="calendario">
+  <h2>Añade la fecha al calendario</h2>
+  <p class="subtitulo">Para que no se te olvide nuestra boda</p>
+
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      Sábado, 10 de abril de 2027<br>
+      <strong>19:00 h</strong>
+    </p>
+    <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
+      Añadir a mi calendario
+    </a>
+  </div>
+</section>
+
+<footer>
+  Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
+</footer>
+
+<!-- ================= MÚSICA DE FONDO ================= -->
+<button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
+<audio id="audioFondo" loop preload="none">
+  <source src="musica/cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+  /* ---------- SELECTOR DE SECCIONES ---------- */
+  const selectorSecciones = document.getElementById("selectorSecciones");
+  if (selectorSecciones) {
+    selectorSecciones.addEventListener("change", () => {
+      const destino = selectorSecciones.value;
+      if (destino) {
+        const seccion = document.querySelector(destino);
+        if (seccion) seccion.scrollIntoView({ behavior: "smooth", block: "start" });
+        selectorSecciones.value = "";
+      }
+    });
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  const fechaBoda = new Date("2027-04-10T19:00:00").getTime();
+
+  function actualizarCountdown() {
+    const diff = fechaBoda - Date.now();
+    if (diff < 0) {
+      document.getElementById("countdown").innerHTML = "<p style='letter-spacing:0.15em;font-size:1.1rem;'>¡Hoy es el gran día!</p>";
+      return;
+    }
+    document.getElementById("dias").textContent  = Math.floor(diff / 86400000);
+    document.getElementById("horas").textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById("min").textContent   = Math.floor((diff % 3600000) / 60000);
+    document.getElementById("seg").textContent   = Math.floor((diff % 60000) / 1000);
+  }
+  setInterval(actualizarCountdown, 1000);
+  actualizarCountdown();
+
+  /* ---------- COPIAR ---------- */
+  document.querySelectorAll(".copiar").forEach(btn => {
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(btn.dataset.copiar).then(() => {
+        const textoOriginal = btn.textContent;
+        btn.textContent = "¡Copiado!";
+        setTimeout(() => { btn.textContent = textoOriginal; }, 1600);
+      });
+    });
+  });
+
+  /* ---------- LÓGICA DEL FORMULARIO RSVP DINÁMICO ---------- */
+  const formRSVP = document.getElementById("formRSVP");
+  const selectAsistencia = document.getElementById("asistencia");
+  const contenidoAsistencia = document.getElementById("contenidoAsistencia");
+  const mensajeNoAsiste = document.getElementById("mensajeNoAsiste");
+  const contenedorMenus = document.getElementById("contenedorMenus");
+  const inputAdultos = document.getElementById("adultos");
+  const inputNinos = document.getElementById("ninos");
+
+  // Escuchar cambios en el select de asistencia
+  selectAsistencia.addEventListener("change", () => {
+    const valor = selectAsistencia.value;
+    
+    if (valor === "Sí, asistiré") {
+      contenidoAsistencia.classList.remove("oculto");
+      mensajeNoAsiste.classList.add("oculto");
+    } else if (valor === "No podré asistir") {
+      contenidoAsistencia.classList.add("oculto");
+      mensajeNoAsiste.classList.remove("oculto");
+    } else {
+      // Valor vacío
+      contenidoAsistencia.classList.add("oculto");
+      mensajeNoAsiste.classList.add("oculto");
+    }
+  });
+
+  // Función para generar los selectores de menú
+  function generarMenus() {
+    const adultos = parseInt(inputAdultos.value) || 0;
+    const ninos = parseInt(inputNinos.value) || 0;
+    const total = adultos + ninos;
+
+    // Limpiar contenedor
+    contenedorMenus.innerHTML = "";
+
+    if (total <= 0) return;
+
+    // Generar un bloque por cada asistente
+    for (let i = 0; i < total; i++) {
+      const tipo = i < adultos ? "Adulto" : "Niño";
+      const numero = i < adultos ? i + 1 : i - adultos + 1;
+      
+      const div = document.createElement("div");
+      div.className = "menu-asistente";
+      
+      const label = document.createElement("label");
+      label.textContent = `${tipo} ${numero}`;
+      
+      const select = document.createElement("select");
+      select.name = `menu_${tipo}_${numero}`;
+      select.required = true;
+      
+      select.innerHTML = `
+        <option value="">Selecciona...</option>
+        <option value="Meloso de ternera con parmentier de patata">Meloso de ternera con parmentier de patata</option>
+        <option value="Salmón gratinado con hojaldre de verduras salteadas">Salmón gratinado con hojaldre de verduras salteadas</option>
+      `;
+      
+      div.appendChild(label);
+      div.appendChild(select);
+      contenedorMenus.appendChild(div);
+    }
+  }
+
+  // Escuchar cambios en los inputs de adultos y niños
+  inputAdultos.addEventListener("input", generarMenus);
+  inputNinos.addEventListener("input", generarMenus);
+
+  // Generar menús iniciales (por si acaso)
+  generarMenus();
+
+  /* ---------- ENVÍO DEL FORMULARIO ---------- */
+  formRSVP.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const valorAsistencia = selectAsistencia.value;
+    
+    if (valorAsistencia === "No podré asistir") {
+      // Solo mostrar mensaje de despedida
+      formRSVP.style.display = "none";
+      return;
+    }
+
+    // Recopilar datos
+    const formData = new FormData(formRSVP);
+    const datos = Object.fromEntries(formData);
+    
+    console.log("RSVP:", datos);
+
+    // Ocultar formulario y mostrar agradecimiento
+    formRSVP.style.display = "none";
+    document.getElementById("gracias").style.display = "block";
+  });
+
+  /* ---------- AÑADIR AL CALENDARIO (ICS) ---------- */
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Boda Wendy y Jhon//ES",
+    "BEGIN:VEVENT",
+    "UID:boda-wendy-jhon-2027@invitacion",
+    "DTSTAMP:20260101T000000Z",
+    "DTSTART:20270410T170000Z",
+    "DTEND:20270410T223000Z",
+    "SUMMARY:Boda de Wendy & Jhon",
+    "LOCATION:Salón de Eventos, Ciudad",
+    "DESCRIPTION:¡Nos casamos! Te esperamos.",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar" });
+  document.getElementById("btnCalendario").href = URL.createObjectURL(blob);
+
+  /* ---------- MÚSICA ---------- */
+  const audio = document.getElementById("audioFondo");
+  const btnMusica = document.getElementById("btnMusica");
+  let suena = false;
+
+  btnMusica.addEventListener("click", () => {
+    if (suena) {
+      audio.pause();
+      btnMusica.textContent = "♪";
+      btnMusica.style.background = "var(--verde-suave)";
+    } else {
+      audio.play().catch(err => console.log("No se pudo reproducir:", err));
+      btnMusica.textContent = "❚❚";
+      btnMusica.style.background = "var(--verde)";
+    }
+    suena = !suena;
+  });
+</script>
+
+</body>
+</html>
