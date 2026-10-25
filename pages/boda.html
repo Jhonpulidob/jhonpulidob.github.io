@@ -524,61 +524,127 @@
     color: var(--verde);
   }
 
-  /* ---------- DATOS BANCARIOS ---------- */
-  .pago .dato {
+  /* ---------- BLOQUE DE PAGO SUTIL DENTRO DEL FORM ---------- */
+  .bloque-pago-sutil {
+    margin: 32px 0 28px;
+    padding: 24px 22px;
+    background: linear-gradient(145deg, #faf8f4, #f3efe6);
+    border: 1px solid #e8e2d6;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+  }
+
+  .bloque-pago-sutil::before {
+    content: "✦";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--crema);
+    padding: 0 10px;
+    color: var(--dorado);
+    font-size: 0.9rem;
+  }
+
+  .bloque-pago-sutil h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    color: var(--verde-oscuro);
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .bloque-pago-sutil .pago-intro {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    font-style: italic;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  .pago-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 420px;
+    margin: 0 auto 16px;
+    text-align: left;
+  }
+
+  .pago-datos .fila {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
+    padding: 8px 0;
     border-bottom: 1px dashed #e5e0d4;
-    flex-wrap: wrap;
     gap: 12px;
+    flex-wrap: wrap;
   }
 
-  .pago .dato:last-of-type { border-bottom: none; }
+  .pago-datos .fila:last-child { border-bottom: none; }
 
-  .pago .dato strong {
-    font-size: 0.72rem;
+  .pago-datos .fila strong {
+    font-size: 0.68rem;
     color: var(--texto-suave);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .pago .dato span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
-  .copiar {
-    background: var(--beige);
-    color: var(--verde);
-    border: none;
-    padding: 7px 16px;
-    border-radius: 2px;
-    font-size: 0.7rem;
-    cursor: pointer;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 500;
-    transition: var(--transicion);
+    min-width: 70px;
   }
 
-  .copiar:hover {
+  .pago-datos .fila span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--texto);
+    flex: 1;
+    word-break: break-word;
+  }
+
+  .copiar-sutil {
+    background: transparent;
+    color: var(--verde);
+    border: 1px solid var(--verde-suave);
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 0.62rem;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: var(--transicion);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .copiar-sutil:hover {
     background: var(--verde-suave);
     color: var(--blanco);
   }
 
-  .qr {
-    margin: 36px auto 12px;
+  .qr-sutil {
     display: block;
+    margin: 12px auto 8px;
     border-radius: 4px;
     border: 1px solid #eee;
-    padding: 10px;
+    padding: 6px;
     background: var(--blanco);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    width: 120px;
+    height: 120px;
   }
+
+  .bloque-pago-sutil .nota-pago {
+    font-size: 0.72rem;
+    color: var(--texto-suave);
+    font-style: italic;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  /* ---------- DATOS BANCARIOS ANTIGUOS (ya no se usan) ---------- */
+  .pago .dato { display: none; }
 
   /* ---------- ÁLBUM ---------- */
   .qr-box {
@@ -768,6 +834,8 @@
     .campo-asistentes { grid-template-columns: 1fr; gap: 12px; }
     .menu-asistente { flex-direction: column; align-items: flex-start; gap: 6px; }
     .menu-asistente label { min-width: auto; }
+    .pago-datos .fila { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .pago-datos .fila span { font-size: 0.95rem; }
   }
 
   /* ---------- PANEL ADMIN ---------- */
@@ -922,7 +990,6 @@
     <option value="#evento">Día del evento e itinerario</option>
     <option value="#confirmar">Confirmar asistencia</option>
     <option value="#ubicacion">Ubicación</option>
-    <option value="#regalo">Regalo y datos bancarios</option>
     <option value="#album">Álbum digital</option>
     <option value="#vestimenta">Código de vestimenta</option>
     <option value="#calendario">Añadir al calendario</option>
@@ -1107,6 +1174,42 @@
         Si tienes alergias, intolerancias o requisitos alimentarios, indícalo en el mensaje.
       </p>
 
+      <!-- ===== BLOQUE DE PAGO SUTIL Y ELEGANTE (ANTES DE ENVIAR) ===== -->
+      <div class="bloque-pago-sutil">
+        <h4>Un detalle con cariño</h4>
+        <p class="pago-intro">
+          Tu presencia es nuestro mejor regalo. Si además deseas contribuir con el cubierto,
+          aquí tienes los datos de forma discreta.
+        </p>
+
+        <div class="pago-datos">
+          <div class="fila">
+            <strong>Titular</strong>
+            <span id="titular">Jhon Pulido</span>
+            <button type="button" class="copiar-sutil" data-copiar="Jhon Pulido">Copiar</button>
+          </div>
+          <div class="fila">
+            <strong>IBAN</strong>
+            <span id="iban">ES98 0182 5322 2500 0165 6932</span>
+            <button type="button" class="copiar-sutil" data-copiar="ES9801825322250001656932">Copiar</button>
+          </div>
+          <div class="fila">
+            <strong>Concepto</strong>
+            <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
+            <button type="button" class="copiar-sutil" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
+          </div>
+        </div>
+
+        <img class="qr-sutil"
+             src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
+             alt="QR para transferencia">
+
+        <p class="nota-pago">
+          Escanea el QR desde tu app bancaria o copia los datos manualmente.
+        </p>
+      </div>
+      <!-- ===== FIN BLOQUE DE PAGO ===== -->
+
       <button type="submit" class="btn" style="width: 100%; margin-top: 12px;">Enviar confirmación</button>
     </div>
 
@@ -1133,36 +1236,6 @@
 
 <!-- ================= SECCIONES EXTRA (ocultas hasta que confirme "Sí") ================= -->
 <div id="seccionesExtra" class="oculto">
-
-  <!-- DATOS BANCARIOS -->
-  <section id="regalo">
-    <h2>Datos bancarios</h2>
-    <p class="subtitulo">Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí tienes los datos.</p>
-
-    <div class="tarjeta pago">
-      <div class="dato">
-        <strong>Titular</strong>
-        <span id="titular">Jhon Pulido</span>
-        <button class="copiar" data-copiar="Jhon Pulido">Copiar</button>
-      </div>
-      <div class="dato">
-        <strong>IBAN</strong>
-        <span id="iban">ES98 0182 5322 2500 0165 6932</span>
-        <button class="copiar" data-copiar="ES9801825322250001656932">Copiar</button>
-      </div>
-      <div class="dato">
-        <strong>Concepto</strong>
-        <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
-        <button class="copiar" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
-      </div>
-
-      <img class="qr" id="qr"
-           src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
-           alt="Código QR para transferencia">
-
-      <p class="nota">Escanea el QR desde tu app bancaria o copia los datos manualmente.</p>
-    </div>
-  </section>
 
   <!-- UBICACIÓN -->
   <section id="ubicacion">
@@ -1378,9 +1451,9 @@
   actualizarCountdown();
 
   /* =========================================================
-     COPIAR
+     COPIAR (versión sutil)
      ========================================================= */
-  document.querySelectorAll(".copiar").forEach(btn => {
+  document.querySelectorAll(".copiar-sutil").forEach(btn => {
     btn.addEventListener("click", () => {
       navigator.clipboard.writeText(btn.dataset.copiar).then(() => {
         const textoOriginal = btn.textContent;
@@ -1406,26 +1479,22 @@
   const btnEnviarNo = document.getElementById("btnEnviarNo");
   const seccionesExtra = document.getElementById("seccionesExtra");
 
-  // Al cargar, las secciones extra están ocultas (clase oculto en el HTML)
   seccionesExtra.classList.add("oculto");
 
   selectAsistencia.addEventListener("change", () => {
     const valor = selectAsistencia.value;
     
     if (valor === "Sí, asistiré") {
-      // Mostrar bloque de asistencia y secciones extra
       contenidoAsistencia.classList.remove("oculto");
       mensajeNoAsiste.classList.add("oculto");
       seccionesExtra.classList.remove("oculto");
     } else if (valor === "No podré asistir") {
-      // Ocultar bloque de asistencia y secciones extra
       contenidoAsistencia.classList.add("oculto");
       seccionesExtra.classList.add("oculto");
       const nombre = inputNombre.value.trim();
       spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
       mensajeNoAsiste.classList.remove("oculto");
     } else {
-      // Valor vacío
       contenidoAsistencia.classList.add("oculto");
       mensajeNoAsiste.classList.add("oculto");
       seccionesExtra.classList.add("oculto");
@@ -1440,7 +1509,6 @@
     contenedorMenus.innerHTML = "";
     if (total <= 0) return;
 
-    // Adultos: desplegable
     for (let i = 0; i < adultos; i++) {
       const div = document.createElement("div");
       div.className = "menu-asistente";
@@ -1463,7 +1531,6 @@
       contenedorMenus.appendChild(div);
     }
 
-    // Niños: fijo
     for (let i = 0; i < ninos; i++) {
       const div = document.createElement("div");
       div.className = "menu-asistente";
@@ -1505,7 +1572,6 @@
       spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
       mensajeNoAsiste.classList.remove("oculto");
       
-      // Ocultar todo el resto de la página
       seccionesExtra.classList.add("oculto");
       inputNombre.closest(".campo").classList.add("oculto");
       inputContacto.closest(".campo").classList.add("oculto");
@@ -1513,7 +1579,6 @@
       contenidoAsistencia.classList.add("oculto");
       document.getElementById("gracias").classList.add("oculto");
       
-      // Guardar respuesta automáticamente
       agregarRespuesta({
         nombre: nombre || "(sin nombre)",
         contacto: contacto || "(sin contacto)",
@@ -1529,11 +1594,9 @@
       return;
     }
 
-    // Recopilar datos
     const formData = new FormData(formRSVP);
     const datos = Object.fromEntries(formData);
     
-    // Extraer menús
     const menus = [];
     Object.keys(datos).forEach(k => {
       if (k.startsWith("menu_")) {
@@ -1546,7 +1609,6 @@
     datos.fecha = new Date().toISOString();
     datos.id = Date.now() + "_" + Math.random().toString(36).substr(2, 6);
     
-    // Guardar
     agregarRespuesta({
       nombre: datos.nombre,
       contacto: datos.contacto,
@@ -1558,15 +1620,12 @@
       mensaje: datos.mensaje || ""
     });
 
-    // Descargar automáticamente el JSON
     descargarJSON();
 
-    // Ocultar formulario y mostrar agradecimiento
     formRSVP.style.display = "none";
     document.getElementById("gracias").style.display = "block";
   });
 
-  // Botón "Enviar respuesta" del mensaje "No asiste"
   btnEnviarNo.addEventListener("click", () => {
     descargarJSON();
     btnEnviarNo.style.display = "none";
@@ -1635,7 +1694,6 @@
   const tbodyRespuestas = document.getElementById("tbodyRespuestas");
   const adminEmpty = document.getElementById("adminEmpty");
 
-  // Detectar 5 clics en el footer (solo si está visible)
   footer.addEventListener("click", () => {
     clicsFooter++;
     clearTimeout(timerFooter);
@@ -1647,7 +1705,6 @@
     }
   });
 
-  // Detectar #admin en la URL
   if (window.location.hash === "#admin") {
     abrirAdmin();
   }
