@@ -99,12 +99,6 @@
     gap: 8px;
   }
 
-  .cabecera-menu .icono-menu {
-    color: var(--verde);
-    font-size: 1.1rem;
-    transition: var(--transicion);
-  }
-
   .cabecera-menu select {
     width: auto;
     min-width: 200px;
@@ -747,6 +741,53 @@
     margin-top: 6px;
   }
 
+  /* ---------- DESGLOSE DE PAGO ---------- */
+  .desglose-pago {
+    margin: 18px auto 20px;
+    padding: 16px 18px;
+    background: var(--blanco);
+    border: 1px dashed var(--dorado);
+    border-radius: 4px;
+    max-width: 420px;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .desglose-pago .linea {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dotted #e5e0d4;
+  }
+
+  .desglose-pago .linea:last-child { border-bottom: none; }
+
+  .desglose-pago .linea.total {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--verde-suave);
+    border-bottom: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--verde-oscuro);
+  }
+
+  .desglose-pago .linea .etiqueta {
+    color: var(--texto-suave);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .desglose-pago .linea .valor {
+    font-weight: 500;
+    color: var(--texto);
+  }
+
+  .desglose-pago .linea.total .etiqueta { color: var(--verde-oscuro); }
+  .desglose-pago .linea.total .valor { color: var(--verde-oscuro); font-size: 1.25rem; }
+
   /* ---------- ÁLBUM ---------- */
   .qr-box {
     display: flex;
@@ -1251,9 +1292,26 @@
       <div class="bloque-pago-sutil">
         <h4>Un detalle con cariño</h4>
         <p class="pago-intro">
-          Tu presencia es nuestro mejor regalo. Si además deseas contribuir con el cubierto,
-          aquí tienes los datos de forma discreta.
+          Tu presencia es nuestro mejor regalo.<br>
+          Si además deseas contribuir con el cubierto, aquí tienes los datos de forma discreta:<br>
+          <strong>150 € por adulto</strong> · <strong>60 € por niño</strong>.
         </p>
+
+        <!-- DESGLOSE DINÁMICO -->
+        <div class="desglose-pago" id="desglosePago">
+          <div class="linea">
+            <span class="etiqueta">Adultos</span>
+            <span class="valor" id="valorAdultos">0 €</span>
+          </div>
+          <div class="linea">
+            <span class="etiqueta">Niños</span>
+            <span class="valor" id="valorNinos">0 €</span>
+          </div>
+          <div class="linea total">
+            <span class="etiqueta">Total</span>
+            <span class="valor" id="valorTotal">0 €</span>
+          </div>
+        </div>
 
         <div class="pago-datos">
           <div class="fila">
@@ -1269,7 +1327,7 @@
           <div class="fila">
             <strong>Concepto</strong>
             <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
-            <button type="button" class="copiar-sutil" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
+            <button type="button" class="copiar-sutil" id="btnCopiarConcepto">Copiar</button>
           </div>
         </div>
 
@@ -1451,6 +1509,8 @@
      ========================================================= */
   const ADMIN_PASSWORD = "wendy2027";
   const STORAGE_KEY = "rsvp_boda_wendy_jhon";
+  const PRECIO_ADULTO = 150;
+  const PRECIO_NINO = 60;
 
   /* =========================================================
      UTILIDADES
@@ -1551,6 +1611,11 @@
   const spanNombreNoAsiste = document.getElementById("nombreNoAsiste");
   const btnEnviarNo = document.getElementById("btnEnviarNo");
   const seccionesExtra = document.getElementById("seccionesExtra");
+  const spanConcepto = document.getElementById("concepto");
+  const btnCopiarConcepto = document.getElementById("btnCopiarConcepto");
+  const valorAdultos = document.getElementById("valorAdultos");
+  const valorNinos = document.getElementById("valorNinos");
+  const valorTotal = document.getElementById("valorTotal");
 
   seccionesExtra.classList.add("oculto");
 
@@ -1574,6 +1639,34 @@
     }
   });
 
+  /* Actualizar el concepto con el nombre */
+  function actualizarConcepto() {
+    const nombre = inputNombre.value.trim() || "[Tu Nombre]";
+    spanConcepto.textContent = `Boda Wendy & Jhon - ${nombre}`;
+    btnCopiarConcepto.dataset.copiar = `Boda Wendy & Jhon - ${nombre}`;
+  }
+
+  inputNombre.addEventListener("input", actualizarConcepto);
+  actualizarConcepto();
+
+  /* Actualizar el desglose de pago */
+  function actualizarDesglose() {
+    const adultos = parseInt(inputAdultos.value) || 0;
+    const ninos = parseInt(inputNinos.value) || 0;
+    const totalAdultos = adultos * PRECIO_ADULTO;
+    const totalNinos = ninos * PRECIO_NINO;
+    const total = totalAdultos + totalNinos;
+
+    valorAdultos.textContent = `${totalAdultos} €`;
+    valorNinos.textContent = `${totalNinos} €`;
+    valorTotal.textContent = `${total} €`;
+  }
+
+  inputAdultos.addEventListener("input", actualizarDesglose);
+  inputNinos.addEventListener("input", actualizarDesglose);
+  actualizarDesglose();
+
+  /* Generar menús */
   function generarMenus() {
     const adultos = parseInt(inputAdultos.value) || 0;
     const ninos = parseInt(inputNinos.value) || 0;
@@ -1627,8 +1720,8 @@
     }
   }
 
-  inputAdultos.addEventListener("input", generarMenus);
-  inputNinos.addEventListener("input", generarMenus);
+  inputAdultos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
+  inputNinos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
   generarMenus();
 
   /* =========================================================
@@ -1682,15 +1775,20 @@
     datos.fecha = new Date().toISOString();
     datos.id = Date.now() + "_" + Math.random().toString(36).substr(2, 6);
     
+    const adultos = parseInt(datos.adultos) || 0;
+    const ninos = parseInt(datos.ninos) || 0;
+    const totalPago = (adultos * PRECIO_ADULTO) + (ninos * PRECIO_NINO);
+
     agregarRespuesta({
       nombre: datos.nombre,
       contacto: datos.contacto,
       asistencia: datos.asistencia,
-      adultos: parseInt(datos.adultos) || 0,
-      ninos: parseInt(datos.ninos) || 0,
+      adultos: adultos,
+      ninos: ninos,
       menus: menus,
       cancion: datos.cancion || "",
-      mensaje: datos.mensaje || ""
+      mensaje: datos.mensaje || "",
+      totalPago: totalPago
     });
 
     descargarJSON();
