@@ -244,7 +244,7 @@
     flex-shrink: 0;
   }
 
-  /* ---------- DÍA DEL EVENTO E ITINERARIO UNIFICADOS ---------- */
+  /* ---------- DÍA DEL EVENTO E ITINERARIO ---------- */
   .bloque-evento .frase {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.32rem;
@@ -448,11 +448,6 @@
   .btn-outline:hover {
     background: var(--verde-suave);
     color: var(--blanco);
-  }
-
-  .btn-small {
-    padding: 8px 18px;
-    font-size: 0.7rem;
   }
 
   /* ---------- RSVP ---------- */
@@ -780,12 +775,10 @@
     display: none;
     padding: 40px 24px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto;
     background: var(--blanco);
     border-top: 3px solid var(--verde);
     border-bottom: 3px solid var(--verde);
-    margin-top: 40px;
-    margin-bottom: 40px;
     border-radius: 4px;
     box-shadow: var(--sombra-media);
   }
@@ -892,11 +885,10 @@
     text-align: center;
     padding: 40px 24px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 40px auto;
     background: var(--blanco);
     border-radius: 4px;
     box-shadow: var(--sombra-media);
-    margin-top: 40px;
   }
 
   .admin-login h3 {
@@ -1139,114 +1131,124 @@
   </div>
 </section>
 
-<!-- ================= DATOS BANCARIOS ================= -->
-<section id="regalo" class="seccion-extra">
-  <h2>Datos bancarios</h2>
-  <p class="subtitulo">Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí tienes los datos.</p>
+<!-- ================= SECCIONES EXTRA (ocultas hasta que confirme "Sí") ================= -->
+<div id="seccionesExtra" class="oculto">
 
-  <div class="tarjeta pago">
-    <div class="dato">
-      <strong>Titular</strong>
-      <span id="titular">Jhon Pulido</span>
-      <button class="copiar" data-copiar="Jhon Pulido">Copiar</button>
+  <!-- DATOS BANCARIOS -->
+  <section id="regalo">
+    <h2>Datos bancarios</h2>
+    <p class="subtitulo">Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí tienes los datos.</p>
+
+    <div class="tarjeta pago">
+      <div class="dato">
+        <strong>Titular</strong>
+        <span id="titular">Jhon Pulido</span>
+        <button class="copiar" data-copiar="Jhon Pulido">Copiar</button>
+      </div>
+      <div class="dato">
+        <strong>IBAN</strong>
+        <span id="iban">ES98 0182 5322 2500 0165 6932</span>
+        <button class="copiar" data-copiar="ES9801825322250001656932">Copiar</button>
+      </div>
+      <div class="dato">
+        <strong>Concepto</strong>
+        <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
+        <button class="copiar" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
+      </div>
+
+      <img class="qr" id="qr"
+           src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
+           alt="Código QR para transferencia">
+
+      <p class="nota">Escanea el QR desde tu app bancaria o copia los datos manualmente.</p>
     </div>
-    <div class="dato">
-      <strong>IBAN</strong>
-      <span id="iban">ES98 0182 5322 2500 0165 6932</span>
-      <button class="copiar" data-copiar="ES9801825322250001656932">Copiar</button>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section id="ubicacion">
+    <h2>Ubicación</h2>
+    <p class="subtitulo">Te esperamos en el siguiente lugar</p>
+    <div class="tarjeta centro">
+      <p class="frase" style="margin-bottom: 28px;">
+        <strong>Salón de Eventos</strong><br>
+        Dirección del evento, Ciudad
+      </p>
+
+      <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
+        <p><strong>Información útil del salón:</strong></p>
+        <ul style="margin: 10px 0 0 20px; padding:0;">
+          <li>Recepción de invitados a partir de las <strong>18:45 h</strong>.</li>
+          <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
+          <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
+          <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
+        </ul>
+      </div>
+
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://maps.google.com/?q=Salon+de+Eventos+Ciudad">
+        Ver ubicación en Google Maps
+      </a>
     </div>
-    <div class="dato">
-      <strong>Concepto</strong>
-      <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
-      <button class="copiar" data-copiar="Boda Wendy & Jhon - [Tu Nombre]">Copiar</button>
+  </section>
+
+  <!-- ÁLBUM DIGITAL -->
+  <section id="album">
+    <h2>Álbum digital</h2>
+    <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
+    <div class="tarjeta centro">
+      <p class="frase" style="margin-bottom: 28px;">
+        Sube tus fotos al álbum compartido de Google Fotos.<br>
+        También encontrarás este acceso por QR en el recuerdo de boda.
+      </p>
+      <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
+        Abrir álbum en Google Fotos
+      </a>
+
+      <div class="qr-box">
+        <p>QR del recuerdo</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
+             alt="QR del álbum de Google Fotos">
+        <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
+      </div>
     </div>
+  </section>
 
-    <img class="qr" id="qr"
-         src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
-         alt="Código QR para transferencia">
-
-    <p class="nota">Escanea el QR desde tu app bancaria o copia los datos manualmente.</p>
-  </div>
-</section>
-
-<!-- ================= UBICACIÓN ================= -->
-<section id="ubicacion" class="seccion-extra">
-  <h2>Ubicación</h2>
-  <p class="subtitulo">Te esperamos en el siguiente lugar</p>
-  <div class="tarjeta centro">
-    <p class="frase" style="margin-bottom: 28px;">
-      <strong>Salón de Eventos</strong><br>
-      Dirección del evento, Ciudad
-    </p>
-
-    <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
-      <p><strong>Información útil del salón:</strong></p>
-      <ul style="margin: 10px 0 0 20px; padding:0;">
-        <li>Recepción de invitados a partir de las <strong>18:45 h</strong>.</li>
-        <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
-        <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
-        <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
-      </ul>
+  <!-- CÓDIGO DE VESTIMENTA -->
+  <section id="vestimenta">
+    <h2>Código de vestimenta</h2>
+    <p class="subtitulo">Elegante, con estilo propio</p>
+    <div class="tarjeta centro">
+      <p class="vestimenta">
+        En nuestra boda, el toque especial lo pones tú.<br>
+        Ponte tu look más elegante, ven listo para bailar<br>
+        y disfruta sin reservas.<br>
+        ¡Estamos deseando compartir este momento contigo!
+      </p>
     </div>
+  </section>
 
-    <a class="btn" target="_blank" rel="noopener"
-       href="https://maps.google.com/?q=Salon+de+Eventos+Ciudad">
-      Ver ubicación en Google Maps
-    </a>
-  </div>
-</section>
+  <!-- AÑADIR AL CALENDARIO -->
+  <section id="calendario">
+    <h2>Añade la fecha al calendario</h2>
+    <p class="subtitulo">Para que no se te olvide nuestra boda</p>
 
-<!-- ================= ÁLBUM DIGITAL ================= -->
-<section id="album" class="seccion-extra">
-  <h2>Álbum digital</h2>
-  <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
-  <div class="tarjeta centro">
-    <p class="frase" style="margin-bottom: 28px;">
-      Sube tus fotos al álbum compartido de Google Fotos.<br>
-      También encontrarás este acceso por QR en el recuerdo de boda.
-    </p>
-    <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
-      Abrir álbum en Google Fotos
-    </a>
-
-    <div class="qr-box">
-      <p>QR del recuerdo</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
-           alt="QR del álbum de Google Fotos">
-      <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
+    <div class="tarjeta centro">
+      <p class="frase" style="margin-bottom: 28px;">
+        Sábado, 10 de abril de 2027<br>
+        <strong>19:00 h</strong>
+      </p>
+      <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
+        Añadir a mi calendario
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= CÓDIGO DE VESTIMENTA ================= -->
-<section id="vestimenta" class="seccion-extra">
-  <h2>Código de vestimenta</h2>
-  <p class="subtitulo">Elegante, con estilo propio</p>
-  <div class="tarjeta centro">
-    <p class="vestimenta">
-      En nuestra boda, el toque especial lo pones tú.<br>
-      Ponte tu look más elegante, ven listo para bailar<br>
-      y disfruta sin reservas.<br>
-      ¡Estamos deseando compartir este momento contigo!
-    </p>
-  </div>
-</section>
+  <!-- FOOTER DENTRO DEL BLOQUE EXTRA -->
+  <footer id="footer">
+    Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
+  </footer>
 
-<!-- ================= AÑADIR AL CALENDARIO ================= -->
-<section id="calendario" class="seccion-extra">
-  <h2>Añade la fecha al calendario</h2>
-  <p class="subtitulo">Para que no se te olvide nuestra boda</p>
-
-  <div class="tarjeta centro">
-    <p class="frase" style="margin-bottom: 28px;">
-      Sábado, 10 de abril de 2027<br>
-      <strong>19:00 h</strong>
-    </p>
-    <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
-      Añadir a mi calendario
-    </a>
-  </div>
-</section>
+</div><!-- /#seccionesExtra -->
 
 <!-- ================= PANEL ADMIN (OCULTO) ================= -->
 <div id="adminLogin" class="admin-login oculto">
@@ -1290,10 +1292,6 @@
   <p class="admin-empty" id="adminEmpty">Aún no hay respuestas registradas.</p>
 </div>
 
-<footer id="footer" class="seccion-extra">
-  Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
-</footer>
-
 <!-- ================= MÚSICA DE FONDO ================= -->
 <button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
 <audio id="audioFondo" loop preload="none">
@@ -1305,7 +1303,7 @@
   /* =========================================================
      CONFIGURACIÓN
      ========================================================= */
-  const ADMIN_PASSWORD = "wendy2027"; // Cambia esta contraseña
+  const ADMIN_PASSWORD = "wendy2027";
   const STORAGE_KEY = "rsvp_boda_wendy_jhon";
 
   /* =========================================================
@@ -1406,21 +1404,31 @@
   const inputContacto = document.getElementById("contacto");
   const spanNombreNoAsiste = document.getElementById("nombreNoAsiste");
   const btnEnviarNo = document.getElementById("btnEnviarNo");
+  const seccionesExtra = document.getElementById("seccionesExtra");
+
+  // Al cargar, las secciones extra están ocultas (clase oculto en el HTML)
+  seccionesExtra.classList.add("oculto");
 
   selectAsistencia.addEventListener("change", () => {
     const valor = selectAsistencia.value;
     
     if (valor === "Sí, asistiré") {
+      // Mostrar bloque de asistencia y secciones extra
       contenidoAsistencia.classList.remove("oculto");
       mensajeNoAsiste.classList.add("oculto");
+      seccionesExtra.classList.remove("oculto");
     } else if (valor === "No podré asistir") {
+      // Ocultar bloque de asistencia y secciones extra
       contenidoAsistencia.classList.add("oculto");
+      seccionesExtra.classList.add("oculto");
       const nombre = inputNombre.value.trim();
       spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
       mensajeNoAsiste.classList.remove("oculto");
     } else {
+      // Valor vacío
       contenidoAsistencia.classList.add("oculto");
       mensajeNoAsiste.classList.add("oculto");
+      seccionesExtra.classList.add("oculto");
     }
   });
 
@@ -1497,8 +1505,8 @@
       spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
       mensajeNoAsiste.classList.remove("oculto");
       
-      // Ocultar resto de la página
-      document.querySelectorAll(".seccion-extra").forEach(el => el.classList.add("oculto"));
+      // Ocultar todo el resto de la página
+      seccionesExtra.classList.add("oculto");
       inputNombre.closest(".campo").classList.add("oculto");
       inputContacto.closest(".campo").classList.add("oculto");
       selectAsistencia.closest(".campo").classList.add("oculto");
@@ -1627,7 +1635,7 @@
   const tbodyRespuestas = document.getElementById("tbodyRespuestas");
   const adminEmpty = document.getElementById("adminEmpty");
 
-  // Detectar 5 clics en el footer
+  // Detectar 5 clics en el footer (solo si está visible)
   footer.addEventListener("click", () => {
     clicsFooter++;
     clearTimeout(timerFooter);
