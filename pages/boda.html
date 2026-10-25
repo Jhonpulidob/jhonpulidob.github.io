@@ -711,7 +711,7 @@
 </section>
 
 
-<!-- ================= ITINERARIO AÑADIDO DESDE LA HOJA DE SERVICIO ================= -->
+<!-- ================= ITINERARIO ================= -->
 <section id="itinerario">
   <h2>Itinerario de la celebración</h2>
   <p class="subtitulo">Los momentos previstos para compartir este día con Wendy y Jhon</p>
@@ -730,7 +730,7 @@
   </div>
 </section>
 
-<!-- ================= MENÚ DE BODA AÑADIDO DESDE EL PRESUPUESTO ================= -->
+<!-- ================= MENÚ DE BODA ================= -->
 <section id="menu-boda">
   <h2>Menú de la boda</h2>
   <p class="subtitulo">La propuesta gastronómica que compartiremos juntos</p>
@@ -802,6 +802,20 @@
       <label>Número de acompañantes</label>
       <input type="number" name="acompanantes" min="0" max="5" value="0">
     </div>
+
+    <!-- SELECCIÓN DE MENÚ AÑADIDA -->
+    <div class="campo">
+      <label>Selección de menú *</label>
+      <select name="menu" required>
+        <option value="">Selecciona tu plato principal...</option>
+        <option value="Meloso de ternera con parmentier de patata">Meloso de ternera con parmentier de patata</option>
+        <option value="Salmón gratinado con hojaldre de verduras salteadas">Salmón gratinado con hojaldre de verduras salteadas</option>
+      </select>
+      <p class="nota" style="text-align:left; margin-top:8px; font-size:0.78rem;">
+        Si tienes alergias, intolerancias o requisitos alimentarios, indícalo en el mensaje.
+      </p>
+    </div>
+
     <div class="campo">
       <label>¿Contaremos con tu compañía en el evento?</label>
       <div class="checkbox-group">
@@ -856,4 +870,195 @@
 </section>
 
 <!-- ================= UBICACIÓN ================= -->
-<section id="
+<section id="ubicacion">
+  <h2>Ubicación</h2>
+  <p class="subtitulo">Te esperamos en el siguiente lugar</p>
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      <strong>Salón de Eventos</strong><br>
+      Dirección del evento, Ciudad
+    </p>
+
+    <!-- INFORMACIÓN DEL SALÓN AÑADIDA -->
+    <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
+      <p><strong>Información útil del salón:</strong></p>
+      <ul style="margin: 10px 0 0 20px; padding:0;">
+        <li>Recepción de invitados a partir de las <strong>18:45 h</strong>.</li>
+        <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
+        <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
+        <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
+      </ul>
+    </div>
+
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://maps.google.com/?q=Salon+de+Eventos+Ciudad">
+      Ver ubicación en Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- ================= ÁLBUM DIGITAL ================= -->
+<section id="album">
+  <h2>Álbum digital</h2>
+  <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      Sube tus fotos al álbum compartido de Google Fotos.<br>
+      También encontrarás este acceso por QR en el recuerdo de boda.
+    </p>
+    <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
+      Abrir álbum en Google Fotos
+    </a>
+
+    <div class="qr-box">
+      <p>QR del recuerdo</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
+           alt="QR del álbum de Google Fotos">
+      <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓDIGO DE VESTIMENTA ================= -->
+<section id="vestimenta">
+  <h2>Código de vestimenta</h2>
+  <p class="subtitulo">Elegante, con estilo propio</p>
+  <div class="tarjeta centro">
+    <p class="vestimenta">
+      En nuestra boda, el toque especial lo pones tú.<br>
+      Ponte tu look más elegante, ven listo para bailar<br>
+      y disfruta sin reservas.<br>
+      ¡Estamos deseando compartir este momento contigo!
+    </p>
+  </div>
+</section>
+
+<!-- ================= AÑADIR AL CALENDARIO ================= -->
+<section id="calendario">
+  <h2>Añade la fecha al calendario</h2>
+  <p class="subtitulo">Para que no se te olvide nuestra boda</p>
+
+  <div class="tarjeta centro">
+    <p class="frase" style="margin-bottom: 28px;">
+      Sábado, 8 de mayo de 2027<br>
+      <strong>16:30 h</strong>
+    </p>
+    <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
+      Añadir a mi calendario
+    </a>
+  </div>
+</section>
+
+<footer>
+  Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
+</footer>
+
+<!-- ================= MÚSICA DE FONDO ================= -->
+<button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
+<audio id="audioFondo" loop preload="none">
+  <source src="musica/cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+  /* ---------- SELECTOR DE SECCIONES AÑADIDO ---------- */
+  const selectorSecciones = document.getElementById("selectorSecciones");
+  if (selectorSecciones) {
+    selectorSecciones.addEventListener("change", () => {
+      const destino = selectorSecciones.value;
+      if (destino) {
+        const seccion = document.querySelector(destino);
+        if (seccion) seccion.scrollIntoView({ behavior: "smooth", block: "start" });
+        selectorSecciones.value = "";
+      }
+    });
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  const fechaBoda = new Date("2027-05-08T16:30:00").getTime();
+
+  function actualizarCountdown() {
+    const diff = fechaBoda - Date.now();
+    if (diff < 0) {
+      document.getElementById("countdown").innerHTML = "<p style='letter-spacing:0.15em;font-size:1.1rem;'>¡Hoy es el gran día!</p>";
+      return;
+    }
+    document.getElementById("dias").textContent  = Math.floor(diff / 86400000);
+    document.getElementById("horas").textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById("min").textContent   = Math.floor((diff % 3600000) / 60000);
+    document.getElementById("seg").textContent   = Math.floor((diff % 60000) / 1000);
+  }
+  setInterval(actualizarCountdown, 1000);
+  actualizarCountdown();
+
+  /* ---------- COPIAR ---------- */
+  document.querySelectorAll(".copiar").forEach(btn => {
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(btn.dataset.copiar).then(() => {
+        const textoOriginal = btn.textContent;
+        btn.textContent = "¡Copiado!";
+        setTimeout(() => { btn.textContent = textoOriginal; }, 1600);
+      });
+    });
+  });
+
+  /* ---------- FORM RSVP ---------- */
+  document.getElementById("formRSVP").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const datos = Object.fromEntries(new FormData(e.target));
+
+    // Descomenta y sustituye por tu email real para recibir las confirmaciones:
+    /*
+    await fetch("https://formsubmit.co/ajax/tu-email@ejemplo.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(datos)
+    });
+    */
+    console.log("RSVP:", datos);
+
+    e.target.style.display = "none";
+    document.getElementById("gracias").style.display = "block";
+  });
+
+  /* ---------- AÑADIR AL CALENDARIO (ICS) ---------- */
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Boda Wendy y Jhon//ES",
+    "BEGIN:VEVENT",
+    "UID:boda-wendy-jhon-2027@invitacion",
+    "DTSTAMP:20260101T000000Z",
+    "DTSTART:20270508T143000Z",
+    "DTEND:20270508T210000Z",
+    "SUMMARY:Boda de Wendy & Jhon",
+    "LOCATION:Salón de Eventos, Ciudad",
+    "DESCRIPTION:¡Nos casamos! Te esperamos.",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar" });
+  document.getElementById("btnCalendario").href = URL.createObjectURL(blob);
+
+  /* ---------- MÚSICA ---------- */
+  const audio = document.getElementById("audioFondo");
+  const btnMusica = document.getElementById("btnMusica");
+  let suena = false;
+
+  btnMusica.addEventListener("click", () => {
+    if (suena) {
+      audio.pause();
+      btnMusica.textContent = "♪";
+      btnMusica.style.background = "var(--verde-suave)";
+    } else {
+      audio.play().catch(err => console.log("No se pudo reproducir:", err));
+      btnMusica.textContent = "❚❚";
+      btnMusica.style.background = "var(--verde)";
+    }
+    suena = !suena;
+  });
+</script>
+
+</body>
+</html>
