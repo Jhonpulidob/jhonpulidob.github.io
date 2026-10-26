@@ -1253,13 +1253,8 @@
     </div>
 
     <p class="frase">
-      ¡Nos encantaría que nos acompañases en este día tan especial!<br>
-      <strong>¿Contamos contigo?</strong>
+      ¡Nos encantaría que nos acompañases en este día tan especial!
     </p>
-    <a href="#formRSVP" class="btn btn-tooltip" id="btnConfirmarInicio">
-      Confirmar asistencia
-      <span class="tooltip-texto">Rellena tu nombre, correo electrónico, teléfono y si asistirás o no para confirmar tu asistencia.</span>
-    </a>
   </div>
 
   <form id="formRSVP">
@@ -1721,23 +1716,6 @@
   });
 
   /* =========================================================
-     BOTÓN CONFIRMAR ASISTENCIA
-     ========================================================= */
-  const btnConfirmarInicio = document.getElementById("btnConfirmarInicio");
-  btnConfirmarInicio.addEventListener("click", (e) => {
-    e.preventDefault();
-    btnConfirmarInicio.classList.add("activo");
-    setTimeout(() => btnConfirmarInicio.classList.remove("activo"), 3000);
-    document.getElementById("formRSVP").scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => {
-      const campoNombre = document.getElementById("nombre");
-      campoNombre.closest(".campo").classList.add("campo-resaltado");
-      campoNombre.focus();
-      setTimeout(() => campoNombre.closest(".campo").classList.remove("campo-resaltado"), 2000);
-    }, 500);
-  });
-
-  /* =========================================================
      LÓGICA DEL FORMULARIO Y BOTONES SI / NO
      ========================================================= */
   const formRSVP = document.getElementById("formRSVP");
@@ -1765,7 +1743,23 @@
 
   seccionesExtra.classList.add("oculto");
 
+  function camposObligatoriosLlenos() {
+    const nombre = inputNombre.value.trim();
+    const email = inputEmail.value.trim();
+    const telefono = inputTelefono.value.trim();
+    if (!nombre || !email || !telefono) {
+      alert("lectrónico, teléfono y si asistirás o , teléfono y si asistirás o no para confirmar tu asistencia.");
+      if (!nombre) inputNombre.focus();
+      else if (!email) inputEmail.focus();
+      else inputTelefono.focus();
+      return false;
+    }
+    return true;
+  }
+
   btnSi.addEventListener("click", () => {
+    if (!camposObligatoriosLlenos()) return;
+
     btnSi.classList.add("seleccionado");
     btnNo.classList.remove("seleccionado");
     inputAsistencia.value = "Sí, asistiré";
@@ -1776,17 +1770,11 @@
   });
 
   btnNo.addEventListener("click", () => {
+    if (!camposObligatoriosLlenos()) return;
+
     const nombre = inputNombre.value.trim();
     const email = inputEmail.value.trim();
     const telefono = inputTelefono.value.trim();
-
-    if (!nombre || !email || !telefono) {
-      alert("Por favor, completa primero tu Nombre, Correo y Teléfono antes de indicar que no asistirás.");
-      if (!nombre) inputNombre.focus();
-      else if (!email) inputEmail.focus();
-      else inputTelefono.focus();
-      return;
-    }
 
     btnNo.classList.add("seleccionado");
     btnSi.classList.remove("seleccionado");
