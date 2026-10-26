@@ -783,6 +783,16 @@
     font-weight: 400;
   }
 
+  .vestimenta .colores-reservados {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--texto-suave);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+  }
+
   /* ---------- FOOTER ---------- */
   footer {
     text-align: center;
@@ -1107,7 +1117,7 @@
     <div class="horarios">
       <div>
         <span>Comienzo</span>
-        <strong>19:00 h</strong>
+        <strong>18:30 h</strong>
       </div>
       <div>
         <span>Culmina</span>
@@ -1126,7 +1136,7 @@
 
     <ul class="itinerario-lista">
       <li>
-        <span class="itinerario-hora">18:45–19:00</span>
+        <span class="itinerario-hora">18:30–19:00</span>
         <div class="itinerario-detalle">
           <strong>Llegada de invitados y del novio</strong>
           <span>Recepción y bienvenida.</span>
@@ -1224,23 +1234,21 @@
 
       <div class="campo">
         <label>¿Quieres dedicar una canción a los novios?</label>
-        <input type="text" name="cancion" placeholder="Título de la canción y artista">
+        <input type="text" name="cancion" placeholder="Nombre del artista y nombre de la canción">
       </div>
       <div class="campo">
         <label>Mensaje para los Novios</label>
         <textarea name="mensaje" rows="3" placeholder="Déjanos unas palabras..."></textarea>
       </div>
-      <p class="nota" style="text-align:left; font-size:0.78rem; font-style:normal;">
-        Si tienes alergias, intolerancias o requisitos alimentarios, indícalo en el mensaje.
-      </p>
 
       <!-- ===== BLOQUE DE PAGO SUTIL Y ELEGANTE ===== -->
       <div class="bloque-pago-sutil">
         <h4>Un detalle con cariño</h4>
         <p class="pago-intro">
-          Tu presencia es nuestro mejor regalo.<br>
-          Si además deseas contribuir con el cubierto, aquí tienes los datos de forma discreta:<br>
-          <strong>150 € por adulto</strong> · <strong>60 € por niño</strong>.
+          Su presencia es nuestro mayor regalo y lo único indispensable para celebrar este gran día.<br><br>
+          Para acompañarnos en la celebración, cada asistente incluye su aportación al cubierto
+          (150 € por adulto y 60 € por niño), un detalle con el que todos sumamos para hacer
+          posible este momento juntos.
         </p>
 
         <div class="desglose-pago" id="desglosePago">
@@ -1274,9 +1282,14 @@
             <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
             <button type="button" class="copiar-sutil" id="btnCopiarConcepto">Copiar</button>
           </div>
+          <div class="fila">
+            <strong>Cubierto</strong>
+            <span id="cubiertoTotal">0 €</span>
+            <button type="button" class="copiar-sutil" id="btnCopiarCubierto">Copiar</button>
+          </div>
         </div>
 
-        <img class="qr-sutil"
+        <img class="qr-sutil" id="qrPago"
              src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
              alt="QR para transferencia">
 
@@ -1319,14 +1332,15 @@
     <p class="subtitulo">Te esperamos en el siguiente lugar</p>
     <div class="tarjeta centro">
       <p class="frase" style="margin-bottom: 28px;">
-        <strong>Salón de Eventos</strong><br>
-        Dirección del evento, Ciudad
+        <strong>Salón de Eventos "Leonardo"</strong><br>
+        Calle Nuestra Señora de Valverde, 193<br>
+        28034 - Madrid
       </p>
 
       <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
         <p><strong>Información útil del salón:</strong></p>
         <ul style="margin: 10px 0 0 20px; padding:0;">
-          <li>Recepción de invitados a partir de las <strong>18:45 h</strong>.</li>
+          <li>Recepción de invitados a partir de las <strong>18:30 h</strong>.</li>
           <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
           <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
           <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
@@ -1334,7 +1348,7 @@
       </div>
 
       <a class="btn" target="_blank" rel="noopener"
-         href="https://maps.google.com/?q=Salon+de+Eventos+Ciudad">
+         href="https://maps.google.com/?q=Calle+Nuestra+Se%C3%B1ora+de+Valverde+193+Madrid">
         Ver ubicación en Google Maps
       </a>
     </div>
@@ -1372,6 +1386,10 @@
         Ponte tu look más elegante, ven listo para bailar<br>
         y disfruta sin reservas.<br>
         ¡Estamos deseando compartir este momento contigo!
+        <span class="colores-reservados">
+          Los colores reservados para los novios son el <strong>blanco</strong> (novia) y el <strong>gris</strong> (traje del novio).<br>
+          Los invitados podrán llevar cualquier color, excepto estos dos.
+        </span>
       </p>
     </div>
   </section>
@@ -1384,7 +1402,7 @@
     <div class="tarjeta centro">
       <p class="frase" style="margin-bottom: 28px;">
         Sábado, 10 de abril de 2027<br>
-        <strong>19:00 h</strong>
+        <strong>18:30 h</strong>
       </p>
       <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
         Añadir a mi calendario
@@ -1497,7 +1515,7 @@
   /* =========================================================
      COUNTDOWN
      ========================================================= */
-  const fechaBoda = new Date("2027-04-10T19:00:00").getTime();
+  const fechaBoda = new Date("2027-04-10T18:30:00").getTime();
 
   function actualizarCountdown() {
     const diff = fechaBoda - Date.now();
@@ -1546,6 +1564,9 @@
   const valorAdultos = document.getElementById("valorAdultos");
   const valorNinos = document.getElementById("valorNinos");
   const valorTotal = document.getElementById("valorTotal");
+  const cubiertoTotal = document.getElementById("cubiertoTotal");
+  const btnCopiarCubierto = document.getElementById("btnCopiarCubierto");
+  const qrPago = document.getElementById("qrPago");
 
   seccionesExtra.classList.add("oculto");
 
@@ -1579,7 +1600,7 @@
   inputNombre.addEventListener("input", actualizarConcepto);
   actualizarConcepto();
 
-  /* Actualizar el desglose de pago */
+  /* Actualizar el desglose de pago y el QR */
   function actualizarDesglose() {
     const adultos = parseInt(inputAdultos.value) || 0;
     const ninos = parseInt(inputNinos.value) || 0;
@@ -1590,10 +1611,16 @@
     valorAdultos.textContent = `${totalAdultos} €`;
     valorNinos.textContent = `${totalNinos} €`;
     valorTotal.textContent = `${total} €`;
+    cubiertoTotal.textContent = `${total} €`;
+    btnCopiarCubierto.dataset.copiar = `${total} €`;
+
+    // Actualizar el QR con el importe total
+    const qrData = `BCD:002:1:SCT:ES9801825322250001656932:Jhon Pulido::${total}::EUR`;
+    qrPago.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrData)}`;
   }
 
-  inputAdultos.addEventListener("input", actualizarDesglose);
-  inputNinos.addEventListener("input", actualizarDesglose);
+  inputAdultos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
+  inputNinos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
   actualizarDesglose();
 
   /* Generar menús */
@@ -1650,8 +1677,6 @@
     }
   }
 
-  inputAdultos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
-  inputNinos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
   generarMenus();
 
   /* =========================================================
@@ -1749,10 +1774,10 @@
     "BEGIN:VEVENT",
     "UID:boda-wendy-jhon-2027@invitacion",
     "DTSTAMP:20260101T000000Z",
-    "DTSTART:20270410T170000Z",
+    "DTSTART:20270410T163000Z",
     "DTEND:20270410T223000Z",
     "SUMMARY:Boda de Wendy & Jhon",
-    "LOCATION:Salón de Eventos, Ciudad",
+    "LOCATION:Salón de Eventos Leonardo, Calle Nuestra Señora de Valverde 193, Madrid",
     "DESCRIPTION:¡Nos casamos! Te esperamos.",
     "END:VEVENT",
     "END:VCALENDAR"
