@@ -41,7 +41,7 @@
 
   h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.02em; }
 
-  /* ---------- CABECERA ELEGANTE (SOLO NOMBRES) ---------- */
+  /* ---------- CABECERA ---------- */
   .menu-navegacion {
     position: sticky;
     top: 0;
@@ -66,9 +66,7 @@
     transition: var(--transicion);
   }
 
-  .cabecera-marca:hover {
-    transform: scale(1.03);
-  }
+  .cabecera-marca:hover { transform: scale(1.03); }
 
   .cabecera-nombres {
     font-family: 'Cormorant Garamond', serif;
@@ -91,9 +89,7 @@
   }
 
   @media (max-width: 640px) {
-    .menu-navegacion {
-      padding: 12px 16px;
-    }
+    .menu-navegacion { padding: 12px 16px; }
     .cabecera-nombres { font-size: 1.3rem; }
   }
 
@@ -107,6 +103,7 @@
     text-align: center;
     background:
       linear-gradient(180deg, rgba(61, 61, 54, 0.25) 0%, rgba(61, 61, 54, 0.45) 100%),
+      url('boda/fondo-hero.jpg') center/cover no-repeat,
       url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=85') center/cover no-repeat;
     color: var(--blanco);
     padding: 60px 24px 80px;
@@ -251,10 +248,7 @@
   .centro { text-align: center; }
 
   /* ---------- VERSÍCULOS ---------- */
-  #versiculo {
-    padding-top: 70px;
-    padding-bottom: 50px;
-  }
+  #versiculo { padding-top: 70px; padding-bottom: 50px; }
 
   .versiculo-texto {
     font-family: 'Cormorant Garamond', serif;
@@ -312,10 +306,7 @@
     font-weight: 400;
   }
 
-  .bloque-evento .frase strong {
-    color: var(--verde);
-    font-weight: 500;
-  }
+  .bloque-evento .frase strong { color: var(--verde); font-weight: 500; }
 
   .evento-titulo {
     font-family: 'Great Vibes', cursive;
@@ -409,11 +400,7 @@
     margin-bottom: 28px;
   }
 
-  .itinerario-lista {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  .itinerario-lista { list-style: none; margin: 0; padding: 0; }
 
   .itinerario-lista li {
     display: grid;
@@ -433,11 +420,7 @@
     white-space: nowrap;
   }
 
-  .itinerario-detalle strong {
-    display: block;
-    margin-bottom: 2px;
-    font-size: 1.02rem;
-  }
+  .itinerario-detalle strong { display: block; margin-bottom: 2px; font-size: 1.02rem; }
 
   .itinerario-detalle span {
     display: block;
@@ -456,9 +439,7 @@
     border-radius: 0 4px 4px 0;
   }
 
-  .dato-relevante strong {
-    color: var(--verde-oscuro);
-  }
+  .dato-relevante strong { color: var(--verde-oscuro); }
 
   /* ---------- NOTA GENERAL ---------- */
   .nota {
@@ -487,6 +468,7 @@
     font-weight: 500;
     text-decoration: none;
     text-align: center;
+    position: relative;
   }
 
   .btn:hover {
@@ -501,9 +483,51 @@
     border: 1.5px solid var(--verde-suave);
   }
 
-  .btn-outline:hover {
-    background: var(--verde-suave);
+  .btn-outline:hover { background: var(--verde-suave); color: var(--blanco); }
+
+  /* ---------- TOOLTIP FLOTANTE ---------- */
+  .btn-tooltip { position: relative; }
+
+  .btn-tooltip .tooltip-texto {
+    visibility: hidden;
+    opacity: 0;
+    width: 260px;
+    background: var(--verde-oscuro);
     color: var(--blanco);
+    text-align: center;
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: absolute;
+    z-index: 10;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-weight: 400;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+
+  .btn-tooltip .tooltip-texto::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--verde-oscuro) transparent transparent transparent;
+  }
+
+  .btn-tooltip:hover .tooltip-texto,
+  .btn-tooltip.activo .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
   /* ---------- RSVP ---------- */
@@ -514,6 +538,7 @@
     margin: 0 auto 28px;
     border-radius: 2px;
     box-shadow: var(--sombra-media);
+    object-fit: cover;
   }
 
   form {
@@ -564,6 +589,16 @@
     background: var(--blanco);
   }
 
+  .campo-resaltado {
+    animation: resaltarCampo 1.5s ease-in-out;
+    border-radius: 4px;
+  }
+
+  @keyframes resaltarCampo {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(196, 165, 116, 0); }
+    50% { box-shadow: 0 0 0 6px rgba(196, 165, 116, 0.4); }
+  }
+
   .gracias {
     display: none;
     text-align: center;
@@ -574,11 +609,7 @@
     margin-top: 28px;
   }
 
-  .gracias h3 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    color: var(--verde);
-  }
+  .gracias h3 { font-size: 2rem; margin-bottom: 12px; color: var(--verde); }
 
   /* ---------- BLOQUE DE PAGO SUTIL DENTRO DEL FORM ---------- */
   .bloque-pago-sutil {
@@ -674,10 +705,7 @@
     font-family: 'Montserrat', sans-serif;
   }
 
-  .copiar-sutil:hover {
-    background: var(--verde-suave);
-    color: var(--blanco);
-  }
+  .copiar-sutil:hover { background: var(--verde-suave); color: var(--blanco); }
 
   .qr-sutil {
     display: block;
@@ -738,10 +766,7 @@
     text-transform: uppercase;
   }
 
-  .desglose-pago .linea .valor {
-    font-weight: 500;
-    color: var(--texto);
-  }
+  .desglose-pago .linea .valor { font-weight: 500; color: var(--texto); }
 
   .desglose-pago .linea.total .etiqueta { color: var(--verde-oscuro); }
   .desglose-pago .linea.total .valor { color: var(--verde-oscuro); font-size: 1.25rem; }
@@ -826,1119 +851,9 @@
     justify-content: center;
   }
 
-  #btnMusica:hover {
-    background: var(--verde);
-    transform: scale(1.07);
-  }
+  #btnMusica:hover { background: var(--verde); transform: scale(1.07); }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 640px) {
     section { padding: 70px 18px; }
-    .tarjeta, form { padding: 36px 24px; }
-    .horarios { gap: 36px; padding: 18px 0; }
-    .countdown > div { min-width: 68px; padding: 12px 14px; }
-    .countdown span { font-size: 1.7rem; }
-    .itinerario-lista li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
-    .itinerario-hora { font-size: 0.86rem; }
-  }
-
-  /* ---------- FORMULARIO DINÁMICO ---------- */
-  .oculto { display: none !important; }
-
-  .campo-asistentes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .menu-asistente {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    padding: 12px;
-    background: var(--crema-profunda);
-    border-radius: 4px;
-    border: 1px solid #e0dbd0;
-  }
-
-  .menu-asistente label {
-    margin: 0;
-    min-width: 80px;
-    font-size: 0.78rem;
-    color: var(--verde-oscuro);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .menu-asistente select {
-    margin: 0;
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-
-  .menu-nino-fijo {
-    margin: 0;
-    padding: 10px 12px;
-    font-size: 0.9rem;
-    background: var(--blanco);
-    border: 1px solid #e0dbd0;
-    border-radius: 2px;
-    color: var(--texto);
-    flex: 1;
-  }
-
-  .mensaje-no-asiste {
-    text-align: center;
-    padding: 48px 32px;
-    background: linear-gradient(145deg, #faf8f4, #f3efe6);
-    color: var(--texto);
-    border-radius: 4px;
-    margin-top: 28px;
-    border: 1px solid #e0dbd0;
-  }
-
-  .mensaje-no-asiste h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    color: var(--verde);
-    margin-bottom: 12px;
-  }
-
-  @media (max-width: 640px) {
-    .campo-asistentes { grid-template-columns: 1fr; gap: 12px; }
-    .menu-asistente { flex-direction: column; align-items: flex-start; gap: 6px; }
-    .menu-asistente label { min-width: auto; }
-    .pago-datos .fila { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .pago-datos .fila span { font-size: 0.95rem; }
-  }
-
-  /* ---------- PANEL ADMIN ---------- */
-  .admin-panel {
-    display: none;
-    padding: 40px 24px;
-    max-width: 1200px;
-    margin: 40px auto;
-    background: var(--blanco);
-    border-top: 3px solid var(--verde);
-    border-bottom: 3px solid var(--verde);
-    border-radius: 4px;
-    box-shadow: var(--sombra-media);
-  }
-
-  .admin-panel.visible { display: block; }
-
-  .admin-panel h2 {
-    color: var(--verde-oscuro);
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
-  .admin-panel .admin-sub {
-    text-align: center;
-    color: var(--texto-suave);
-    font-size: 0.9rem;
-    margin-bottom: 28px;
-  }
-
-  .admin-toolbar {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 28px;
-  }
-
-  .admin-toolbar button,
-  .admin-toolbar label {
-    background: var(--verde-suave);
-    color: var(--blanco);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 2px;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    transition: var(--transicion);
-    margin: 0;
-  }
-
-  .admin-toolbar button:hover,
-  .admin-toolbar label:hover {
-    background: var(--verde);
-  }
-
-  .admin-toolbar input[type="file"] { display: none; }
-
-  .admin-toolbar .btn-danger {
-    background: #b55a5a;
-  }
-
-  .admin-toolbar .btn-danger:hover {
-    background: #8f3f3f;
-  }
-
-  .tabla-wrap {
-    overflow-x: auto;
-    margin-top: 20px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.82rem;
-    min-width: 900px;
-  }
-
-  th, td {
-    padding: 10px 12px;
-    text-align: left;
-    border-bottom: 1px solid #e9e4da;
-    vertical-align: top;
-  }
-
-  th {
-    background: var(--crema-profunda);
-    color: var(--verde-oscuro);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    position: sticky;
-    top: 0;
-  }
-
-  tr:hover td { background: #faf8f4; }
-
-  .badge-si { color: #3f8f4a; font-weight: 600; }
-  .badge-no { color: #b55a5a; font-weight: 600; }
-
-  .admin-empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--texto-suave);
-    font-style: italic;
-  }
-
-  /* ---------- LOGIN ADMIN ---------- */
-  .admin-login {
-    text-align: center;
-    padding: 40px 24px;
-    max-width: 400px;
-    margin: 40px auto;
-    background: var(--blanco);
-    border-radius: 4px;
-    box-shadow: var(--sombra-media);
-  }
-
-  .admin-login h3 {
-    color: var(--verde-oscuro);
-    margin-bottom: 16px;
-  }
-
-  .admin-login input {
-    margin-bottom: 16px;
-  }
-
-  .admin-login .error {
-    color: #b55a5a;
-    font-size: 0.85rem;
-    margin-top: 10px;
-    display: none;
-  }
-
-  .admin-login .error.visible { display: block; }
-
-</style>
-</head>
-<body>
-
-
-<!-- ================= CABECERA ELEGANTE (SOLO NOMBRES) ================= -->
-<nav class="menu-navegacion" aria-label="Cabecera de la invitación">
-  <a href="#" class="cabecera-marca" aria-label="Inicio">
-    <span class="cabecera-nombres">
-      Wendy <span class="amp-cabecera">&</span> Jhon
-    </span>
-  </a>
-</nav>
-
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <div class="hero-contenido">
-    <p class="hero-etiqueta">Nos casamos</p>
-    <h1>Wendy <span class="amp">&</span> Jhon</h1>
-    <p class="hero-fecha">Sábado, 10 de Abril de 2027</p>
-
-    <div class="countdown" id="countdown">
-      <div><span id="dias">0</span><small>Días</small></div>
-      <div><span id="horas">0</span><small>Horas</small></div>
-      <div><span id="min">0</span><small>Min</small></div>
-      <div><span id="seg">0</span><small>Seg</small></div>
-    </div>
-  </div>
-</header>
-
-<!-- ================= VERSÍCULOS ================= -->
-<section id="versiculo">
-  <div class="tarjeta centro">
-    <p class="versiculo-texto">
-      «Nosotros amamos porque Él nos amó primero.»
-    </p>
-    <p class="versiculo-ref">1 Juan 4:19</p>
-
-    <div class="separador-versiculo">
-      <span class="rombo"></span>
-    </div>
-
-    <p class="versiculo-texto">
-      «Y ahora permanecen la fe, la esperanza y el amor,<br>
-      estos tres; pero el mayor de ellos es el amor.»
-    </p>
-    <p class="versiculo-ref">1 Corintios 13:13</p>
-  </div>
-</section>
-
-<!-- ================= DÍA DEL EVENTO + ITINERARIO ================= -->
-<section id="evento">
-  <div class="tarjeta bloque-evento">
-
-    <p class="frase">
-      Queremos que solo os preocupéis de pasarlo bien,<br>
-      por eso <strong>ponemos a vuestra disposición el itinerario</strong><br>
-      que os ayudará a conocer nuestra planificación para la celebración.
-    </p>
-
-    <h3 class="evento-titulo">Día del Evento</h3>
-
-    <div class="horarios">
-      <div>
-        <span>Comienzo</span>
-        <strong>18:30 h</strong>
-      </div>
-      <div>
-        <span>Culmina</span>
-        <strong>00:30 h</strong>
-      </div>
-    </div>
-
-    <p class="evento-nota">Confirma si contaremos con tu compañía en el formulario de asistencia.</p>
-
-    <div class="separador-interno">
-      <span class="rombo"></span>
-    </div>
-
-    <h3 class="itinerario-subtitulo">Itinerario de la celebración</h3>
-    <p class="itinerario-desc">Los momentos previstos para compartir este día con Wendy y Jhon</p>
-
-    <ul class="itinerario-lista">
-      <li>
-        <span class="itinerario-hora">18:30–19:00</span>
-        <div class="itinerario-detalle">
-          <strong>Llegada de invitados y del novio</strong>
-          <span>Recepción y bienvenida.</span>
-        </div>
-      </li>
-      <li>
-        <span class="itinerario-hora">19:00</span>
-        <div class="itinerario-detalle">
-          <strong>Llegada de la novia</strong>
-          <span>Comienzo del momento de bienvenida de la novia.</span>
-        </div>
-      </li>
-      <li>
-        <span class="itinerario-hora">19:00–20:00</span>
-        <div class="itinerario-detalle">
-          <strong>Ceremonia</strong>
-          <span>Entrada de los novios, lectura o votos y salida de los novios.</span>
-        </div>
-      </li>
-      <li>
-        <span class="itinerario-hora">20:00–21:00</span>
-        <div class="itinerario-detalle">
-          <strong>Cóctel</strong>
-          <span>Selección de aperitivos y encuentro con los invitados.</span>
-        </div>
-      </li>
-      <li>
-        <span class="itinerario-hora">21:00–23:00</span>
-        <div class="itinerario-detalle">
-          <strong>Cena</strong>
-          <span>Servicio del menú de boda.</span>
-        </div>
-      </li>
-      <li>
-        <span class="itinerario-hora">23:00–00:30</span>
-        <div class="itinerario-detalle">
-          <strong>Barra libre y música</strong>
-          <span>Disfruta de la barra libre y la música para cerrar la celebración.</span>
-        </div>
-      </li>
-    </ul>
-
-    <div class="dato-relevante">
-      <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial. Si quieres dedicar una canción, puedes indicarla en el formulario de asistencia.
-    </div>
-
-  </div>
-</section>
-
-<!-- ================= RSVP DINÁMICO ================= -->
-<section id="confirmar">
-  <h2>Confirma tu asistencia</h2>
-  <p class="subtitulo">Por favor, confírmanos antes del 20 de Marzo de 2027</p>
-
-  <div class="tarjeta centro" style="margin-bottom: 36px;">
-    <img class="foto-pareja" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Wendy y Jhon">
-    <p class="frase">
-      ¡Nos encantaría que nos acompañases en este día tan especial!<br>
-      <strong>¿Contamos contigo?</strong>
-    </p>
-    <a href="#formRSVP" class="btn">Confirmar asistencia</a>
-  </div>
-
-  <form id="formRSVP">
-    <div class="campo">
-      <label>Nombre completo *</label>
-      <input type="text" name="nombre" id="nombre" required autocomplete="name">
-    </div>
-    <div class="campo">
-      <label>Email o teléfono *</label>
-      <input type="text" name="contacto" id="contacto" required>
-    </div>
-    <div class="campo">
-      <label>¿Asistirás? *</label>
-      <select name="asistencia" id="asistencia" required>
-        <option value="">Selecciona...</option>
-        <option value="Sí, asistiré">Sí, asistiré</option>
-        <option value="No podré asistir">No podré asistir</option>
-      </select>
-    </div>
-
-    <div id="contenidoAsistencia" class="oculto">
-      <div class="campo-asistentes">
-        <div class="campo">
-          <label>Número de adultos *</label>
-          <input type="number" name="adultos" id="adultos" min="0" max="10" value="1">
-        </div>
-        <div class="campo">
-          <label>Número de niños</label>
-          <input type="number" name="ninos" id="ninos" min="0" max="10" value="0">
-        </div>
-      </div>
-
-      <div id="contenedorMenus"></div>
-
-      <div class="campo">
-        <label>¿Quieres dedicar una canción a los novios?</label>
-        <input type="text" name="cancion" placeholder="Nombre del artista y nombre de la canción">
-      </div>
-      <div class="campo">
-        <label>Mensaje para los Novios</label>
-        <textarea name="mensaje" rows="3" placeholder="Déjanos unas palabras..."></textarea>
-      </div>
-
-      <!-- ===== BLOQUE DE PAGO SUTIL Y ELEGANTE ===== -->
-      <div class="bloque-pago-sutil">
-        <h4>Un detalle con cariño</h4>
-        <p class="pago-intro">
-          Su presencia es nuestro mayor regalo y lo único indispensable para celebrar este gran día.<br><br>
-          Para acompañarnos en la celebración, cada asistente incluye su aportación al cubierto
-          (150 € por adulto y 60 € por niño), un detalle con el que todos sumamos para hacer
-          posible este momento juntos.
-        </p>
-
-        <div class="desglose-pago" id="desglosePago">
-          <div class="linea">
-            <span class="etiqueta">Adultos</span>
-            <span class="valor" id="valorAdultos">0 €</span>
-          </div>
-          <div class="linea">
-            <span class="etiqueta">Niños</span>
-            <span class="valor" id="valorNinos">0 €</span>
-          </div>
-          <div class="linea total">
-            <span class="etiqueta">Total</span>
-            <span class="valor" id="valorTotal">0 €</span>
-          </div>
-        </div>
-
-        <div class="pago-datos">
-          <div class="fila">
-            <strong>Titular</strong>
-            <span id="titular">Jhon Pulido</span>
-            <button type="button" class="copiar-sutil" data-copiar="Jhon Pulido">Copiar</button>
-          </div>
-          <div class="fila">
-            <strong>IBAN</strong>
-            <span id="iban">ES98 0182 5322 2500 0165 6932</span>
-            <button type="button" class="copiar-sutil" data-copiar="ES9801825322250001656932">Copiar</button>
-          </div>
-          <div class="fila">
-            <strong>Concepto</strong>
-            <span id="concepto">Boda Wendy & Jhon - [Tu Nombre]</span>
-            <button type="button" class="copiar-sutil" id="btnCopiarConcepto">Copiar</button>
-          </div>
-          <div class="fila">
-            <strong>Cubierto</strong>
-            <span id="cubiertoTotal">0 €</span>
-            <button type="button" class="copiar-sutil" id="btnCopiarCubierto">Copiar</button>
-          </div>
-        </div>
-
-        <img class="qr-sutil" id="qrPago"
-             src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
-             alt="QR para transferencia">
-
-        <p class="nota-pago">
-          Escanea el QR desde tu app bancaria o copia los datos manualmente.
-        </p>
-      </div>
-      <!-- ===== FIN BLOQUE DE PAGO ===== -->
-
-      <button type="submit" class="btn" style="width: 100%; margin-top: 12px;">Enviar confirmación</button>
-    </div>
-
-    <div id="mensajeNoAsiste" class="mensaje-no-asiste oculto">
-      <h3>¡Gracias por contestar, <span id="nombreNoAsiste"></span>!</h3>
-      <p>
-        Nos llena de alegría haber compartido nuestra invitación contigo.<br>
-        Aunque no podamos contar con tu presencia en este día tan especial,<br>
-        te llevamos en el corazón y esperamos que la vida nos regale<br>
-        otro momento para celebrar juntos.
-      </p>
-      <p style="margin-top: 16px; font-style: italic; color: var(--texto-suave);">
-        Gracias por hacernos saber que no podrás acompañarnos. ¡Te echaremos de menos!
-      </p>
-      <button type="button" id="btnEnviarNo" class="btn" style="margin-top: 20px;">Enviar respuesta</button>
-    </div>
-  </form>
-
-  <div class="gracias" id="gracias">
-    <h3>¡Gracias por confirmar!</h3>
-    <p>Nos hace mucha ilusión compartir este día contigo.</p>
-  </div>
-</section>
-
-<!-- ================= SECCIONES EXTRA (ocultas hasta que confirme "Sí") ================= -->
-<div id="seccionesExtra" class="oculto">
-
-  <!-- UBICACIÓN -->
-  <section id="ubicacion">
-    <h2>Ubicación</h2>
-    <p class="subtitulo">Te esperamos en el siguiente lugar</p>
-    <div class="tarjeta centro">
-      <p class="frase" style="margin-bottom: 28px;">
-        <strong>Salón de Eventos "Leonardo"</strong><br>
-        Calle Nuestra Señora de Valverde, 193<br>
-        28034 - Madrid
-      </p>
-
-      <div style="text-align:left; max-width:520px; margin: 0 auto 28px; font-size:0.92rem; line-height:1.8;">
-        <p><strong>Información útil del salón:</strong></p>
-        <ul style="margin: 10px 0 0 20px; padding:0;">
-          <li>Recepción de invitados a partir de las <strong>18:30 h</strong>.</li>
-          <li>La ceremonia dará comienzo a las <strong>19:00 h</strong>.</li>
-          <li>El evento finaliza a las <strong>00:30 h</strong>.</li>
-          <li>Si necesitas indicaciones o tienes alguna duda, contacta con los novios.</li>
-        </ul>
-      </div>
-
-      <a class="btn" target="_blank" rel="noopener"
-         href="https://maps.google.com/?q=Calle+Nuestra+Se%C3%B1ora+de+Valverde+193+Madrid">
-        Ver ubicación en Google Maps
-      </a>
-    </div>
-  </section>
-
-  <!-- ÁLBUM DIGITAL -->
-  <section id="album">
-    <h2>Álbum digital</h2>
-    <p class="subtitulo">Comparte las fotos que tomes en la fiesta</p>
-    <div class="tarjeta centro">
-      <p class="frase" style="margin-bottom: 28px;">
-        Sube tus fotos al álbum compartido de Google Fotos.<br>
-        También encontrarás este acceso por QR en el recuerdo de boda.
-      </p>
-      <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
-        Abrir álbum en Google Fotos
-      </a>
-
-      <div class="qr-box">
-        <p>QR del recuerdo</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
-             alt="QR del álbum de Google Fotos">
-        <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓDIGO DE VESTIMENTA -->
-  <section id="vestimenta">
-    <h2>Código de vestimenta</h2>
-    <p class="subtitulo">Elegante, con estilo propio</p>
-    <div class="tarjeta centro">
-      <p class="vestimenta">
-        En nuestra boda, el toque especial lo pones tú.<br>
-        Ponte tu look más elegante, ven listo para bailar<br>
-        y disfruta sin reservas.<br>
-        ¡Estamos deseando compartir este momento contigo!
-        <span class="colores-reservados">
-          Los colores reservados para los novios son el <strong>blanco</strong> (novia) y el <strong>gris</strong> (traje del novio).<br>
-          Los invitados podrán llevar cualquier color, excepto estos dos.
-        </span>
-      </p>
-    </div>
-  </section>
-
-  <!-- AÑADIR AL CALENDARIO -->
-  <section id="calendario">
-    <h2>Añade la fecha al calendario</h2>
-    <p class="subtitulo">Para que no se te olvide nuestra boda</p>
-
-    <div class="tarjeta centro">
-      <p class="frase" style="margin-bottom: 28px;">
-        Sábado, 10 de abril de 2027<br>
-        <strong>18:30 h</strong>
-      </p>
-      <a class="btn btn-outline" id="btnCalendario" href="#" download="boda-wendy-jhon.ics">
-        Añadir a mi calendario
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER DENTRO DEL BLOQUE EXTRA -->
-  <footer id="footer">
-    Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
-  </footer>
-
-</div><!-- /#seccionesExtra -->
-
-<!-- ================= PANEL ADMIN (OCULTO) ================= -->
-<div id="adminLogin" class="admin-login oculto">
-  <h3>Panel de administración</h3>
-  <input type="password" id="adminPass" placeholder="Contraseña">
-  <button class="btn" id="btnLogin" style="width:100%;">Entrar</button>
-  <p class="error" id="loginError">Contraseña incorrecta</p>
-</div>
-
-<div id="adminPanel" class="admin-panel oculto">
-  <h2>Respuestas de la invitación</h2>
-  <p class="admin-sub">Consulta, descarga o importa los datos de las confirmaciones</p>
-
-  <div class="admin-toolbar">
-    <button id="btnDescargarJSON">⬇ Descargar JSON</button>
-    <label for="fileInput">⬆ Importar JSON</label>
-    <input type="file" id="fileInput" accept=".json,application/json">
-    <button class="btn-danger" id="btnBorrarTodo">🗑 Borrar todo</button>
-    <button id="btnCerrarAdmin">✕ Cerrar</button>
-  </div>
-
-  <div class="tabla-wrap">
-    <table id="tablaRespuestas">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th>Contacto</th>
-          <th>Asiste</th>
-          <th>Adultos</th>
-          <th>Niños</th>
-          <th>Menús</th>
-          <th>Canción</th>
-          <th>Mensaje</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody id="tbodyRespuestas"></tbody>
-    </table>
-  </div>
-  <p class="admin-empty" id="adminEmpty">Aún no hay respuestas registradas.</p>
-</div>
-
-<!-- ================= MÚSICA DE FONDO ================= -->
-<button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
-<audio id="audioFondo" loop preload="none">
-  <source src="musica/cancion.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-
-  /* =========================================================
-     CONFIGURACIÓN
-     ========================================================= */
-  const ADMIN_PASSWORD = "wendy2027";
-  const STORAGE_KEY = "rsvp_boda_wendy_jhon";
-  const PRECIO_ADULTO = 150;
-  const PRECIO_NINO = 60;
-
-  /* =========================================================
-     UTILIDADES
-     ========================================================= */
-  function cargarRespuestas() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function guardarRespuestas(arr) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-  }
-
-  function agregarRespuesta(datos) {
-    const arr = cargarRespuestas();
-    datos.fecha = new Date().toISOString();
-    datos.id = Date.now() + "_" + Math.random().toString(36).substr(2, 6);
-    arr.push(datos);
-    guardarRespuestas(arr);
-    return datos;
-  }
-
-  function descargarJSON() {
-    const arr = cargarRespuestas();
-    const blob = new Blob([JSON.stringify(arr, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `respuestas_boda_${new Date().toISOString().slice(0,10)}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  /* =========================================================
-     COUNTDOWN
-     ========================================================= */
-  const fechaBoda = new Date("2027-04-10T18:30:00").getTime();
-
-  function actualizarCountdown() {
-    const diff = fechaBoda - Date.now();
-    if (diff < 0) {
-      document.getElementById("countdown").innerHTML = "<p style='letter-spacing:0.15em;font-size:1.1rem;'>¡Hoy es el gran día!</p>";
-      return;
-    }
-    document.getElementById("dias").textContent  = Math.floor(diff / 86400000);
-    document.getElementById("horas").textContent = Math.floor((diff % 86400000) / 3600000);
-    document.getElementById("min").textContent   = Math.floor((diff % 3600000) / 60000);
-    document.getElementById("seg").textContent   = Math.floor((diff % 60000) / 1000);
-  }
-  setInterval(actualizarCountdown, 1000);
-  actualizarCountdown();
-
-  /* =========================================================
-     COPIAR (versión sutil)
-     ========================================================= */
-  document.querySelectorAll(".copiar-sutil").forEach(btn => {
-    btn.addEventListener("click", () => {
-      navigator.clipboard.writeText(btn.dataset.copiar).then(() => {
-        const textoOriginal = btn.textContent;
-        btn.textContent = "¡Copiado!";
-        setTimeout(() => { btn.textContent = textoOriginal; }, 1600);
-      });
-    });
-  });
-
-  /* =========================================================
-     LÓGICA DEL FORMULARIO RSVP
-     ========================================================= */
-  const formRSVP = document.getElementById("formRSVP");
-  const selectAsistencia = document.getElementById("asistencia");
-  const contenidoAsistencia = document.getElementById("contenidoAsistencia");
-  const mensajeNoAsiste = document.getElementById("mensajeNoAsiste");
-  const contenedorMenus = document.getElementById("contenedorMenus");
-  const inputAdultos = document.getElementById("adultos");
-  const inputNinos = document.getElementById("ninos");
-  const inputNombre = document.getElementById("nombre");
-  const inputContacto = document.getElementById("contacto");
-  const spanNombreNoAsiste = document.getElementById("nombreNoAsiste");
-  const btnEnviarNo = document.getElementById("btnEnviarNo");
-  const seccionesExtra = document.getElementById("seccionesExtra");
-  const spanConcepto = document.getElementById("concepto");
-  const btnCopiarConcepto = document.getElementById("btnCopiarConcepto");
-  const valorAdultos = document.getElementById("valorAdultos");
-  const valorNinos = document.getElementById("valorNinos");
-  const valorTotal = document.getElementById("valorTotal");
-  const cubiertoTotal = document.getElementById("cubiertoTotal");
-  const btnCopiarCubierto = document.getElementById("btnCopiarCubierto");
-  const qrPago = document.getElementById("qrPago");
-
-  seccionesExtra.classList.add("oculto");
-
-  selectAsistencia.addEventListener("change", () => {
-    const valor = selectAsistencia.value;
-    
-    if (valor === "Sí, asistiré") {
-      contenidoAsistencia.classList.remove("oculto");
-      mensajeNoAsiste.classList.add("oculto");
-      seccionesExtra.classList.remove("oculto");
-    } else if (valor === "No podré asistir") {
-      contenidoAsistencia.classList.add("oculto");
-      seccionesExtra.classList.add("oculto");
-      const nombre = inputNombre.value.trim();
-      spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
-      mensajeNoAsiste.classList.remove("oculto");
-    } else {
-      contenidoAsistencia.classList.add("oculto");
-      mensajeNoAsiste.classList.add("oculto");
-      seccionesExtra.classList.add("oculto");
-    }
-  });
-
-  /* Actualizar el concepto con el nombre */
-  function actualizarConcepto() {
-    const nombre = inputNombre.value.trim() || "[Tu Nombre]";
-    spanConcepto.textContent = `Boda Wendy & Jhon - ${nombre}`;
-    btnCopiarConcepto.dataset.copiar = `Boda Wendy & Jhon - ${nombre}`;
-  }
-
-  inputNombre.addEventListener("input", actualizarConcepto);
-  actualizarConcepto();
-
-  /* Actualizar el desglose de pago y el QR */
-  function actualizarDesglose() {
-    const adultos = parseInt(inputAdultos.value) || 0;
-    const ninos = parseInt(inputNinos.value) || 0;
-    const totalAdultos = adultos * PRECIO_ADULTO;
-    const totalNinos = ninos * PRECIO_NINO;
-    const total = totalAdultos + totalNinos;
-
-    valorAdultos.textContent = `${totalAdultos} €`;
-    valorNinos.textContent = `${totalNinos} €`;
-    valorTotal.textContent = `${total} €`;
-    cubiertoTotal.textContent = `${total} €`;
-    btnCopiarCubierto.dataset.copiar = `${total} €`;
-
-    // Actualizar el QR con el importe total
-    const qrData = `BCD:002:1:SCT:ES9801825322250001656932:Jhon Pulido::${total}::EUR`;
-    qrPago.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrData)}`;
-  }
-
-  inputAdultos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
-  inputNinos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
-  actualizarDesglose();
-
-  /* Generar menús */
-  function generarMenus() {
-    const adultos = parseInt(inputAdultos.value) || 0;
-    const ninos = parseInt(inputNinos.value) || 0;
-    const total = adultos + ninos;
-
-    contenedorMenus.innerHTML = "";
-    if (total <= 0) return;
-
-    for (let i = 0; i < adultos; i++) {
-      const div = document.createElement("div");
-      div.className = "menu-asistente";
-      
-      const label = document.createElement("label");
-      label.textContent = `Adulto ${i + 1}`;
-      
-      const select = document.createElement("select");
-      select.name = `menu_Adulto_${i + 1}`;
-      select.required = true;
-      
-      select.innerHTML = `
-        <option value="">Selecciona...</option>
-        <option value="Meloso de ternera con parmentier de patata">Meloso de ternera con parmentier de patata</option>
-        <option value="Salmón gratinado con hojaldre de verduras salteadas">Salmón gratinado con hojaldre de verduras salteadas</option>
-      `;
-      
-      div.appendChild(label);
-      div.appendChild(select);
-      contenedorMenus.appendChild(div);
-    }
-
-    for (let i = 0; i < ninos; i++) {
-      const div = document.createElement("div");
-      div.className = "menu-asistente";
-      
-      const label = document.createElement("label");
-      label.textContent = `Niño ${i + 1}`;
-      
-      const fijo = document.createElement("div");
-      fijo.className = "menu-nino-fijo";
-      fijo.textContent = "Menú de niño";
-      
-      const hidden = document.createElement("input");
-      hidden.type = "hidden";
-      hidden.name = `menu_Nino_${i + 1}`;
-      hidden.value = "Menú de niño";
-      
-      div.appendChild(label);
-      div.appendChild(fijo);
-      div.appendChild(hidden);
-      contenedorMenus.appendChild(div);
-    }
-  }
-
-  generarMenus();
-
-  /* =========================================================
-     ENVÍO DEL FORMULARIO
-     ========================================================= */
-  formRSVP.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    const valorAsistencia = selectAsistencia.value;
-    const nombre = inputNombre.value.trim();
-    const contacto = inputContacto.value.trim();
-
-    if (valorAsistencia === "No podré asistir") {
-      spanNombreNoAsiste.textContent = nombre ? nombre : "familia";
-      mensajeNoAsiste.classList.remove("oculto");
-      
-      seccionesExtra.classList.add("oculto");
-      inputNombre.closest(".campo").classList.add("oculto");
-      inputContacto.closest(".campo").classList.add("oculto");
-      selectAsistencia.closest(".campo").classList.add("oculto");
-      contenidoAsistencia.classList.add("oculto");
-      document.getElementById("gracias").classList.add("oculto");
-      
-      agregarRespuesta({
-        nombre: nombre || "(sin nombre)",
-        contacto: contacto || "(sin contacto)",
-        asistencia: "No podré asistir",
-        adultos: 0,
-        ninos: 0,
-        menus: [],
-        cancion: "",
-        mensaje: ""
-      });
-      
-      mensajeNoAsiste.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
-    }
-
-    const formData = new FormData(formRSVP);
-    const datos = Object.fromEntries(formData);
-    
-    const menus = [];
-    Object.keys(datos).forEach(k => {
-      if (k.startsWith("menu_")) {
-        menus.push({ tipo: k.replace("menu_", ""), plato: datos[k] });
-        delete datos[k];
-      }
-    });
-    
-    datos.menus = menus;
-    datos.fecha = new Date().toISOString();
-    datos.id = Date.now() + "_" + Math.random().toString(36).substr(2, 6);
-    
-    const adultos = parseInt(datos.adultos) || 0;
-    const ninos = parseInt(datos.ninos) || 0;
-    const totalPago = (adultos * PRECIO_ADULTO) + (ninos * PRECIO_NINO);
-
-    agregarRespuesta({
-      nombre: datos.nombre,
-      contacto: datos.contacto,
-      asistencia: datos.asistencia,
-      adultos: adultos,
-      ninos: ninos,
-      menus: menus,
-      cancion: datos.cancion || "",
-      mensaje: datos.mensaje || "",
-      totalPago: totalPago
-    });
-
-    descargarJSON();
-
-    formRSVP.style.display = "none";
-    document.getElementById("gracias").style.display = "block";
-  });
-
-  btnEnviarNo.addEventListener("click", () => {
-    descargarJSON();
-    btnEnviarNo.style.display = "none";
-    
-    const enviado = document.createElement("p");
-    enviado.style.marginTop = "16px";
-    enviado.style.fontStyle = "italic";
-    enviado.style.color = "var(--verde)";
-    enviado.textContent = "✓ Respuesta guardada. Se ha descargado el JSON con los datos.";
-    mensajeNoAsiste.appendChild(enviado);
-  });
-
-  /* =========================================================
-     AÑADIR AL CALENDARIO (ICS)
-     ========================================================= */
-  const ics = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Boda Wendy y Jhon//ES",
-    "BEGIN:VEVENT",
-    "UID:boda-wendy-jhon-2027@invitacion",
-    "DTSTAMP:20260101T000000Z",
-    "DTSTART:20270410T163000Z",
-    "DTEND:20270410T223000Z",
-    "SUMMARY:Boda de Wendy & Jhon",
-    "LOCATION:Salón de Eventos Leonardo, Calle Nuestra Señora de Valverde 193, Madrid",
-    "DESCRIPTION:¡Nos casamos! Te esperamos.",
-    "END:VEVENT",
-    "END:VCALENDAR"
-  ].join("\r\n");
-
-  const blobICS = new Blob([ics], { type: "text/calendar" });
-  document.getElementById("btnCalendario").href = URL.createObjectURL(blobICS);
-
-  /* =========================================================
-     MÚSICA
-     ========================================================= */
-  const audio = document.getElementById("audioFondo");
-  const btnMusica = document.getElementById("btnMusica");
-  let suena = false;
-
-  btnMusica.addEventListener("click", () => {
-    if (suena) {
-      audio.pause();
-      btnMusica.textContent = "♪";
-      btnMusica.style.background = "var(--verde-suave)";
-    } else {
-      audio.play().catch(err => console.log("No se pudo reproducir:", err));
-      btnMusica.textContent = "❚❚";
-      btnMusica.style.background = "var(--verde)";
-    }
-    suena = !suena;
-  });
-
-  /* =========================================================
-     PANEL ADMIN
-     ========================================================= */
-  let clicsFooter = 0;
-  let timerFooter = null;
-  const footer = document.getElementById("footer");
-  const adminLogin = document.getElementById("adminLogin");
-  const adminPanel = document.getElementById("adminPanel");
-  const adminPass = document.getElementById("adminPass");
-  const btnLogin = document.getElementById("btnLogin");
-  const loginError = document.getElementById("loginError");
-  const tbodyRespuestas = document.getElementById("tbodyRespuestas");
-  const adminEmpty = document.getElementById("adminEmpty");
-
-  footer.addEventListener("click", () => {
-    clicsFooter++;
-    clearTimeout(timerFooter);
-    timerFooter = setTimeout(() => { clicsFooter = 0; }, 1500);
-    
-    if (clicsFooter >= 5) {
-      clicsFooter = 0;
-      abrirAdmin();
-    }
-  });
-
-  if (window.location.hash === "#admin") {
-    abrirAdmin();
-  }
-
-  function abrirAdmin() {
-    if (adminPanel.classList.contains("visible")) return;
-    adminLogin.classList.remove("oculto");
-    adminLogin.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
-  btnLogin.addEventListener("click", () => {
-    if (adminPass.value === ADMIN_PASSWORD) {
-      adminLogin.classList.add("oculto");
-      adminPanel.classList.add("visible");
-      adminPanel.classList.remove("oculto");
-      renderTabla();
-    } else {
-      loginError.classList.add("visible");
-      setTimeout(() => loginError.classList.remove("visible"), 2500);
-    }
-  });
-
-  adminPass.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") btnLogin.click();
-  });
-
-  function renderTabla() {
-    const arr = cargarRespuestas();
-    tbodyRespuestas.innerHTML = "";
-    
-    if (arr.length === 0) {
-      adminEmpty.style.display = "block";
-      document.getElementById("tablaRespuestas").style.display = "none";
-      return;
-    }
-    
-    adminEmpty.style.display = "none";
-    document.getElementById("tablaRespuestas").style.display = "table";
-    
-    arr.forEach((r, i) => {
-      const tr = document.createElement("tr");
-      const menusStr = (r.menus || []).map(m => `${m.tipo}: ${m.plato}`).join("<br>");
-      tr.innerHTML = `
-        <td>${i + 1}</td>
-        <td><strong>${escapeHTML(r.nombre || "")}</strong></td>
-        <td>${escapeHTML(r.contacto || "")}</td>
-        <td class="${r.asistencia === "Sí, asistiré" ? "badge-si" : "badge-no"}">${escapeHTML(r.asistencia || "")}</td>
-        <td>${r.adultos || 0}</td>
-        <td>${r.ninos || 0}</td>
-        <td>${menusStr || "—"}</td>
-        <td>${escapeHTML(r.cancion || "—")}</td>
-        <td>${escapeHTML(r.mensaje || "—")}</td>
-        <td>${r.fecha ? new Date(r.fecha).toLocaleString("es-ES") : "—"}</td>
-      `;
-      tbodyRespuestas.appendChild(tr);
-    });
-  }
-
-  function escapeHTML(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  document.getElementById("btnDescargarJSON").addEventListener("click", descargarJSON);
-
-  document.getElementById("fileInput").addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const nuevos = JSON.parse(ev.target.result);
-        if (!Array.isArray(nuevos)) throw new Error("Formato incorrecto");
-        const actuales = cargarRespuestas();
-        const ids = new Set(actuales.map(r => r.id));
-        let agregados = 0;
-        nuevos.forEach(r => {
-          if (!ids.has(r.id)) {
-            actuales.push(r);
-            agregados++;
-          }
-        });
-        guardarRespuestas(actuales);
-        renderTabla();
-        alert(`Importados ${agregados} registros nuevos (${nuevos.length - agregados} ya existían).`);
-      } catch (err) {
-        alert("Error al leer el JSON: " + err.message);
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  });
-
-  document.getElementById("btnBorrarTodo").addEventListener("click", () => {
-    if (confirm("¿Seguro que quieres borrar TODAS las respuestas? Esta acción no se puede deshacer.")) {
-      localStorage.removeItem(STORAGE_KEY);
-      renderTabla();
-    }
-  });
-
-  document.getElementById("btnCerrarAdmin").addEventListener("click", () => {
-    adminPanel.classList.remove("visible");
-    adminPanel.classList.add("oculto");
-    window.location.hash = "";
-  });
-
-</script>
-
-</body>
-</html>
+    .tarje
