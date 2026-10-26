@@ -21,6 +21,7 @@
     --texto: #3d3d36;
     --texto-suave: #6b6b62;
     --blanco: #ffffff;
+    --rojo: #c0392b;
     --sombra-suave: 0 20px 60px rgba(61, 61, 54, 0.06);
     --sombra-media: 0 12px 40px rgba(61, 61, 54, 0.08);
     --transicion: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -497,23 +498,27 @@
   .btn-opcion {
     flex: 1;
     min-width: 160px;
-    padding: 14px 20px;
+    padding: 15px 44px;
     border: 1.5px solid var(--verde-suave);
     background: var(--crema);
     color: var(--texto);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
     transition: var(--transicion);
+    text-align: center;
+    position: relative;
   }
 
   .btn-opcion:hover {
     background: var(--verde-suave);
     color: var(--blanco);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(125, 143, 110, 0.28);
   }
 
   .btn-opcion.seleccionado {
@@ -646,6 +651,8 @@
     color: var(--texto);
     text-transform: uppercase;
   }
+
+  .asterisco { color: var(--rojo); font-weight: 600; }
 
   input, select, textarea {
     width: 100%;
@@ -956,6 +963,12 @@
     gap: 20px;
   }
 
+  .campo-cancion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
   .menu-asistente {
     display: flex;
     align-items: center;
@@ -1009,6 +1022,7 @@
   @media (max-width: 640px) {
     .campo-asistentes { grid-template-columns: 1fr; gap: 12px; }
     .campo-contacto { grid-template-columns: 1fr; gap: 12px; }
+    .campo-cancion { grid-template-columns: 1fr; gap: 12px; }
     .menu-asistente { flex-direction: column; align-items: flex-start; gap: 6px; }
     .menu-asistente label { min-width: auto; }
     .pago-datos .fila { flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -1234,7 +1248,7 @@
 
     <!-- MARCO ELEGANTE PARA LA FOTO DE LA PAREJA -->
     <div class="marco-foto-boda">
-      <img src="boda/77600.jpg" onerror="this.src=https://jhonpulidob.github.io/pages/boda/foto-pareja.jpg" alt="Wendy y Jhon" />
+      <img src="boda/77600.jpg" onerror="this.src='pages/boda/foto-pareja.jpg'" alt="Wendy y Jhon" />
       <div class="pie-foto">Wendy & Jhon</div>
     </div>
 
@@ -1250,26 +1264,26 @@
 
   <form id="formRSVP">
     <div class="campo">
-      <label>Nombre completo *</label>
+      <label>Nombre completo <span class="asterisco">*</span></label>
       <input type="text" name="nombre" id="nombre" required autocomplete="name">
     </div>
 
     <div class="campo-contacto">
       <div class="campo">
-        <label>Correo electrónico *</label>
+        <label>Correo electrónico <span class="asterisco">*</span></label>
         <input type="email" name="email" id="email" required autocomplete="email" placeholder="tucorreo@ejemplo.com">
       </div>
       <div class="campo">
-        <label>Teléfono / Celular *</label>
+        <label>Teléfono / Celular <span class="asterisco">*</span></label>
         <input type="tel" name="telefono" id="telefono" required autocomplete="tel" placeholder="+34 600 000 000">
       </div>
     </div>
 
     <div class="campo">
-      <label>¿Asistirás? *</label>
+      <label>¿Contamos contigo? <span class="asterisco">*</span></label>
       <div class="opciones-asistencia">
         <button type="button" class="btn-opcion" id="btnSi">Sí asistiré</button>
-        <button type="button" class="btn-opcion" id="btnNo">No asistiré</button>
+        <button type="button" class="btn-opcion" id="btnNo">No podré asistir</button>
       </div>
       <input type="hidden" name="asistencia" id="asistencia" value="">
     </div>
@@ -1277,7 +1291,7 @@
     <div id="contenidoAsistencia" class="oculto">
       <div class="campo-asistentes">
         <div class="campo">
-          <label>Número de adultos *</label>
+          <label>Número de adultos <span class="asterisco">*</span></label>
           <input type="number" name="adultos" id="adultos" min="0" max="10" value="1">
         </div>
         <div class="campo">
@@ -1288,9 +1302,15 @@
 
       <div id="contenedorMenus"></div>
 
-      <div class="campo">
-        <label>¿Quieres dedicar una canción a los novios?</label>
-        <input type="text" name="cancion" placeholder="Nombre del artista y nombre de la canción">
+      <div class="campo-cancion">
+        <div class="campo">
+          <label>Artista de la canción</label>
+          <input type="text" name="cancion_artista" placeholder="Nombre del artista o grupo">
+        </div>
+        <div class="campo">
+          <label>Nombre de la canción</label>
+          <input type="text" name="cancion_titulo" placeholder="Título de la canción">
+        </div>
       </div>
       <div class="campo">
         <label>Mensaje para los Novios</label>
@@ -1890,6 +1910,10 @@
       }
     });
 
+    const artist = datos.cancion_artista || "";
+    const title = datos.cancion_titulo || "";
+    const cancion = artist && title ? `${artist} - ${title}` : (artist || title || "");
+
     const adultos = parseInt(datos.adultos) || 0;
     const ninos = parseInt(datos.ninos) || 0;
     const totalPago = (adultos * PRECIO_ADULTO) + (ninos * PRECIO_NINO);
@@ -1900,7 +1924,7 @@
       telefono: datos.telefono,
       asistencia: datos.asistencia,
       adultos, ninos, menus,
-      cancion: datos.cancion || "",
+      cancion: cancion,
       mensaje: datos.mensaje || "",
       totalPago
     });
