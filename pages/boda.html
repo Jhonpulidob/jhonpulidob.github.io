@@ -1766,7 +1766,6 @@
 
     contenidoAsistencia.classList.remove("oculto");
     mensajeNoAsiste.classList.add("oculto");
-    seccionesExtra.classList.remove("oculto");
   });
 
   btnNo.addEventListener("click", () => {
@@ -1921,6 +1920,7 @@
 
     formRSVP.style.display = "none";
     document.getElementById("gracias").style.display = "block";
+    seccionesExtra.classList.remove("oculto");
     document.getElementById("gracias").scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
