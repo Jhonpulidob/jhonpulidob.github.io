@@ -43,6 +43,180 @@
 
   h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.02em; }
 
+  /* ---------- PANTALLA DE INICIO: SOBRE / TARJETA CON EFECTO ---------- */
+  .envelope-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #f4efe6 0%, #d8cebe 100%);
+    z-index: 10000;
+    perspective: 1200px;
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+
+  .card-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 500px;
+    max-height: 850px;
+    background: #fdfbf7;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    display: flex;
+  }
+
+  .door {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--crema-profunda);
+    background-image: radial-gradient(rgba(138, 154, 123, 0.15) 1px, transparent 1px);
+    background-size: 16px 16px;
+    z-index: 2;
+    transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+  }
+
+  .door-left {
+    left: 0;
+    transform-origin: left center;
+    border-right: 1px solid rgba(201, 169, 110, 0.3);
+  }
+
+  .door-right {
+    right: 0;
+    transform-origin: right center;
+    border-left: 1px solid rgba(201, 169, 110, 0.3);
+  }
+
+  /* Detalles Botánicos Estilo Tarjeta */
+  .foliage-pattern {
+    position: absolute;
+    width: 140px;
+    height: 300px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  
+  .door-left .foliage-pattern {
+    right: 15px;
+    background: radial-gradient(ellipse at right, rgba(138, 154, 123, 0.35) 0%, transparent 70%);
+  }
+
+  .door-right .foliage-pattern {
+    left: 15px;
+    background: radial-gradient(ellipse at left, rgba(138, 154, 123, 0.35) 0%, transparent 70%);
+  }
+
+  /* --- SELLO DE CERA (BOTÓN W&J) --- */
+  .wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 96px;
+    height: 96px;
+    background: radial-gradient(circle at 35% 35%, #e6ca65, var(--dorado), #7a5805);
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255,255,255,0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-glow 2.5s infinite alternate;
+  }
+
+  .wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 12px 30px rgba(201, 169, 110, 0.7), inset 0 2px 6px rgba(255,255,255,0.8);
+  }
+
+  .wax-seal-inner {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  }
+
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 15px rgba(201, 169, 110, 0.4), inset 0 2px 4px rgba(255,255,255,0.4); }
+    100% { box-shadow: 0 0 30px rgba(201, 169, 110, 0.9), 0 0 50px rgba(232, 217, 184, 0.6); }
+  }
+
+  /* --- DESTELLO DE AMANECER (SUNRISE FLARE) --- */
+  .sunrise-flare {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffffff 0%, #ffe600 20%, #ffaa33 45%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* ANIMACIÓN AL ABRIR */
+  .envelope-screen.open .sunrise-flare {
+    animation: sunrise-beam 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .envelope-screen.open .door-left {
+    transform: rotateY(-120deg);
+  }
+
+  .envelope-screen.open .door-right {
+    transform: rotateY(120deg);
+  }
+
+  .envelope-screen.open .wax-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .envelope-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @keyframes sunrise-beam {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+      filter: brightness(1.8);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(35);
+      opacity: 0;
+    }
+  }
+
   /* ---------- CABECERA ---------- */
   .menu-navegacion {
     position: sticky;
@@ -423,6 +597,247 @@
   }
 
   .itinerario-detalle strong { display: block; margin-bottom: 3px; font-size: 1.05rem; }
+
+  .itinerario-detalle span {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    line-height: 1.65;
+  }
+
+  .dato-relevante {
+    margin-top: 32px;
+    padding: 22px 24px;
+    background: var(--crema-profunda);
+    border-left: 3px solid var(--sage-claro);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .dato-relevante strong { color: var(--sage-oscuro); }
+
+  /* ---------- NOTA GENERAL ---------- */
+  .nota {
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+    margin-top: 30px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.65;
+  }
+
+  /* ---------- BOTONES ---------- */
+  .btn {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--blanco);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 3px;
+    font-size: 0.84rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transicion);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+  }
+
+  .btn:hover {
+    background: var(--sage-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(138, 154, 123, 0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--sage);
+    border: 1.5px solid var(--sage-claro);
+  }
+
+  .btn-outline:hover { background: var(--sage); color: var(--blanco); }
+
+  /* ---------- BOTONES DE OPCIÓN DE ASISTENCIA ---------- */
+  .opciones-asistencia {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-opcion {
+    flex: 1;
+    min-width: 170px;
+    padding: 16px 44px;
+    border: 1.5px solid var(--sage-claro);
+    background: var(--crema);
+    color: var(--texto);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: var(--transicion);
+    text-align: center;
+    position: relative;
+  }
+
+  .btn-opcion:hover {
+    background: var(--sage);
+    color: var(--blanco);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(138, 154, 123, 0.28);
+  }
+
+  .btn-opcion.seleccionado {
+    background: var(--sage-oscuro);
+    color: var(--blanco);
+    border-color: var(--sage-oscuro);
+    box-shadow: 0 5px 16px rgba(107, 122, 94, 0.28);
+  }
+
+  /* ---------- TOOLTIP FLOTANTE ---------- */
+  .btn-tooltip { position: relative; }
+
+  .btn-tooltip .tooltip-texto {
+    visibility: hidden;
+    opacity: 0;
+    width: 270px;
+    background: var(--sage-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    border-radius: 7px;
+    padding: 13px 15px;
+    position: absolute;
+    z-index: 10;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-weight: 400;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    pointer-events: none;
+  }
+
+  .btn-tooltip .tooltip-texto::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--sage-oscuro) transparent transparent transparent;
+  }
+
+  .btn-tooltip:hover .tooltip-texto,
+  .btn-tooltip.activo .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ---------- RSVP ---------- */
+  .foto-pareja {
+    width: 100%;
+    max-width: 360px;
+    display: block;
+    margin: 0 auto 30px;
+    border-radius: 3px;
+    box-shadow: var(--sombra-media);
+    object-fit: cover;
+  }
+
+  /* ---------- MARCO ELEGANTE PARA LA FOTO DE LA PAREJA ---------- */
+  .marco-foto-boda {
+    background: var(--blanco);
+    padding: 18px 18px 30px 18px;
+    max-width: 380px;
+    margin: 0 auto 32px;
+    border-radius: 6px;
+    box-shadow: var(--sombra-media);
+    position: relative;
+    border: 1px solid rgba(201, 169, 110, 0.28);
+  }
+
+  .marco-foto-boda::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(138, 154, 123, 0.18);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .marco-foto-boda img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 3px;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+  }
+
+  .marco-foto-boda .pie-foto {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--sage-oscuro);
+    margin-top: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  form {
+    background: var(--blanco);
+    padding: 52px 44px;
+    border-radius: 6px;
+    box-shadow: var(--sombra-suave);
+    position: relative;
+  }
+
+  form::before {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(138, 154, 123, 0.14);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .campo { margin-bottom: 26px; }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    color: var(--texto);
+    text-transform: uppercase;
+  }
+
+  .asterisco { color: var(--rojo-suave); font-weight: 600; }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 15px 17px;
+    border: 1px solid #ddd6c8;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transicion);
+    background: vlay: block; margin-bottom: 3px; font-size: 1.05rem; }
 
   .itinerario-detalle span {
     display: block;
