@@ -1945,10 +1945,11 @@
 </div>
 
 <!-- ================= MÚSICA ================= -->
-<!-- Fallback incluido por si boda/cancion.mp3 no existe -->
 <button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
 <audio id="audioFondo" loop preload="auto">
-  <source src="boda/cancion.mp3" type="audio/mpeg">
+  <!-- Tu música principal -->
+  <source src="boda/audio_boda.m4a" type="audio/mp4">
+  <!-- Respaldo por si el m4a no carga -->
   <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116035.mp3" type="audio/mpeg">
 </audio>
 
