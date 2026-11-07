@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Paleta refinada Wedding Planner 2027 – elegancia atemporal */
     --sage: #8a9a7b;
     --sage-oscuro: #6b7a5e;
     --sage-claro: #b8c4ae;
@@ -30,7 +29,10 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
 
   body {
     font-family: 'Montserrat', sans-serif;
@@ -39,182 +41,208 @@
     line-height: 1.75;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body.noscroll {
+    overflow: hidden;
   }
 
   h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.02em; }
 
-  /* ---------- PANTALLA DE INICIO: SOBRE / TARJETA CON EFECTO ---------- */
-  .envelope-screen {
+  /* =========================================================
+     PRESENTACIÓN DEL SOBRE 3D (OVERLAY FULLSCREEN)
+     ========================================================= */
+  #envelope-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 99999;
+    background: radial-gradient(circle at center, #fbf9f6 0%, #e2dad0 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #f4efe6 0%, #d8cebe 100%);
-    z-index: 10000;
     perspective: 1200px;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
   }
 
-  .card-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    max-width: 500px;
-    max-height: 850px;
-    background: #fdfbf7;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    display: flex;
-  }
-
-  .door {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background: var(--crema-profunda);
-    background-image: radial-gradient(rgba(138, 154, 123, 0.15) 1px, transparent 1px);
-    background-size: 16px 16px;
-    z-index: 2;
-    transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
-  }
-
-  .door-left {
-    left: 0;
-    transform-origin: left center;
-    border-right: 1px solid rgba(201, 169, 110, 0.3);
-  }
-
-  .door-right {
-    right: 0;
-    transform-origin: right center;
-    border-left: 1px solid rgba(201, 169, 110, 0.3);
-  }
-
-  /* Detalles Botánicos Estilo Tarjeta */
-  .foliage-pattern {
-    position: absolute;
-    width: 140px;
-    height: 300px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.55;
+  #envelope-container.fade-out {
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
   }
-  
-  .door-left .foliage-pattern {
-    right: 15px;
-    background: radial-gradient(ellipse at right, rgba(138, 154, 123, 0.35) 0%, transparent 70%);
+
+  /* Marco exterior del sobre 3D */
+  .envelope-wrapper {
+    position: relative;
+    width: min(90vw, 420px);
+    height: min(130vw, 610px);
+    max-height: 88vh;
+    border-radius: 12px;
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 40px rgba(201, 169, 110, 0.15),
+      inset 0 0 2px rgba(255, 255, 255, 0.8);
+    background: #eef0ed;
+    background-image: radial-gradient(#dcdfd9 1px, transparent 0);
+    background-size: 10px 10px;
+    overflow: hidden;
+    transform-style: preserve-3d;
   }
 
-  .door-right .foliage-pattern {
-    left: 15px;
-    background: radial-gradient(ellipse at left, rgba(138, 154, 123, 0.35) 0%, transparent 70%);
+  /* Capa de fondo del sobre */
+  .envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #fdfbf7;
+    z-index: 1;
   }
 
-  /* --- SELLO DE CERA (BOTÓN W&J) --- */
+  /* Solapas del sobre */
+  .flap {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    transform-origin: top center;
+    transition: transform 2.2s cubic-bezier(0.65, 0, 0.35, 1);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.12));
+  }
+
+  /* Solapa superior */
+  .flap-top {
+    top: 0;
+    height: 52%;
+  }
+
+  /* Solapa inferior */
+  .flap-bottom {
+    bottom: 0;
+    height: 52%;
+    transform-origin: bottom center;
+  }
+
+  .envelope-wrapper.open .flap-top {
+    transform: rotateX(165deg);
+  }
+
+  .envelope-wrapper.open .flap-bottom {
+    transform: rotateX(-165deg);
+  }
+
+  /* SVG de encaje floral en relieve (Bajorrelieve blanco 3D) */
+  .lace-pattern {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.9)) 
+            drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Sello de Cera Dorado W&J */
   .wax-seal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    width: 96px;
-    height: 96px;
-    background: radial-gradient(circle at 35% 35%, #e6ca65, var(--dorado), #7a5805);
-    border-radius: 50%;
+    width: 95px;
+    height: 95px;
     z-index: 10;
     cursor: pointer;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #f9e7b9 0%, #c9a96e 50%, #8c6e35 100%);
+    box-shadow: 
+      0 10px 25px rgba(140, 110, 53, 0.4),
+      0 4px 10px rgba(0, 0, 0, 0.25),
+      inset 0 2px 4px rgba(255, 255, 255, 0.7),
+      inset 0 -3px 6px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255,255,255,0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: pulse-glow 2.5s infinite alternate;
+    border: 3px solid #dfc48c;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: pulseSeal 2.5s infinite ease-in-out;
   }
 
   .wax-seal:hover {
     transform: translate(-50%, -50%) scale(1.08);
-    box-shadow: 0 12px 30px rgba(201, 169, 110, 0.7), inset 0 2px 6px rgba(255,255,255,0.8);
+    box-shadow: 
+      0 14px 30px rgba(140, 110, 53, 0.5),
+      0 0 25px rgba(232, 217, 184, 0.8);
   }
 
-  .wax-seal-inner {
-    width: 82px;
-    height: 82px;
+  @keyframes pulseSeal {
+    0%, 100% { box-shadow: 0 10px 25px rgba(140, 110, 53, 0.4), 0 0 0 rgba(201, 169, 110, 0); }
+    50% { box-shadow: 0 10px 25px rgba(140, 110, 53, 0.5), 0 0 20px rgba(201, 169, 110, 0.6); }
+  }
+
+  .seal-inner {
+    width: 79px;
+    height: 79px;
     border-radius: 50%;
-    border: 2px dashed rgba(255, 255, 255, 0.6);
+    border: 1.5px dashed rgba(255, 255, 255, 0.6);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    font-weight: 500;
+    text-align: center;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .seal-monogram {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: #4a3818;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    line-height: 1;
+    letter-spacing: 0.05em;
   }
 
-  @keyframes pulse-glow {
-    0% { box-shadow: 0 0 15px rgba(201, 169, 110, 0.4), inset 0 2px 4px rgba(255,255,255,0.4); }
-    100% { box-shadow: 0 0 30px rgba(201, 169, 110, 0.9), 0 0 50px rgba(232, 217, 184, 0.6); }
+  .seal-subtext {
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5c4722;
+    margin-top: 3px;
+    font-weight: 600;
   }
 
-  /* --- DESTELLO DE AMANECER (SUNRISE FLARE) --- */
-  .sunrise-flare {
+  .envelope-wrapper.open .wax-seal {
+    animation: fadeSealOut 1.2s forwards ease-in;
+  }
+
+  @keyframes fadeSealOut {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  }
+
+  /* Destello de Amanecer (Sunrise Flash) */
+  .sunrise-flash {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, #ffffff 0%, #ffe600 20%, #ffaa33 45%, rgba(255,255,255,0) 70%);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    z-index: 20;
+    background: radial-gradient(circle, #ffffff 0%, #fff6d6 25%, #ffd277 50%, rgba(201, 169, 110, 0) 70%);
+    z-index: 15;
     pointer-events: none;
     opacity: 0;
   }
 
-  /* ANIMACIÓN AL ABRIR */
-  .envelope-screen.open .sunrise-flare {
-    animation: sunrise-beam 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  .envelope-wrapper.open .sunrise-flash {
+    animation: sunriseGlow 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
-  .envelope-screen.open .door-left {
-    transform: rotateY(-120deg);
-  }
-
-  .envelope-screen.open .door-right {
-    transform: rotateY(120deg);
-  }
-
-  .envelope-screen.open .wax-seal {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.6);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  .envelope-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  @keyframes sunrise-beam {
-    0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-      filter: brightness(1.8);
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(35);
-      opacity: 0;
-    }
+  @keyframes sunriseGlow {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    35% { opacity: 1; filter: drop-shadow(0 0 50px #fff); }
+    70% { transform: translate(-50%, -50%) scale(160); opacity: 0.95; }
+    100% { transform: translate(-50%, -50%) scale(220); opacity: 0; }
   }
 
   /* ---------- CABECERA ---------- */
@@ -703,304 +731,7 @@
     box-shadow: 0 5px 16px rgba(107, 122, 94, 0.28);
   }
 
-  /* ---------- TOOLTIP FLOTANTE ---------- */
-  .btn-tooltip { position: relative; }
-
-  .btn-tooltip .tooltip-texto {
-    visibility: hidden;
-    opacity: 0;
-    width: 270px;
-    background: var(--sage-oscuro);
-    color: var(--blanco);
-    text-align: center;
-    border-radius: 7px;
-    padding: 13px 15px;
-    position: absolute;
-    z-index: 10;
-    bottom: 130%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
-    font-size: 0.8rem;
-    line-height: 1.55;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    font-weight: 400;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-    pointer-events: none;
-  }
-
-  .btn-tooltip .tooltip-texto::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--sage-oscuro) transparent transparent transparent;
-  }
-
-  .btn-tooltip:hover .tooltip-texto,
-  .btn-tooltip.activo .tooltip-texto {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  /* ---------- RSVP ---------- */
-  .foto-pareja {
-    width: 100%;
-    max-width: 360px;
-    display: block;
-    margin: 0 auto 30px;
-    border-radius: 3px;
-    box-shadow: var(--sombra-media);
-    object-fit: cover;
-  }
-
-  /* ---------- MARCO ELEGANTE PARA LA FOTO DE LA PAREJA ---------- */
-  .marco-foto-boda {
-    background: var(--blanco);
-    padding: 18px 18px 30px 18px;
-    max-width: 380px;
-    margin: 0 auto 32px;
-    border-radius: 6px;
-    box-shadow: var(--sombra-media);
-    position: relative;
-    border: 1px solid rgba(201, 169, 110, 0.28);
-  }
-
-  .marco-foto-boda::before {
-    content: "";
-    position: absolute;
-    inset: 9px;
-    border: 1px solid rgba(138, 154, 123, 0.18);
-    border-radius: 3px;
-    pointer-events: none;
-  }
-
-  .marco-foto-boda img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 3px;
-    object-fit: cover;
-    aspect-ratio: 4 / 5;
-  }
-
-  .marco-foto-boda .pie-foto {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    color: var(--sage-oscuro);
-    margin-top: 16px;
-    letter-spacing: 0.05em;
-  }
-
-  form {
-    background: var(--blanco);
-    padding: 52px 44px;
-    border-radius: 6px;
-    box-shadow: var(--sombra-suave);
-    position: relative;
-  }
-
-  form::before {
-    content: "";
-    position: absolute;
-    inset: 16px;
-    border: 1px solid rgba(138, 154, 123, 0.14);
-    border-radius: 3px;
-    pointer-events: none;
-  }
-
-  .campo { margin-bottom: 26px; }
-
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    color: var(--texto);
-    text-transform: uppercase;
-  }
-
-  .asterisco { color: var(--rojo-suave); font-weight: 600; }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 15px 17px;
-    border: 1px solid #ddd6c8;
-    border-radius: 3px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: var(--transicion);
-    background: vlay: block; margin-bottom: 3px; font-size: 1.05rem; }
-
-  .itinerario-detalle span {
-    display: block;
-    font-size: 0.88rem;
-    color: var(--texto-suave);
-    line-height: 1.65;
-  }
-
-  .dato-relevante {
-    margin-top: 32px;
-    padding: 22px 24px;
-    background: var(--crema-profunda);
-    border-left: 3px solid var(--sage-claro);
-    font-size: 0.9rem;
-    line-height: 1.75;
-    border-radius: 0 5px 5px 0;
-  }
-
-  .dato-relevante strong { color: var(--sage-oscuro); }
-
-  /* ---------- NOTA GENERAL ---------- */
-  .nota {
-    font-size: 0.86rem;
-    color: var(--texto-suave);
-    margin-top: 30px;
-    font-style: italic;
-    text-align: center;
-    line-height: 1.65;
-  }
-
-  /* ---------- BOTONES ---------- */
-  .btn {
-    display: inline-block;
-    background: var(--sage);
-    color: var(--blanco);
-    border: none;
-    padding: 16px 48px;
-    border-radius: 3px;
-    font-size: 0.84rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transicion);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    text-decoration: none;
-    text-align: center;
-    position: relative;
-  }
-
-  .btn:hover {
-    background: var(--sage-oscuro);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(138, 154, 123, 0.3);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--sage);
-    border: 1.5px solid var(--sage-claro);
-  }
-
-  .btn-outline:hover { background: var(--sage); color: var(--blanco); }
-
-  /* ---------- BOTONES DE OPCIÓN DE ASISTENCIA ---------- */
-  .opciones-asistencia {
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    margin-top: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn-opcion {
-    flex: 1;
-    min-width: 170px;
-    padding: 16px 44px;
-    border: 1.5px solid var(--sage-claro);
-    background: var(--crema);
-    color: var(--texto);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.84rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: var(--transicion);
-    text-align: center;
-    position: relative;
-  }
-
-  .btn-opcion:hover {
-    background: var(--sage);
-    color: var(--blanco);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(138, 154, 123, 0.28);
-  }
-
-  .btn-opcion.seleccionado {
-    background: var(--sage-oscuro);
-    color: var(--blanco);
-    border-color: var(--sage-oscuro);
-    box-shadow: 0 5px 16px rgba(107, 122, 94, 0.28);
-  }
-
-  /* ---------- TOOLTIP FLOTANTE ---------- */
-  .btn-tooltip { position: relative; }
-
-  .btn-tooltip .tooltip-texto {
-    visibility: hidden;
-    opacity: 0;
-    width: 270px;
-    background: var(--sage-oscuro);
-    color: var(--blanco);
-    text-align: center;
-    border-radius: 7px;
-    padding: 13px 15px;
-    position: absolute;
-    z-index: 10;
-    bottom: 130%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
-    font-size: 0.8rem;
-    line-height: 1.55;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    font-weight: 400;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-    pointer-events: none;
-  }
-
-  .btn-tooltip .tooltip-texto::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--sage-oscuro) transparent transparent transparent;
-  }
-
-  .btn-tooltip:hover .tooltip-texto,
-  .btn-tooltip.activo .tooltip-texto {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  /* ---------- RSVP ---------- */
-  .foto-pareja {
-    width: 100%;
-    max-width: 360px;
-    display: block;
-    margin: 0 auto 30px;
-    border-radius: 3px;
-    box-shadow: var(--sombra-media);
-    object-fit: cover;
-  }
-
-  /* ---------- MARCO ELEGANTE PARA LA FOTO DE LA PAREJA ---------- */
+  /* ---------- MARCO ELEGANTE FOTO PAREJA ---------- */
   .marco-foto-boda {
     background: var(--blanco);
     padding: 18px 18px 30px 18px;
@@ -1087,16 +818,6 @@
     border-color: var(--sage-claro);
     box-shadow: 0 0 0 3px rgba(184, 196, 174, 0.22);
     background: var(--blanco);
-  }
-
-  .campo-resaltado {
-    animation: resaltarCampo 1.6s ease-in-out;
-    border-radius: 5px;
-  }
-
-  @keyframes resaltarCampo {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0); }
-    50% { box-shadow: 0 0 0 7px rgba(201, 169, 110, 0.35); }
   }
 
   .gracias {
@@ -1227,7 +948,6 @@
     margin-top: 8px;
   }
 
-  /* ---------- DESGLOSE DE PAGO ---------- */
   .desglose-pago {
     margin: 20px auto 22px;
     padding: 18px 20px;
@@ -1267,7 +987,6 @@
   }
 
   .desglose-pago .linea .valor { font-weight: 500; color: var(--texto); }
-
   .desglose-pago .linea.total .etiqueta { color: var(--sage-oscuro); }
   .desglose-pago .linea.total .valor { color: var(--sage-oscuro); font-size: 1.3rem; }
 
@@ -1353,33 +1072,10 @@
 
   #btnMusica:hover { background: var(--sage-oscuro); transform: scale(1.08); }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 640px) {
-    section { padding: 72px 18px; }
-    .tarjeta, form { padding: 38px 24px; }
-    .horarios { gap: 40px; padding: 20px 0; }
-    .countdown > div { min-width: 70px; padding: 14px 15px; }
-    .countdown span { font-size: 1.75rem; }
-    .itinerario-lista li { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
-    .itinerario-hora { font-size: 0.88rem; }
-  }
-
-  /* ---------- FORMULARIO DINÁMICO ---------- */
+  /* ---------- RESPONSIVE & UTILS ---------- */
   .oculto { display: none !important; }
 
-  .campo-asistentes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
-
-  .campo-contacto {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
-
-  .campo-cancion {
+  .campo-asistentes, .campo-contacto, .campo-cancion {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
@@ -1436,14 +1132,16 @@
   }
 
   @media (max-width: 640px) {
-    .campo-asistentes { grid-template-columns: 1fr; gap: 14px; }
-    .campo-contacto { grid-template-columns: 1fr; gap: 14px; }
-    .campo-cancion { grid-template-columns: 1fr; gap: 14px; }
+    section { padding: 72px 18px; }
+    .tarjeta, form { padding: 38px 24px; }
+    .horarios { gap: 40px; padding: 20px 0; }
+    .countdown > div { min-width: 70px; padding: 14px 15px; }
+    .countdown span { font-size: 1.75rem; }
+    .itinerario-lista li { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
+    .itinerario-hora { font-size: 0.88rem; }
+    .campo-asistentes, .campo-contacto, .campo-cancion { grid-template-columns: 1fr; gap: 14px; }
     .menu-asistente { flex-direction: column; align-items: flex-start; gap: 7px; }
-    .menu-asistente label { min-width: auto; }
     .pago-datos .fila { flex-direction: column; align-items: flex-start; gap: 5px; }
-    .pago-datos .fila span { font-size: 0.98rem; }
-    .btn-tooltip .tooltip-texto { width: 230px; font-size: 0.74rem; }
   }
 
   /* ---------- PANEL ADMIN ---------- */
@@ -1460,19 +1158,8 @@
   }
 
   .admin-panel.visible { display: block; }
-
-  .admin-panel h2 {
-    color: var(--sage-oscuro);
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .admin-panel .admin-sub {
-    text-align: center;
-    color: var(--texto-suave);
-    font-size: 0.92rem;
-    margin-bottom: 22px;
-  }
+  .admin-panel h2 { color: var(--sage-oscuro); text-align: center; margin-bottom: 10px; }
+  .admin-panel .admin-sub { text-align: center; color: var(--texto-suave); font-size: 0.92rem; margin-bottom: 22px; }
 
   .admin-stats {
     display: flex;
@@ -1514,8 +1201,7 @@
     margin-bottom: 32px;
   }
 
-  .admin-toolbar button,
-  .admin-toolbar label {
+  .admin-toolbar button, .admin-toolbar label {
     background: var(--sage);
     color: var(--blanco);
     border: none;
@@ -1531,52 +1217,19 @@
     margin: 0;
   }
 
-  .admin-toolbar button:hover,
-  .admin-toolbar label:hover { background: var(--sage-oscuro); }
-
+  .admin-toolbar button:hover, .admin-toolbar label:hover { background: var(--sage-oscuro); }
   .admin-toolbar input[type="file"] { display: none; }
-
   .admin-toolbar .btn-danger { background: #b55a5a; }
   .admin-toolbar .btn-danger:hover { background: #8f3f3f; }
 
   .tabla-wrap { overflow-x: auto; margin-top: 22px; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.84rem;
-    min-width: 920px;
-  }
-
-  th, td {
-    padding: 11px 13px;
-    text-align: left;
-    border-bottom: 1px solid #e6e0d4;
-    vertical-align: top;
-  }
-
-  th {
-    background: var(--crema-profunda);
-    color: var(--sage-oscuro);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 0.07em;
-    position: sticky;
-    top: 0;
-  }
-
+  table { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 920px; }
+  th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid #e6e0d4; vertical-align: top; }
+  th { background: var(--crema-profunda); color: var(--sage-oscuro); font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.07em; position: sticky; top: 0; }
   tr:hover td { background: #faf7f2; }
-
   .badge-si { color: #3f8f4a; font-weight: 600; }
   .badge-no { color: #b55a5a; font-weight: 600; }
-
-  .admin-empty {
-    text-align: center;
-    padding: 44px 22px;
-    color: var(--texto-suave);
-    font-style: italic;
-  }
+  .admin-empty { text-align: center; padding: 44px 22px; color: var(--texto-suave); font-style: italic; }
 
   /* ---------- LOGIN ADMIN ---------- */
   .admin-login {
@@ -1589,25 +1242,69 @@
     box-shadow: var(--sombra-media);
   }
 
-  .admin-login h3 {
-    color: var(--sage-oscuro);
-    margin-bottom: 18px;
-  }
-
+  .admin-login h3 { color: var(--sage-oscuro); margin-bottom: 18px; }
   .admin-login input { margin-bottom: 18px; }
-
-  .admin-login .error {
-    color: #b55a5a;
-    font-size: 0.87rem;
-    margin-top: 12px;
-    display: none;
-  }
-
+  .admin-login .error { color: #b55a5a; font-size: 0.87rem; margin-top: 12px; display: none; }
   .admin-login .error.visible { display: block; }
-
 </style>
 </head>
-<body>
+<body class="noscroll">
+
+<!-- ================= PRESENTACIÓN DEL SOBRE 3D (INTERACTIVO) ================= -->
+<div id="envelope-container">
+  <div class="envelope-wrapper" id="envelope">
+    <div class="envelope-back"></div>
+
+    <!-- Solapa Superior con Encaje Floral SVG -->
+    <div class="flap flap-top">
+      <svg class="lace-pattern" viewBox="0 0 400 300" preserveAspectRatio="none">
+        <path d="M0 0 L400 0 L200 280 Z" fill="#ffffff" />
+        <path d="M0 0 L400 0 L200 280 Z" fill="none" stroke="#e3ded5" stroke-width="3" />
+        <!-- Encaje y Guirnalda Floral Superior -->
+        <g fill="none" stroke="#d5cebf" stroke-width="1.8" opacity="0.85">
+          <circle cx="200" cy="90" r="45" stroke-dasharray="4 3"/>
+          <path d="M 160 90 Q 200 40 240 90 Q 200 140 160 90 Z" fill="rgba(255,255,255,0.7)"/>
+          <circle cx="200" cy="90" r="16" fill="#ffffff"/>
+          <!-- Motivos Florales Laterales -->
+          <path d="M 50 20 C 100 80, 120 120, 200 230" />
+          <path d="M 350 20 C 300 80, 280 120, 200 230" />
+          <!-- Hojas en Relieve -->
+          <path d="M 100 70 Q 120 60 130 80 Q 110 90 100 70 Z" fill="#fcfbfa"/>
+          <path d="M 300 70 Q 280 60 270 80 Q 290 90 300 70 Z" fill="#fcfbfa"/>
+          <path d="M 140 130 Q 160 120 170 140 Q 150 150 140 130 Z" fill="#fcfbfa"/>
+          <path d="M 260 130 Q 240 120 230 140 Q 250 150 260 130 Z" fill="#fcfbfa"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Solapa Inferior con Encaje Floral SVG -->
+    <div class="flap flap-bottom">
+      <svg class="lace-pattern" viewBox="0 0 400 300" preserveAspectRatio="none">
+        <path d="M0 300 L400 300 L200 20 Z" fill="#ffffff" />
+        <path d="M0 300 L400 300 L200 20 Z" fill="none" stroke="#e3ded5" stroke-width="3" />
+        <!-- Encaje y Detalles Florales Inferiores -->
+        <g fill="none" stroke="#d5cebf" stroke-width="1.8" opacity="0.85">
+          <circle cx="200" cy="210" r="45" stroke-dasharray="4 3"/>
+          <path d="M 160 210 Q 200 160 240 210 Q 200 260 160 210 Z" fill="rgba(255,255,255,0.7)"/>
+          <circle cx="200" cy="210" r="16" fill="#ffffff"/>
+          <path d="M 50 280 C 100 220, 120 180, 200 70" />
+          <path d="M 350 280 C 300 220, 280 180, 200 70" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Sello de Cera Dorado Central W&J -->
+    <div class="wax-seal" id="wax-seal-btn" role="button" aria-label="Abrir Invitación">
+      <div class="seal-inner">
+        <span class="seal-monogram">W&J</span>
+        <span class="seal-subtext">ABRIR</span>
+      </div>
+    </div>
+
+    <!-- Destello de Amanecer Expansivo -->
+    <div class="sunrise-flash"></div>
+  </div>
+</div>
 
 <!-- ================= CABECERA ELEGANTE ================= -->
 <nav class="menu-navegacion" aria-label="Cabecera de la invitación">
@@ -1660,10 +1357,8 @@
   <p class="subtitulo">Por favor, confírmanos antes del 20 de Marzo de 2027</p>
 
   <div class="tarjeta centro" style="margin-bottom: 40px;">
-
-    <!-- MARCO ELEGANTE PARA LA FOTO DE LA PAREJA -->
     <div class="marco-foto-boda">
-      <img src="boda/77600.jpg" onerror="this.src='boda/foto-pareja.jpg'" alt="Wendy y Jhon" />
+      <img src="boda/77600.jpg" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80'" alt="Wendy y Jhon" />
       <div class="pie-foto">Wendy & Jhon</div>
     </div>
 
@@ -1810,7 +1505,6 @@
   <!-- ================= DÍA DEL EVENTO + ITINERARIO ================= -->
   <section id="evento">
     <div class="tarjeta bloque-evento">
-
       <p class="frase">
         Queremos que solo os preocupéis de pasarlo bien,<br>
         por eso <strong>ponemos a vuestra disposición el itinerario</strong><br>
@@ -1887,7 +1581,6 @@
       <div class="dato-relevante">
         <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial. Si quieres dedicar una canción, puedes indicarla en el formulario de asistencia.
       </div>
-
     </div>
   </section>
 
@@ -1974,7 +1667,6 @@
   <footer id="footer">
     Hecho con <span class="corazon">♥</span> para nuestra boda · Wendy & Jhon 2027
   </footer>
-
 </div>
 
 <!-- ================= PANEL ADMIN ================= -->
@@ -2037,24 +1729,51 @@
   <p class="admin-empty" id="adminEmpty">Aún no hay respuestas registradas.</p>
 </div>
 
-<!-- ================= MÚSICA ================= -->
+<!-- ================= MÚSICA DE FONDO ================= -->
 <button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
-<audio id="audioFondo" loop preload="none">
+<audio id="audioFondo" loop preload="auto">
   <source src="boda/cancion.mp3" type="audio/mpeg">
 </audio>
 
 <script>
   /* =========================================================
-     CONFIGURACIÓN
+     INTERACCIÓN DEL SOBRE 3D Y ANIMACIÓN DE APERTURA (2.2 SECS)
+     ========================================================= */
+  const envelopeWrapper = document.getElementById('envelope');
+  const waxSealBtn = document.getElementById('wax-seal-btn');
+  const envelopeContainer = document.getElementById('envelope-container');
+  const audioFondo = document.getElementById('audioFondo');
+  const btnMusicaElem = document.getElementById('btnMusica');
+  let musicaReproduciéndose = false;
+
+  waxSealBtn.addEventListener('click', () => {
+    // Activa la animación 3D del sobre y el destello de amanecer
+    envelopeWrapper.classList.add('open');
+
+    // Reproduce la música de fondo al presionar el sello
+    audioFondo.play().then(() => {
+      musicaReproduciéndose = true;
+      btnMusicaElem.textContent = "❚❚";
+      btnMusicaElem.style.background = "var(--sage-oscuro)";
+    }).catch(() => {
+      console.log("Auto-play de audio bloqueado por el navegador.");
+    });
+
+    // Espera 2.2 segundos para mostrar toda la secuencia de apertura y destello
+    setTimeout(() => {
+      envelopeContainer.classList.add('fade-out');
+      document.body.classList.remove('noscroll');
+    }, 2200);
+  });
+
+  /* =========================================================
+     CONFIGURACIÓN & UTILS
      ========================================================= */
   const ADMIN_PASSWORD = "wendy2027";
   const STORAGE_KEY = "rsvp_boda_wendy_jhon";
   const PRECIO_ADULTO = 150;
   const PRECIO_NINO = 60;
 
-  /* =========================================================
-     UTILIDADES
-     ========================================================= */
   function cargarRespuestas() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
     catch (e) { return []; }
@@ -2116,7 +1835,7 @@
   actualizarCountdown();
 
   /* =========================================================
-     COPIAR
+     COPIAR DATOS
      ========================================================= */
   document.querySelectorAll(".copiar-sutil").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -2172,18 +1891,15 @@
 
   btnSi.addEventListener("click", () => {
     if (!camposObligatoriosLlenos()) return;
-
     btnSi.classList.add("seleccionado");
     btnNo.classList.remove("seleccionado");
     inputAsistencia.value = "Sí, asistiré";
-
     contenidoAsistencia.classList.remove("oculto");
     mensajeNoAsiste.classList.add("oculto");
   });
 
   btnNo.addEventListener("click", () => {
     if (!camposObligatoriosLlenos()) return;
-
     const nombre = inputNombre.value.trim();
     const email = inputEmail.value.trim();
     const telefono = inputTelefono.value.trim();
@@ -2191,7 +1907,6 @@
     btnNo.classList.add("seleccionado");
     btnSi.classList.remove("seleccionado");
     inputAsistencia.value = "No podré asistir";
-
     contenidoAsistencia.classList.add("oculto");
     seccionesExtra.classList.add("oculto");
 
@@ -2351,22 +2066,19 @@
   document.getElementById("btnCalendario").href = URL.createObjectURL(blobICS);
 
   /* =========================================================
-     MÚSICA
+     BOTÓN MÚSICA DE FONDO
      ========================================================= */
-  const audio = document.getElementById("audioFondo");
-  const btnMusica = document.getElementById("btnMusica");
-  let suena = false;
-  btnMusica.addEventListener("click", () => {
-    if (suena) {
-      audio.pause();
-      btnMusica.textContent = "♪";
-      btnMusica.style.background = "var(--sage)";
+  btnMusicaElem.addEventListener("click", () => {
+    if (musicaReproduciéndose) {
+      audioFondo.pause();
+      btnMusicaElem.textContent = "♪";
+      btnMusicaElem.style.background = "var(--sage)";
     } else {
-      audio.play().catch(err => console.log("No se pudo reproducir:", err));
-      btnMusica.textContent = "❚❚";
-      btnMusica.style.background = "var(--sage-oscuro)";
+      audioFondo.play().catch(err => console.log("No se pudo reproducir audio:", err));
+      btnMusicaElem.textContent = "❚❚";
+      btnMusicaElem.style.background = "var(--sage-oscuro)";
     }
-    suena = !suena;
+    musicaReproduciéndose = !musicaReproduciéndose;
   });
 
   /* =========================================================
@@ -2505,7 +2217,6 @@
     adminPanel.classList.add("oculto");
     window.location.hash = "";
   });
-
 </script>
 
 </body>
