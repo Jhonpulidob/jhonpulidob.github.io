@@ -519,60 +519,6 @@
     box-shadow: 0 5px 16px rgba(107, 122, 94, 0.28);
   }
 
-  .btn-tooltip { position: relative; }
-
-  .btn-tooltip .tooltip-texto {
-    visibility: hidden;
-    opacity: 0;
-    width: 270px;
-    background: var(--sage-oscuro);
-    color: var(--blanco);
-    text-align: center;
-    border-radius: 7px;
-    padding: 13px 15px;
-    position: absolute;
-    z-index: 10;
-    bottom: 130%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
-    font-size: 0.8rem;
-    line-height: 1.55;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    font-weight: 400;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-    pointer-events: none;
-  }
-
-  .btn-tooltip .tooltip-texto::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--sage-oscuro) transparent transparent transparent;
-  }
-
-  .btn-tooltip:hover .tooltip-texto,
-  .btn-tooltip.activo .tooltip-texto {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .foto-pareja {
-    width: 100%;
-    max-width: 360px;
-    display: block;
-    margin: 0 auto 30px;
-    border-radius: 3px;
-    box-shadow: var(--sombra-media);
-    object-fit: cover;
-  }
-
   .marco-foto-boda {
     background: var(--blanco);
     padding: 18px 18px 30px 18px;
@@ -727,7 +673,7 @@
     flex-direction: column;
     gap: 7px;
     max-width: 440px;
-    margin: 0 auto 18px;
+    margin: 0 auto 10px;
     text-align: left;
   }
 
@@ -778,24 +724,25 @@
 
   .copiar-sutil:hover { background: var(--sage); color: var(--blanco); }
 
-  .qr-sutil {
-    display: block;
-    margin: 14px auto 10px;
-    border-radius: 5px;
-    border: 1px solid #eee;
-    padding: 7px;
-    background: var(--blanco);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
-    width: 128px;
-    height: 128px;
+  .caja-referencia {
+    margin-top: 22px;
+    padding: 22px 20px;
+    background: var(--crema-profunda);
+    border: 1.5px solid var(--dorado);
+    border-radius: 6px;
+    text-align: left;
   }
 
-  .bloque-pago-sutil .nota-pago {
-    font-size: 0.74rem;
+  .caja-referencia label {
+    color: var(--sage-oscuro);
+    font-weight: 600;
+  }
+
+  .caja-referencia p {
+    font-size: 0.84rem;
     color: var(--texto-suave);
-    font-style: italic;
-    line-height: 1.55;
-    margin-top: 8px;
+    margin-bottom: 12px;
+    line-height: 1.65;
   }
 
   .desglose-pago {
@@ -852,11 +799,32 @@
     margin-top: 40px;
   }
 
-  .qr-box img {
-    border-radius: 5px;
-    background: var(--blanco);
-    padding: 12px;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  .qr-personalizado-marco {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--crema);
+    border: 1.5px solid var(--dorado);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(58, 58, 52, 0.08);
+  }
+
+  .qr-personalizado-marco::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgba(138, 154, 123, 0.45);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+
+  .qr-personalizado-marco canvas,
+  .qr-personalizado-marco img {
+    display: block;
+    border-radius: 4px;
+    background: var(--crema);
   }
 
   .qr-box p:first-child {
@@ -943,12 +911,6 @@
     gap: 22px;
   }
 
-  .campo-cancion {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
-
   .menu-asistente {
     display: flex;
     align-items: center;
@@ -1002,12 +964,10 @@
   @media (max-width: 640px) {
     .campo-asistentes { grid-template-columns: 1fr; gap: 14px; }
     .campo-contacto { grid-template-columns: 1fr; gap: 14px; }
-    .campo-cancion { grid-template-columns: 1fr; gap: 14px; }
     .menu-asistente { flex-direction: column; align-items: flex-start; gap: 7px; }
     .menu-asistente label { min-width: auto; }
     .pago-datos .fila { flex-direction: column; align-items: flex-start; gap: 5px; }
     .pago-datos .fila span { font-size: 0.98rem; }
-    .btn-tooltip .tooltip-texto { width: 230px; font-size: 0.74rem; }
   }
 
   .admin-panel {
@@ -1168,7 +1128,7 @@
   .admin-login .error.visible { display: block; }
 
   /* =========================================================
-     SOBRE DE APERTURA · adaptado a la paleta
+     SOBRE DE APERTURA
      ========================================================= */
   body.con-sobre { overflow: hidden; }
 
@@ -1571,7 +1531,7 @@
   <div class="tarjeta centro" style="margin-bottom: 40px;">
 
     <div class="marco-foto-boda">
-      <img src="boda/77600.jpg" onerror="this.src='boda/foto-pareja.jpg'" alt="Wendy y Jhon" />
+      <img id="fotoParejaImg" src="boda/77600.jpg" onerror="this.src='boda/foto-pareja.jpg'" alt="Wendy y Jhon" />
       <div class="pie-foto">Wendy & Jhon</div>
     </div>
 
@@ -1620,16 +1580,6 @@
 
       <div id="contenedorMenus"></div>
 
-      <div class="campo-cancion">
-        <div class="campo">
-          <label>Artista de la canción</label>
-          <input type="text" name="cancion_artista" placeholder="Nombre del artista o grupo">
-        </div>
-        <div class="campo">
-          <label>Nombre de la canción</label>
-          <input type="text" name="cancion_titulo" placeholder="Título de la canción">
-        </div>
-      </div>
       <div class="campo">
         <label>Mensaje para los Novios</label>
         <textarea name="mensaje" rows="3" placeholder="Déjanos unas palabras..."></textarea>
@@ -1681,15 +1631,18 @@
             <button type="button" class="copiar-sutil" id="btnCopiarCubierto">Copiar</button>
           </div>
         </div>
-
-        <img class="qr-sutil" id="qrPago"
-             src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BCD%3A002%3A1%3ASCT%3AES9801825322250001656932%3AJhon%20Pulido%3A%3A%3A%3A%3A%3A%3A%3A"
-             alt="QR para transferencia">
-
-        <p class="nota-pago">Escanea el QR desde tu app bancaria o copia los datos manualmente.</p>
       </div>
 
-      <button type="submit" class="btn" style="width: 100%; margin-top: 14px;">Enviar confirmación</button>
+      <div id="bloqueReferencia" class="caja-referencia oculto">
+        <label for="referenciaBancaria">Número de referencia bancaria / justificante <span class="asterisco">*</span></label>
+        <p>
+          Si ya realizaste tu transferencia o depósito, por favor introduce el número de referencia o código de operación. Lo adjuntaremos a tu correo de confirmación para llevar un registro ordenado.<br><br>
+          Una vez completado este paso, podrás continuar y consultar toda la información del evento: la dirección, la hora, el programa y cada detalle que hemos preparado con cariño para celebrar juntos.
+        </p>
+        <input type="text" name="referenciaBancaria" id="referenciaBancaria" placeholder="Ej. REF-123456789">
+      </div>
+
+      <button type="submit" class="btn" id="btnEnviarConfirmacion" style="width: 100%; margin-top: 18px;">Enviar confirmación</button>
     </div>
 
     <div id="mensajeNoAsiste" class="mensaje-no-asiste oculto">
@@ -1708,7 +1661,7 @@
 
   <div class="gracias" id="gracias">
     <h3>¡Gracias por confirmar!</h3>
-    <p>Nos hace mucha ilusión compartir este día contigo.</p>
+    <p>Se ha preparado el correo con todos tus datos y referencia bancaria. ¡Nos hace mucha ilusión compartir este día contigo!</p>
   </div>
 </section>
 
@@ -1792,7 +1745,7 @@
       </ul>
 
       <div class="dato-relevante">
-        <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial. Si quieres dedicar una canción, puedes indicarla en el formulario de asistencia.
+        <strong>Momentos musicales previstos:</strong> entrada del novio, entrada de la novia, lectura o votos, salida de los novios, entrada de los novios al salón con brindis, corte de la tarta y baile nupcial.
       </div>
 
     </div>
@@ -1819,7 +1772,7 @@
       </div>
 
       <a class="btn" target="_blank" rel="noopener"
-         href="https://maps.google.com/?q=Calle+Nuestra+Se%C3%B1ora+de+Valverde+193+Madrid">
+         href="https://www.google.com/maps/search/?api=1&query=Calle+Nuestra+Se%C3%B1ora+de+Valverde%2C+193%2C+28034+Madrid">
         Ver ubicación en Google Maps
       </a>
     </div>
@@ -1833,14 +1786,15 @@
         Sube tus fotos al álbum compartido de Google Fotos.<br>
         También encontrarás este acceso por QR en el recuerdo de boda.
       </p>
-      <a class="btn" target="_blank" rel="noopener" href="TU-ENLACE-AQUI">
+      <a class="btn" target="_blank" rel="noopener" href="https://photos.app.goo.gl/rfx9hLeCyQc3YkSp9">
         Abrir álbum en Google Fotos
       </a>
 
       <div class="qr-box">
         <p>QR del recuerdo</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TU-ENLACE-AQUI"
-             alt="QR del álbum de Google Fotos">
+        <div class="qr-personalizado-marco">
+          <canvas id="qrAlbumCanvas" width="220" height="220" aria-label="QR del álbum de Google Fotos"></canvas>
+        </div>
         <p class="nota" style="margin-top: 0;">Este mismo QR se entregará en el recuerdo de boda.</p>
       </div>
     </div>
@@ -1932,7 +1886,7 @@
           <th>Adultos</th>
           <th>Niños</th>
           <th>Menús</th>
-          <th>Canción</th>
+          <th>Ref. Bancaria</th>
           <th>Mensaje</th>
           <th>Total cubierto</th>
           <th>Fecha</th>
@@ -1947,9 +1901,7 @@
 <!-- ================= MÚSICA ================= -->
 <button id="btnMusica" title="Reproducir música" aria-label="Reproducir o pausar música">♪</button>
 <audio id="audioFondo" loop preload="auto">
-  <!-- Tu música principal -->
   <source src="boda/audio_boda.m4a" type="audio/mp4">
-  <!-- Respaldo por si el m4a no carga -->
   <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116035.mp3" type="audio/mpeg">
 </audio>
 
@@ -1962,8 +1914,12 @@
   const PRECIO_ADULTO = 150;
   const PRECIO_NINO = 60;
 
+  const EMAIL_NOVIOS = "jp432779@gmail.com";
+  const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbya83WqLLLF2LIAuA8W9nPy9BLZ8U1vokNJWP4rtwIVAHE4O6n0YRxyaL1OW53IDVIl/exec";
+  const ALBUM_FOTOS_URL = "https://photos.app.goo.gl/rfx9hLeCyQc3YkSp9";
+
   /* =========================================================
-     UTILIDADES
+     UTILIDADES Y REGISTRO REMOTO (GOOGLE DRIVE / SHEETS)
      ========================================================= */
   function cargarRespuestas() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
@@ -1981,12 +1937,27 @@
     return `RSVP-${ts}-${emailLimpio}-${telefonoLimpio}`;
   }
 
+  function enviarAGoogleDrive(registro) {
+    if (!GOOGLE_SHEET_URL) return;
+    const payload = {
+      ...registro,
+      menusTexto: (registro.menus || []).map(m => `${m.tipo}: ${m.plato}`).join(" | ")
+    };
+    fetch(GOOGLE_SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn("No se pudo sincronizar con Drive:", err));
+  }
+
   function agregarRespuesta(datos) {
     const arr = cargarRespuestas();
     datos.fecha = new Date().toISOString();
     datos.id = generarIdUnico(datos.email, datos.telefono);
     arr.push(datos);
     guardarRespuestas(arr);
+    enviarAGoogleDrive(datos);
     return datos;
   }
 
@@ -2005,6 +1976,59 @@
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
+
+  /* =========================================================
+     GENERACIÓN DE QR PERSONALIZADO DEL ÁLBUM
+     ========================================================= */
+  function generarQRAlbumPersonalizado() {
+    const canvas = document.getElementById("qrAlbumCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const size = canvas.width;
+
+    ctx.fillStyle = "#faf7f2";
+    ctx.fillRect(0, 0, size, size);
+
+    const qrImg = new Image();
+    qrImg.crossOrigin = "anonymous";
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&color=6b7a5e&bgcolor=faf7f2&data=${encodeURIComponent(ALBUM_FOTOS_URL)}`;
+
+    qrImg.onload = () => {
+      ctx.drawImage(qrImg, 0, 0, size, size);
+
+      const cx = size / 2;
+      const cy = size / 2;
+      const radio = 28;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radio + 3, 0, Math.PI * 2);
+      ctx.fillStyle = "#faf7f2";
+      ctx.fill();
+
+      const grad = ctx.createRadialGradient(cx - 8, cy - 8, 4, cx, cy, radio);
+      grad.addColorStop(0, "#f5ecd6");
+      grad.addColorStop(0.55, "#d6bd8d");
+      grad.addColorStop(1, "#c9a96e");
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, radio, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = "#6b7a5e";
+      ctx.stroke();
+
+      ctx.fillStyle = "#3a3a34";
+      ctx.font = "600 14px 'Cormorant Garamond', Georgia, serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("W & J", cx, cy + 1);
+      ctx.restore();
+    };
+  }
+  generarQRAlbumPersonalizado();
 
   /* =========================================================
      COUNTDOWN
@@ -2062,7 +2086,8 @@
   const valorTotal = document.getElementById("valorTotal");
   const cubiertoTotal = document.getElementById("cubiertoTotal");
   const btnCopiarCubierto = document.getElementById("btnCopiarCubierto");
-  const qrPago = document.getElementById("qrPago");
+  const bloqueReferencia = document.getElementById("bloqueReferencia");
+  const inputReferencia = document.getElementById("referenciaBancaria");
 
   seccionesExtra.classList.add("oculto");
 
@@ -2117,11 +2142,14 @@
       email: email,
       telefono: telefono,
       asistencia: "No podré asistir",
-      adultos: 0, ninos: 0, menus: [], cancion: "", mensaje: "",
+      adultos: 0,
+      ninos: 0,
+      menus: [],
+      referenciaBancaria: "",
+      mensaje: "",
       totalPago: 0
     });
 
-    descargarJSON();
     mensajeNoAsiste.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
@@ -2145,9 +2173,6 @@
     valorTotal.textContent = `${total} €`;
     cubiertoTotal.textContent = `${total} €`;
     btnCopiarCubierto.dataset.copiar = `${total} €`;
-
-    const qrData = `BCD:002:1:SCT:ES9801825322250001656932:Jhon Pulido::${total}::EUR`;
-    qrPago.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrData)}`;
   }
 
   inputAdultos.addEventListener("input", () => { generarMenus(); actualizarDesglose(); });
@@ -2170,7 +2195,7 @@
       select.required = true;
       select.innerHTML = `
         <option value="">Selecciona...</option>
-        <option value="Meloso de ternera con parmentier de patata">Meloso de ternera con parmentier de patata</option>
+        <option value="Canelones de carrillera">Canelones de carrillera</option>
         <option value="Salmón gratinado con hojaldre de verduras salteadas">Salmón gratinado con hojaldre de verduras salteadas</option>
       `;
       div.appendChild(label); div.appendChild(select); contenedorMenus.appendChild(div);
@@ -2194,11 +2219,27 @@
   }
   generarMenus();
 
-  formRSVP.addEventListener("submit", async (e) => {
+  formRSVP.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (inputAsistencia.value !== "Sí, asistiré") {
       alert("Por favor selecciona 'Sí asistiré' para enviar la confirmación completa.");
+      return;
+    }
+
+    if (bloqueReferencia.classList.contains("oculto")) {
+      bloqueReferencia.classList.remove("oculto");
+      bloqueReferencia.classList.add("campo-resaltado");
+      inputReferencia.required = true;
+      inputReferencia.focus();
+      bloqueReferencia.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    const referencia = inputReferencia.value.trim();
+    if (!referencia) {
+      alert("Por favor introduce el número de referencia bancaria de tu transferencia o depósito.");
+      inputReferencia.focus();
       return;
     }
 
@@ -2208,36 +2249,63 @@
     const menus = [];
     Object.keys(datos).forEach(k => {
       if (k.startsWith("menu_")) {
-        menus.push({ tipo: k.replace("menu_", ""), plato: datos[k] });
+        menus.push({ tipo: k.replace("menu_", "").replace("_", " "), plato: datos[k] });
         delete datos[k];
       }
     });
 
-    const artist = datos.cancion_artista || "";
-    const title = datos.cancion_titulo || "";
-    const cancion = artist && title ? `${artist} - ${title}` : (artist || title || "");
-
     const adultos = parseInt(datos.adultos) || 0;
     const ninos = parseInt(datos.ninos) || 0;
     const totalPago = (adultos * PRECIO_ADULTO) + (ninos * PRECIO_NINO);
+    const mensajeInvitado = (datos.mensaje || "").trim();
 
     agregarRespuesta({
       nombre: datos.nombre,
       email: datos.email,
       telefono: datos.telefono,
       asistencia: datos.asistencia,
-      adultos, ninos, menus,
-      cancion: cancion,
-      mensaje: datos.mensaje || "",
+      adultos,
+      ninos,
+      menus,
+      referenciaBancaria: referencia,
+      mensaje: mensajeInvitado,
       totalPago
     });
 
-    descargarJSON();
+    const detallePlatos = menus.length > 0
+      ? menus.map(m => `- ${m.tipo}: ${m.plato}`).join("\n")
+      : "- Sin platos seleccionados";
+
+    const asunto = `Confirmación Boda Wendy & Jhon - ${datos.nombre}`;
+    const cuerpo = [
+      "¡Hola Wendy y Jhon!",
+      "",
+      "Confirmo que SÍ asistiré a vuestra boda con los siguientes datos:",
+      "",
+      `• Nombre completo: ${datos.nombre}`,
+      `• Correo electrónico: ${datos.email}`,
+      `• Teléfono: ${datos.telefono}`,
+      `• Asistencia: Sí, asistiré`,
+      `• Cantidad de adultos: ${adultos}`,
+      `• Cantidad de niños: ${ninos}`,
+      `• Importe total del cubierto: ${totalPago} €`,
+      `• Número de referencia bancaria: ${referencia}`,
+      "",
+      "Platos elegidos:",
+      detallePlatos,
+      mensajeInvitado ? `\nMensaje para los novios:\n"${mensajeInvitado}"` : "",
+      "",
+      "¡Nos vemos el 10 de abril de 2027!"
+    ].filter(Boolean).join("\n");
+
+    const mailtoUrl = `mailto:${encodeURIComponent(EMAIL_NOVIOS)}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
     formRSVP.style.display = "none";
     document.getElementById("gracias").style.display = "block";
     seccionesExtra.classList.remove("oculto");
     document.getElementById("gracias").scrollIntoView({ behavior: "smooth", block: "center" });
+
+    window.location.href = mailtoUrl;
   });
 
   /* =========================================================
@@ -2369,7 +2437,7 @@
         <td>${r.adultos || 0}</td>
         <td>${r.ninos || 0}</td>
         <td>${menusStr || "—"}</td>
-        <td>${escapeHTML(r.cancion || "—")}</td>
+        <td>${escapeHTML(r.referenciaBancaria || "—")}</td>
         <td>${escapeHTML(r.mensaje || "—")}</td>
         <td><strong>${totalStr}</strong></td>
         <td>${r.fecha ? new Date(r.fecha).toLocaleString("es-ES") : "—"}</td>
@@ -2425,7 +2493,7 @@
   });
 
   /* =========================================================
-     SOBRE DE APERTURA · con música automática + fallback
+     SOBRE DE APERTURA
      ========================================================= */
   const sobreApertura   = document.getElementById("sobreApertura");
   const sobreSello      = document.getElementById("sobreSello");
@@ -2443,11 +2511,9 @@
       if (sobreAbierto) return;
       sobreAbierto = true;
 
-      // 1. Destello de amanecer dorado
       destelloAmanecer.classList.add("activo");
       destelloCirculo.classList.add("animar");
 
-      // 2. Música: intenta reproducir (con fallback ya configurado en <source>)
       audio.play().then(() => {
         actualizarBotonMusica(true);
       }).catch(err => {
@@ -2455,20 +2521,17 @@
         actualizarBotonMusica(false);
       });
 
-      // 3. El sello desaparece
       sobreSello.style.transform = "translate(-50%, -50%) scale(0)";
       sobreSello.style.opacity = "0";
       sobreSello.style.pointerEvents = "none";
       sobrePista.classList.add("oculta");
 
-      // 4. Apertura 3D
       setTimeout(() => sobreSolapa.classList.add("abierta"), 220);
       setTimeout(() => {
         sobrePuertaIzq.classList.add("abierta");
         sobrePuertaDer.classList.add("abierta");
       }, 520);
 
-      // 5. Desvanecer portada y liberar scroll
       setTimeout(() => {
         sobreApertura.classList.add("abierto");
         document.body.classList.remove("con-sobre");
@@ -2480,7 +2543,6 @@
       }, 1500);
     });
   }
-
 </script>
 
 </body>
